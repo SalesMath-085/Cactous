@@ -1,0 +1,10 @@
+{
+  "name": "POO em Foco",
+  "short_name": "POO em Foco",
+  "description": "Quiz de Programação Orientada a Objetos com explicações.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0b2340",
+  "icons": [{"src":"/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

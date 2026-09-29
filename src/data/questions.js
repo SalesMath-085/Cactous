@@ -1,0 +1,232 @@
+const o = (a, b, c, d, e) => [a, b, c, d, e];
+
+export const questions = [
+  {
+    id: 'cw1-01', source: 'ColabWeb POO - Parte 1', topic: 'Construtores', difficulty: 'Médio',
+    prompt: 'Sobre a linguagem Java e construtores, analise as afirmativas: I. Java permite apenas um construtor por classe. II. Se um construtor não for especificado, um construtor implícito será criado. III. O construtor pode ser executado explicitamente várias vezes no mesmo objeto. IV. Sobrecarga se aplica a construtores. V. O construtor tem o mesmo nome da classe e não especifica retorno.',
+    options: o('Apenas II, IV e V são verdadeiras.', 'Apenas I e V são verdadeiras.', 'Apenas I, III e V são verdadeiras.', 'Todas são verdadeiras.', 'Apenas I, II e V são verdadeiras.'),
+    answer: 0,
+    explanation: 'Java aceita vários construtores por sobrecarga. Quando nenhum é declarado, o compilador fornece um construtor padrão. Um construtor é acionado na criação do objeto, tem o nome da classe e não declara retorno.',
+    wrong: 'A alternativa escolhida combina pelo menos uma afirmação falsa: I é falsa porque pode haver sobrecarga, e III é falsa porque um construtor não é chamado novamente sobre o mesmo objeto.'
+  },
+  {
+    id: 'cw1-02', source: 'ColabWeb POO - Parte 1', topic: 'Coleções', difficulty: 'Fácil',
+    prompt: 'Um HashMap recebe pontos.put("Ana", 10), pontos.put("Bia", 20) e depois pontos.put("Ana", 30). Em seguida, imprime pontos.get("Ana") + pontos.size(). Qual é a saída?',
+    code: `HashMap<String, Integer> pontos = new HashMap<>();\npontos.put("Ana", 10);\npontos.put("Bia", 20);\npontos.put("Ana", 30);\nSystem.out.println(pontos.get("Ana") + pontos.size());`,
+    options: o('33', '12', '22', '32', '30'), answer: 3,
+    explanation: 'Uma chave repetida substitui o valor anterior. “Ana” passa a valer 30 e o mapa continua com duas chaves; 30 + 2 = 32.',
+    wrong: 'A resposta ignora que inserir novamente a mesma chave substitui o valor, sem criar uma terceira entrada.'
+  },
+  {
+    id: 'cw1-03', source: 'ColabWeb POO - Parte 1', topic: 'Referências', difficulty: 'Médio',
+    prompt: 'Três variáveis passam a apontar para o mesmo Produto. O preço começa em 80, é aumentado em 10 por p2 e reduzido em 20 por p3. O que p1 e p3 imprimem?',
+    code: `Produto p1 = new Produto("Teclado", 80.0);\nProduto p2 = new Produto("Mouse", 50.0);\nProduto p3 = p1;\np2 = p1;\np2.preco += 10.0;\np3.preco -= 20.0;`,
+    options: o('90.0 60.0', '50.0 80.0', '60.0 60.0', '70.0 70.0', '60.0 80.0'), answer: 3,
+    explanation: 'p1, p2 e p3 referenciam o mesmo objeto. O preço vai de 80 para 90 e depois para 70; ambas as leituras mostram 70.',
+    wrong: 'A alternativa trata as referências como se fossem cópias independentes do objeto, mas todas apontam para a mesma instância.'
+  },
+  {
+    id: 'cw1-04', source: 'ColabWeb POO - Parte 1', topic: 'Coleções', difficulty: 'Médio',
+    prompt: 'Duas variáveis, a e b, referenciam o mesmo ArrayList. Após adicionar 10, 20 e 30 e executar b.set(1, a.get(0)), o que é impresso por a.get(1) e a.size()?',
+    code: `ArrayList<Integer> a = new ArrayList<>();\nArrayList<Integer> b = a;\na.add(10); a.add(20); b.add(30);\nb.set(1, a.get(0));`,
+    options: o('20 2', '10 3', '20 3', '10 2', '30 3'), answer: 1,
+    explanation: 'a e b apontam para a mesma lista. O índice 1 é substituído pelo valor do índice 0, portanto fica 10; a lista mantém três elementos.',
+    wrong: 'A resposta não considera simultaneamente o compartilhamento da lista e a substituição feita por set no índice 1.'
+  },
+  {
+    id: 'cw1-05', source: 'ColabWeb POO - Parte 1', topic: 'Métodos', difficulty: 'Fácil',
+    prompt: 'Complete: A ______ torna um método único. Ela é formada pelo seu nome, ______, quantidade e ______ de seus ______.',
+    options: o('assinatura, tipo, retorno, modos', 'assinatura, característica, parâmetro, métodos', 'assinatura, tipo, ordem, parâmetros', 'assinatura, tipo, ordem, comandos', 'assinatura, tipo de parâmetro, ordem, elementos'), answer: 2,
+    explanation: 'A assinatura diferencia o método pelo nome e pela lista de parâmetros, considerando seus tipos, quantidade e ordem.',
+    wrong: 'Retorno, comandos e “modos” não compõem a assinatura usada para distinguir sobrecargas em Java.'
+  },
+  {
+    id: 'cw1-06', source: 'ColabWeb POO - Parte 1', topic: 'Herança', difficulty: 'Médio',
+    prompt: 'Sobre generalização e especialização: 1. Generalização é um conceito mais abrangente. 2. Especialização pode acrescentar membros. 3. Carro extends Veiculo torna Carro uma especialização. 4. Uma classe pode ser especialização de sua superclasse e generalização de suas subclasses.',
+    options: o('Todas estão corretas.', 'Apenas 1 e 3.', 'Apenas 2 e 3.', 'Apenas 1, 3 e 4.', 'Apenas 1, 2 e 4.'), answer: 0,
+    explanation: 'As quatro afirmações descrevem corretamente a relação hierárquica: o papel de uma classe depende de sua posição relativa na árvore de herança.',
+    wrong: 'A alternativa exclui uma afirmação válida sobre generalização, especialização ou a posição relativa da classe na hierarquia.'
+  },
+  {
+    id: 'cw1-07', source: 'ColabWeb POO - Parte 1', topic: 'Polimorfismo', difficulty: 'Fácil',
+    prompt: 'Animal é abstrata e declara som(). Gato implementa som() retornando “Miau”. O que imprime uma referência Animal que aponta para new Gato()?',
+    code: `Animal animal = new Gato();\nSystem.out.println(animal.som());`,
+    options: o('O código não compila.', 'Animal', 'Gato', 'null', 'Miau'), answer: 4,
+    explanation: 'A referência pode ter o tipo abstrato Animal, mas o objeto real é Gato. A chamada é resolvida para a implementação sobrescrita de Gato e imprime “Miau”.',
+    wrong: 'O tipo da referência não impede o polimorfismo: quem determina a implementação executada é o tipo real do objeto.'
+  },
+  {
+    id: 'cw1-08', source: 'ColabWeb POO - Parte 1', topic: 'Fundamentos', difficulty: 'Médio',
+    prompt: 'Avalie: I. Um método é o modelo usado para definir objetos. II. Pilhas removem o mais recente e filas o mais antigo. III. Um objeto é criado ao instanciar uma classe. IV. Programação estruturada reduz tudo somente à decisão.',
+    options: o('II e IV', 'I e II', 'II e III', 'I e III', 'III e IV'), answer: 2,
+    explanation: 'II e III são verdadeiras. A classe, não o método, é o modelo de objetos. Programação estruturada usa sequência, decisão e repetição, não apenas decisão.',
+    wrong: 'A seleção inclui I ou IV, que confundem classe com método ou reduzem indevidamente as estruturas da programação estruturada.'
+  },
+  {
+    id: 'cw1-09', source: 'ColabWeb POO - Parte 1', topic: 'Abstração', difficulty: 'Médio',
+    prompt: 'Sobre classes abstratas: I. Podem ter atributos, construtores e métodos concretos. II. Uma classe com método abstrato deve ser abstract. III. Subclasse concreta implementa todos os métodos abstratos. IV. Uma referência abstrata pode apontar para uma subclasse concreta.',
+    options: o('Apenas III e IV', 'I, II, III e IV', 'Apenas I, II e III', 'Apenas I e IV', 'Apenas II, III e IV'), answer: 1,
+    explanation: 'As quatro afirmações são regras válidas de classes abstratas em Java. O que não é permitido é instanciar diretamente a classe abstrata.',
+    wrong: 'A alternativa deixa de fora pelo menos uma característica válida das classes e referências abstratas.'
+  },
+  {
+    id: 'cw1-10', source: 'ColabWeb POO - Parte 1', topic: 'Polimorfismo', difficulty: 'Fácil',
+    prompt: 'Na orientação a objetos, a sobrecarga de métodos é uma manifestação de qual conceito?',
+    options: o('Abstração', 'Encapsulamento', 'Herança', 'Polimorfismo', 'Agregação'), answer: 3,
+    explanation: 'Sobrecarga é polimorfismo ad-hoc: o mesmo nome de método assume comportamentos distintos conforme a lista de parâmetros.',
+    wrong: 'A sobrecarga não é uma relação de herança ou composição; ela é uma forma de polimorfismo determinada pelos parâmetros.'
+  },
+  {
+    id: 'cw2-01', source: 'ColabWeb POO - Parte 2', topic: 'Fundamentos', difficulty: 'Médio',
+    prompt: 'Considere: I. Valores de atributos são definidos no nível de classe. II. Métodos são definidos no nível de objeto. III. A invocação de uma operação ocorre no nível de objeto. O que está correto?',
+    options: o('III, apenas.', 'II e III.', 'I, II e III.', 'I e II.', 'I e III.'), answer: 0,
+    explanation: 'Os valores de atributos de instância pertencem aos objetos; a implementação dos métodos pertence à classe; a chamada de um método de instância ocorre sobre um objeto.',
+    wrong: 'I e II invertem os níveis de definição: estado de instância fica no objeto, enquanto a implementação do método é compartilhada pela classe.'
+  },
+  {
+    id: 'cw2-02', source: 'ColabWeb POO - Parte 2', topic: 'Abstração', difficulty: 'Médio',
+    prompt: 'Funcionario declara calcularSalario() como abstrato. Mecanico é uma subclasse concreta. O que é necessário para que Mecanico possa ser instanciada?',
+    options: o('salario público em Funcionario', 'salario protegido em Funcionario', 'Mecanico redefinir calcularSalario()', 'Mecanico e Eletricista redefinirem o método', 'Funcionario possuir outros métodos concretos'), answer: 2,
+    explanation: 'Toda subclasse concreta deve implementar os métodos abstratos herdados. A obrigação de Eletricista é independente da possibilidade de instanciar Mecanico.',
+    wrong: 'Visibilidade de atributos e implementação por outra subclasse não cumprem a obrigação abstrata específica de Mecanico.'
+  },
+  {
+    id: 'cw2-03', source: 'ColabWeb POO - Parte 2', topic: 'Referências', difficulty: 'Fácil',
+    prompt: 'a1 referencia um novo Aluno, a2 recebe a1 e depois a1 recebe null. O que acontece com o objeto Aluno?',
+    code: `Aluno a1 = new Aluno();\nAluno a2 = a1;\na1 = null;`,
+    options: o('É coletado imediatamente, mas a2 continua apontando.', 'Torna-se elegível porque a1 virou null.', 'Não é elegível porque ainda é referenciado por a2.', 'a2 também recebe null.', 'É duplicado para a2.'), answer: 2,
+    explanation: 'O objeto continua alcançável pela referência a2. Alterar a1 não modifica a2 e a atribuição de referências não duplica objetos.',
+    wrong: 'A coleta depende de o objeto ficar inalcançável por todas as referências, e a2 ainda aponta para ele.'
+  },
+  {
+    id: 'cw2-04', source: 'ColabWeb POO - Parte 2', topic: 'Palavra final', difficulty: 'Médio',
+    prompt: 'Sobre final: 1. Um atributo final não pode ser reatribuído depois de inicializado. 2. Um método final é herdado, mas não sobrescrito. 3. Uma classe final pode ser instanciada, mas não estendida. 4. Todo atributo final é automaticamente static.',
+    options: o('Apenas 1, 2 e 3.', 'Apenas 1 e 2.', 'Apenas 2 e 4.', 'Apenas 1, 3 e 4.', 'Todas.'), answer: 0,
+    explanation: 'As três primeiras estão corretas. final e static são modificadores independentes; um campo final pode pertencer a cada instância.',
+    wrong: 'A afirmação 4 é falsa: final impede nova atribuição, mas não transforma o membro em static.'
+  },
+  {
+    id: 'cw2-05', source: 'ColabWeb POO - Parte 2', topic: 'Fundamentos', difficulty: 'Fácil',
+    prompt: 'Qual alternativa descreve corretamente um benefício da Programação Orientada a Objetos?',
+    options: o('Facilita compreender o problema e a comunicação na modelagem.', 'Torna desnecessária qualquer representação.', 'Garante reutilização automática entre programas.', 'Dificulta expansão ao dividir em classes.', 'Exige representações incompatíveis entre análise e implementação.'), answer: 0,
+    explanation: 'A modelagem orientada a objetos aproxima conceitos do domínio, favorecendo entendimento e comunicação. Reutilização e expansão são facilitadas, mas não automáticas.',
+    wrong: 'A alternativa atribui uma garantia absoluta ou um efeito contrário aos benefícios de modularidade e consistência da OO.'
+  },
+  {
+    id: 'cw2-06', source: 'ColabWeb POO - Parte 2', topic: 'Construtores', difficulty: 'Médio',
+    prompt: 'Sobre construtores Java: I. Só pode haver um. II. Ausente um construtor declarado, um implícito é criado. III. Pode ser chamado várias vezes no mesmo objeto. IV. Pode haver sobrecarga. V. Tem o nome da classe e não especifica retorno.',
+    options: o('I, II e V', 'I e V', 'I, III e V', 'Todas', 'II, IV e V'), answer: 4,
+    explanation: 'II, IV e V são verdadeiras. Uma classe pode sobrecarregar construtores e cada construção cria/inicializa um novo objeto.',
+    wrong: 'I e III são falsas: pode haver vários construtores e eles não são reinvocados como métodos comuns sobre o mesmo objeto.'
+  },
+  {
+    id: 'cw2-07', source: 'ColabWeb POO - Parte 2', topic: 'Abstração', difficulty: 'Médio',
+    prompt: 'QuadrilateroBase é abstrata, implementa calcularArea(), mas não calcularPerimetro() herdado de Forma. O main apenas imprime “Fim”. O que ocorre?',
+    options: o('Exceção em execução', 'Imprime “Fim”', 'Erro de compilação', 'Imprime 16.0', 'Não imprime nada'), answer: 1,
+    explanation: 'Uma classe abstrata pode deixar métodos abstratos sem implementação. Como nenhuma instância é criada e o main imprime o texto, o programa compila e exibe “Fim”.',
+    wrong: 'A obrigação de implementar todos os métodos só se aplica quando a subclasse é concreta.'
+  },
+  {
+    id: 'cw2-08', source: 'ColabWeb POO - Parte 2', topic: 'Construtores', difficulty: 'Difícil',
+    prompt: 'Contador() chama this(5), soma 2 ao valor; o construtor com parâmetro incrementa criados. c2 recebe c1.valor e depois c1.valor soma criados. Qual a saída?',
+    code: `Contador c1 = new Contador();\nContador c2 = new Contador(c1.valor);\nc1.valor += criados;\nSystem.out.println(c1.valor + " " + c2.valor + " " + criados);`,
+    options: o('8 6 2', '9 7 2', '7 7 2', '9 7 3', '8 7 2'), answer: 1,
+    explanation: 'c1 vai de 5 para 7; criados vale 1. c2 nasce com 7 e criados vai a 2. Por fim, c1 soma 2 e chega a 9: “9 7 2”.',
+    wrong: 'A alternativa erra a cadeia de construtores ou conta this(5) como se criasse outro objeto, o que não ocorre.'
+  },
+  {
+    id: 'cw2-09', source: 'ColabWeb POO - Parte 2', topic: 'Polimorfismo', difficulty: 'Médio',
+    prompt: 'Um vetor Forma contém um Retangulo 4×5 e um Triangulo de base 6 e altura 3. O laço soma calcularArea() de cada objeto. Qual é a saída?',
+    options: o('9.0', '29.0', '20.0', 'Erro de compilação', 'Exceção em execução'), answer: 1,
+    explanation: 'O polimorfismo chama cada implementação: retângulo = 20 e triângulo = 9. A soma é 29.',
+    wrong: 'A resposta considera apenas uma forma ou supõe que referências do tipo abstrato não podem apontar para objetos concretos.'
+  },
+  {
+    id: 'cw2-10', source: 'ColabWeb POO - Parte 2', topic: 'Palavra final', difficulty: 'Médio',
+    prompt: 'I. final em atributo impede alteração após a inicialização. II. final em método impede override. III. final em classe impede herança. IV. Um atributo final deve ser inicializado obrigatoriamente na declaração.',
+    options: o('Apenas II e IV', 'Apenas I, II e III', 'I, II, III e IV', 'Apenas I e IV', 'Apenas III e IV'), answer: 1,
+    explanation: 'I, II e III estão corretas. Um campo final de instância também pode ser inicializado em cada construtor, desde que uma única vez.',
+    wrong: 'IV é falsa: a inicialização de um atributo final pode ocorrer na declaração ou no construtor.'
+  },
+  {
+    id: 'maria-01', source: 'Questões POO Java da Maria', topic: 'Construtores', difficulty: 'Difícil',
+    prompt: 'Livro a começa como “Java”, 100 páginas. Livro b é criado com o título de a e a.paginas + 50. Depois a.alterar("POO", 20) soma 20 páginas, e b.alterar(a.titulo, a.paginas) soma as páginas atuais de a. Qual saída?',
+    options: o('Java 120 | POO 270', 'POO 120 | Java 270', 'POO 120 | POO 170', 'POO 120 | POO 270', 'POO 220 | POO 270'), answer: 3,
+    explanation: 'a termina como “POO”, 120. b começa com 150 páginas; ao receber o título e as 120 páginas de a, termina como “POO”, 270.',
+    wrong: 'A alternativa não acompanha corretamente a soma acumulada no método alterar ou o momento em que o título é copiado.'
+  },
+  {
+    id: 'maria-02', source: 'Questões POO Java da Maria', topic: 'Membros estáticos', difficulty: 'Médio',
+    prompt: 'I. Cada objeto tem sua cópia de atributos de instância. II. Em Java, um atributo estático usa static. III. Um método estático exige objetos já criados. IV. É obrigatório definir código de construção e destruição. Quais são verdadeiras?',
+    options: o('II e III', 'I e II', 'III e IV', 'I e III', 'II e IV'), answer: 1,
+    explanation: 'I e II são verdadeiras. Métodos estáticos não exigem instância, e Java não obriga o programador a declarar construtor nem destrutor.',
+    wrong: 'III e IV são falsas: membros estáticos pertencem à classe e não há obrigação de declarar destrutor.'
+  },
+  {
+    id: 'maria-03', source: 'Questões POO Java da Maria', topic: 'Herança', difficulty: 'Médio',
+    prompt: 'Sobre generalização: 1. É conceito abrangente compartilhado por conceitos específicos. 2. Especialização acrescenta membros. 3. Carro extends Veiculo torna Carro uma generalização. 4. Uma classe pode ser especialização e generalização conforme a posição.',
+    options: o('Apenas 2 e 3', 'Apenas 1 e 3', 'Apenas 1, 2 e 4', 'Apenas 1, 3 e 4', 'Todas'), answer: 2,
+    explanation: '1, 2 e 4 são verdadeiras. Carro é especialização de Veiculo, portanto a afirmação 3 inverte a relação.',
+    wrong: 'A alternativa trata Carro como generalização, quando extends indica que ele é o conceito mais específico.'
+  },
+  {
+    id: 'maria-04', source: 'Questões POO Java da Maria', topic: 'Fundamentos', difficulty: 'Médio',
+    prompt: 'I. Método é o modelo de objetos. II. Pilha remove o mais recente e fila o mais antigo. III. Objeto nasce ao instanciar classe. IV. Programação estruturada usa somente decisão. Quais são verdadeiras?',
+    options: o('II e III', 'I e II', 'III e IV', 'I e III', 'II e IV'), answer: 0,
+    explanation: 'II e III são verdadeiras. O modelo de objetos é a classe, e programação estruturada combina sequência, decisão e repetição.',
+    wrong: 'I e IV apresentam definições incorretas de classe/método e das estruturas fundamentais.'
+  },
+  {
+    id: 'maria-05', source: 'Questões POO Java da Maria', topic: 'Construtores', difficulty: 'Médio',
+    prompt: 'I. Só um construtor por classe. II. Sem construtor declarado, há um implícito. III. Pode-se chamar o construtor repetidamente no mesmo objeto. IV. Construtores aceitam sobrecarga. V. Têm nome da classe e nenhum retorno.',
+    options: o('I, III e V', 'I e V', 'I, II e V', 'Todas', 'II, IV e V'), answer: 4,
+    explanation: 'II, IV e V são corretas: há construtor padrão quando nenhum é declarado, sobrecarga é permitida e não existe tipo de retorno.',
+    wrong: 'I e III são falsas porque construtores podem ser sobrecarregados e não são métodos comuns reinvocados no mesmo objeto.'
+  },
+  {
+    id: 'maria-06', source: 'Questões POO Java da Maria', topic: 'Fluxo de controle', difficulty: 'Médio',
+    prompt: 'No fragmento I, sum=7 e o if(sum>20) imprime “perdeu”; depois sempre imprime “ o bônus.”. No II, sum=21 e if(sum!=20) imprime “ganhou”; depois sempre imprime “ o bônus.”. Qual resultado?',
+    options: o('perdeu e perdeu', 'ganhou e ganhou', 'perdeu o bônus e ganhou o bônus', 'perdeu o bônus e ganhou', 'perdeu e ganhou o bônus'), answer: 2,
+    explanation: 'No primeiro teste a condição é falsa; no segundo é verdadeira. O println final está fora do if em ambos, completando as duas frases com “o bônus”.',
+    wrong: 'A alternativa desconsidera a condição de um dos ifs ou o comando final que sempre é executado.'
+  },
+  {
+    id: 'maria-07', source: 'Questões POO Java da Maria', topic: 'Polimorfismo', difficulty: 'Fácil',
+    prompt: 'Qual afirmação sobre orientação a objetos está INCORRETA?',
+    options: o('Um objeto pode existir sem evento associado.', 'Generalização e especialização relacionam-se à herança.', 'O construtor inicializa atributos ao criar um objeto.', 'Subclasses polimórficas invocam métodos de mesma assinatura e mesmo comportamento.', 'A classe define estados por atributos e comportamentos por métodos.'), answer: 3,
+    explanation: 'O ponto do polimorfismo é permitir comportamentos diferentes sob a mesma operação/assinatura. Dizer “mesmo comportamento” contradiz o conceito.',
+    wrong: 'A afirmação escolhida é compatível com os conceitos básicos de classe, objeto, construtor ou herança.'
+  },
+  {
+    id: 'maria-08', source: 'Questões POO Java da Maria', topic: 'Abstração', difficulty: 'Fácil',
+    prompt: 'Forma representa figuras, não deve ser instanciada genericamente e cada subclasse calcula a área de forma diferente. Qual modelagem é mais adequada?',
+    options: o('Eliminar Forma e não usar herança.', 'Declarar Forma final.', 'Declarar Forma abstrata com calcularArea() abstrato.', 'Forma concreta cujo cálculo sempre retorna zero.', 'calcularArea() static compartilhado.'), answer: 2,
+    explanation: 'Uma classe abstrata expressa o conceito comum sem permitir instância genérica, e o método abstrato obriga Circulo e Retangulo a fornecer seus cálculos.',
+    wrong: 'A alternativa impede a extensão, elimina o contrato comum ou compartilha um cálculo que deveria variar por subtipo.'
+  },
+  {
+    id: 'maria-09', source: 'Questões POO Java da Maria', topic: 'Polimorfismo', difficulty: 'Médio',
+    prompt: 'Um vetor Operacao contém Soma e Multiplicacao. Para cada objeto, calcula(3,4) é somado a resultado. Qual é a saída?',
+    code: `Operacao[] operacoes = { new Soma(), new Multiplicacao() };\nint resultado = 0;\nfor (Operacao op : operacoes)\n  resultado += op.calcular(3, 4);`,
+    options: o('12', '7', '16', '19', 'Não compila porque Operacao é abstrata'), answer: 3,
+    explanation: 'Soma retorna 7 e Multiplicacao retorna 12. O vetor de referências abstratas pode guardar objetos concretos; o total é 19.',
+    wrong: 'A resposta considera apenas uma operação ou supõe, incorretamente, que um vetor do tipo abstrato não pode conter subclasses.'
+  },
+  {
+    id: 'av2-02', source: 'Simulado POO AV2', topic: 'Coleções', difficulty: 'Médio',
+    prompt: 'Analise: I. ArrayList implementa List e preserva a ordem de inserção. II. LinkedList é uma lista duplamente encadeada, eficiente nas extremidades. III. HashMap garante que pares chave-valor sejam percorridos na ordem de inserção. IV. TreeMap ordena as chaves pela ordem natural ou por Comparator.',
+    options: o('Apenas II e IV estão corretas.', 'Apenas III e IV estão corretas.', 'Apenas I, II e IV estão corretas.', 'I, II, III e IV estão corretas.', 'Apenas I e II estão corretas.'), answer: 2,
+    explanation: 'I, II e IV estão corretas. ArrayList mantém a ordem da lista, LinkedList é duplamente encadeada e TreeMap ordena suas chaves.',
+    wrong: 'A afirmação III é falsa: HashMap não garante uma ordem específica de iteração; para ordem de inserção, usa-se LinkedHashMap.'
+  }
+];
+
+export const sources = [
+  { name: 'ColabWeb POO-2026_2 - Parte 1.pdf', status: '10 questões incorporadas', tone: 'ready' },
+  { name: 'ColabWeb POO-2026_2 - Parte 2.pdf', status: '10 questões incorporadas', tone: 'ready' },
+  { name: 'Questoes_POO_Java_da_Maria.pdf', status: '9 questões incorporadas', tone: 'ready' },
+  { name: 'Simulado_POO_AV2.pdf', status: '1 questão única • duplicatas removidas', tone: 'ready' },
+  { name: 'Simulado_2_M.pdf', status: 'Analisado • conteúdo sobreposto', tone: 'dedup' },
+  { name: 'Simulado2_POO (1).pdf', status: 'Explicações usadas na validação', tone: 'dedup' },
+  { name: 'Simulado02.pdf', status: 'Explicações usadas na validação', tone: 'dedup' }
+];
