@@ -4,7 +4,7 @@ import { enrichQuestion } from './data/audit';
 import { isCorrectAnswer, correctLetters } from './data/answer';
 import ImportQuestions from './components/ImportQuestions';
 
-const QUESTIONS_ROOT_URL = 'https://raw.githubusercontent.com/SalesMath-085/poo-em-foco/main/public/question-sets';
+const QUESTIONS_ROOT_URL = 'https://raw.githubusercontent.com/SalesMath-085/Cactous/main/public/question-sets';
 const QUESTIONS_INDEX_URL = `${QUESTIONS_ROOT_URL}/index.json`;
 const LOCAL_SET_ID = '__local_questions__';
 

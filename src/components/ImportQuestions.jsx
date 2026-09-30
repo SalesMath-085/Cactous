@@ -41,14 +41,14 @@ export default function ImportQuestions({ onPublished }) {
   };
   return <section className="json-import">
     <h2>Importar um caderno JSON</h2>
-    <p>Envie um arquivo ou cole a lista de questões. A publicação cria um novo caderno no repositório <a href="https://github.com/SalesMath-085/poo-em-foco" target="_blank" rel="noreferrer">poo-em-foco</a>.</p>
+    <p>Envie um arquivo ou cole a lista de questões. A publicação cria um novo caderno no repositório <a href="https://github.com/SalesMath-085/Cactous" target="_blank" rel="noreferrer">Cactous</a>.</p>
     <form className="question-form" onSubmit={submit}>
       <label>Nome do caderno<input required maxLength={100} value={title} onChange={e=>setTitle(e.target.value)} disabled={busy} placeholder="Ex.: Revisão de herança"/></label>
       <div className="import-tools"><label className="secondary upload-json">Escolher arquivo .json<input type="file" accept=".json,application/json" disabled={busy} onChange={upload}/></label><button type="button" className="secondary" onClick={download}>Baixar modelo</button></div>
       <label>JSON das questões<textarea rows={10} className="code-input" value={text} onChange={e=>{setText(e.target.value);setMessage('');setCommitUrl('');}} disabled={busy} placeholder={exampleText} required/></label>
       <p className={parsed.error ? 'import-error' : 'import-validation'} role="status">{parsed.error || (parsed.questions.length ? `${parsed.questions.length} questões válidas. answer: 0 = A, 1 = B, 2 = C, 3 = D, 4 = E.` : 'Use uma lista [ ... ] com cinco alternativas por questão e IDs únicos.')}</p>
       <label>Token do GitHub<input type="password" autoComplete="off" value={token} onChange={e=>setToken(e.target.value)} disabled={busy} required placeholder="Token da conta SalesMath-085"/></label>
-      <p className="import-help">Crie um <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noreferrer">token com acesso apenas ao poo-em-foco</a> e permissão <strong>Contents: Read and write</strong>. O token é usado neste envio e não fica salvo no navegador.</p>
+      <p className="import-help">Crie um <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noreferrer">token com acesso apenas ao Cactous</a> e permissão <strong>Contents: Read and write</strong>. O token é usado neste envio e não fica salvo no navegador.</p>
       <button className="primary" disabled={busy || !!parsed.error || !parsed.questions.length || !title.trim() || !token.trim()}>{busy?'Publicando…':'Publicar JSON no GitHub'}</button>
       {message && <p role="status" className="import-result">{message} {commitUrl && <a href={commitUrl} target="_blank" rel="noreferrer">Ver commit</a>}</p>}
     </form>

@@ -1,4 +1,4 @@
-const REPO = 'SalesMath-085/poo-em-foco';
+const REPO = 'SalesMath-085/Cactous';
 const ROOT = 'public/question-sets/';
 const MAX_BYTES = 2 * 1024 * 1024;
 
@@ -47,7 +47,7 @@ export async function publishQuestions(request, fetcher = fetch) {
   const api = async (path, method = 'GET', payload) => {
     const response = await fetcher(`https://api.github.com${path}`, { method, headers: { Authorization:`Bearer ${token}`, Accept:'application/vnd.github+json', 'X-GitHub-Api-Version':'2022-11-28', 'User-Agent':'Cactous', ...(payload ? {'Content-Type':'application/json'} : {}) }, ...(payload ? {body:JSON.stringify(payload)} : {}) });
     if (!response.ok) {
-      const error = new Error(response.status === 401 ? 'Token inválido ou expirado.' : response.status === 403 || response.status === 404 ? 'O token precisa de acesso ao repositório poo-em-foco e permissão Contents: Read and write.' : response.status === 422 || response.status === 409 ? 'O repositório mudou durante o envio ou a branch está protegida. Confira o GitHub e tente novamente.' : 'O GitHub não concluiu o envio. Tente novamente.');
+      const error = new Error(response.status === 401 ? 'Token inválido ou expirado.' : response.status === 403 || response.status === 404 ? 'O token precisa de acesso ao repositório Cactous e permissão Contents: Read and write.' : response.status === 422 || response.status === 409 ? 'O repositório mudou durante o envio ou a branch está protegida. Confira o GitHub e tente novamente.' : 'O GitHub não concluiu o envio. Tente novamente.');
       error.status = response.status === 422 || response.status === 409 ? 409 : response.status === 401 ? 401 : response.status === 403 || response.status === 404 ? 403 : 502;
       throw error;
     }
