@@ -1,0 +1,165 @@
+[
+  {
+    "id": "pdf-maria-01",
+    "source": "Questões POO Java da Maria",
+    "prompt": "Considere o programa Java a seguir:\n\nConsiderando a execução dos construtores e do método alterar, qual será a saída apresentada?",
+    "code": "class Livro {\n  String titulo;\n  int paginas;\n  Livro(String titulo) {\n    this(titulo, 100);\n  }\n  Livro(String titulo, int paginas) {\n    this.titulo = titulo;\n    this.paginas = paginas;\n  }\n  void alterar(String titulo, int paginas) {\n    this.titulo = titulo;\n    this.paginas += paginas;\n  }\n  public static void main(String[] args) {\n    Livro a = new Livro(\"Java\");\n    Livro b = new Livro(a.titulo, a.paginas + 50);\n    a.alterar(\"POO\", 20);\n    b.alterar(a.titulo, a.paginas);\n    System.out.println(a.titulo + \" \" + a.paginas + \" | \" + b.titulo + \" \" + b.paginas);\n  }\n}",
+    "options": [
+      "Java 120 | POO 270",
+      "POO 120 | Java 270",
+      "POO 120 | POO 170",
+      "POO 120 | POO 270",
+      "POO 220 | POO 270"
+    ],
+    "answer": 3,
+    "block": "Questões POO Java da Maria",
+    "explanation": "A alternativa correta é “POO 120 | POO 270”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-maria-02",
+    "source": "Questões POO Java da Maria",
+    "prompt": "Analise as seguintes afirmações relacionadas a conceitos de programação Orientada a Objetos e da linguagem de programação Java:\nI. Considerando os atributos de Instância ou Estáticos, quando estes são de Instância, cada objeto tem a sua própria cópia destes atributos.\nII. Em um programa codificado em Java, um atributo estático é identificado com a palavra static.\nIII. Um método estático pode ser invocado usando-se o nome da classe seguido de parênteses contendo o nome do método. Além disso, é obrigatório que os objetos da classe tenham sido criados para que o método estático seja invocado.\nIV. Da mesma forma que é obrigatório especificar o código a ser executado na criação de um objeto, também é obrigatório especificar um código a ser executado na destruição deste objeto. Este princípio é denominado Visibilidade Privada.\n\nIndique a opção que contenha todas as afirmações verdadeiras.",
+    "options": [
+      "II e III.",
+      "I e II.",
+      "III e IV.",
+      "I e III.",
+      "II e IV."
+    ],
+    "answer": 1,
+    "block": "Questões POO Java da Maria",
+    "explanation": "A alternativa correta é “I e II.”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-maria-03",
+    "source": "Questões POO Java da Maria",
+    "prompt": "Considere as seguintes afirmações sobre generalização e especialização:\n1. Uma generalização representa um conceito mais abrangente compartilhado por conceitos mais específicos.\n2. Uma especialização pode acrescentar atributos e métodos específicos aos que são herdados de uma classe mais geral.\n3. Se Carro extends Veiculo, então Carro é uma generalização de Veiculo.\n4. Uma classe pode ser uma especialização em relação à sua superclasse e uma generalização em relação às suas subclasses.\n\nAssinale a alternativa correta.",
+    "options": [
+      "Apenas as afirmativas 2 e 3 estão corretas.",
+      "Apenas as afirmativas 1 e 3 estão corretas.",
+      "Apenas as afirmativas 1, 2 e 4 estão corretas.",
+      "Apenas as afirmativas 1, 3 e 4 estão corretas.",
+      "Todas as afirmativas estão corretas."
+    ],
+    "answer": 2,
+    "block": "Questões POO Java da Maria",
+    "explanation": "A alternativa correta é “Apenas as afirmativas 1, 2 e 4 estão corretas.”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-maria-04",
+    "source": "Questões POO Java da Maria",
+    "prompt": "Analise as seguintes afirmações relacionadas a conceitos básicos de programação:\nI. Na programação Orientada a Objetos, um método é um modelo usado para definir vários objetos com características semelhantes.\nII. As pilhas e filas são conjuntos dinâmicos nos quais o elemento removido do conjunto pela operação de DELETE é especificado previamente. Em uma pilha, o elemento eliminado do conjunto é o mais recentemente inserido. De modo semelhante, em uma fila, o elemento eliminado é sempre o que esteve no conjunto por mais tempo.\nIII. Na programação Orientada a Objetos, um objeto é criado ao se instanciar uma classe.\nIV. Programação estruturada é um estilo de programação que determina que todos os programas possíveis de criação podem ser reduzidos a uma, e somente uma, estrutura denominada \"Decisão\".\n\nIndique a opção que contenha todas as afirmações verdadeiras.",
+    "options": [
+      "II e III.",
+      "I e II.",
+      "III e IV.",
+      "I e III.",
+      "II e IV."
+    ],
+    "answer": 0,
+    "block": "Questões POO Java da Maria",
+    "explanation": "A alternativa correta é “II e III.”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-maria-05",
+    "source": "Questões POO Java da Maria",
+    "prompt": "Sobre a linguagem Java e construtores, analise as afirmativas abaixo:\nI. Java permite apenas um método construtor por classe.\nII. Se um construtor não for especificado, um construtor implícito será criado automaticamente.\nIII. O método construtor pode ser executado explicitamente para o mesmo objeto quantas vezes for necessário.\nIV. O conceito de sobrecarga de métodos se aplica aos construtores.\nV. O construtor Java deve ter o mesmo nome da classe e não especifica retorno.\n\nCom base nas afirmativas acima, marque a alternativa CORRETA.",
+    "options": [
+      "Apenas as afirmativas I, III e V são verdadeiras.",
+      "Apenas as afirmativas I e V são verdadeiras.",
+      "Apenas as afirmativas I, II e V são verdadeiras.",
+      "Todas as afirmativas são verdadeiras.",
+      "Apenas as afirmativas II, IV e V são verdadeiras."
+    ],
+    "answer": 4,
+    "block": "Questões POO Java da Maria",
+    "explanation": "A alternativa correta é “Apenas as afirmativas II, IV e V são verdadeiras.”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-maria-06",
+    "source": "Questões POO Java da Maria",
+    "prompt": "Considere os seguintes fragmentos de código Java:\nI  int sum = 7; if ( sum > 20 ) { System.out.print(\"ganhou\");}else{ System.out.print(\"perdeu\");} System.out.println(\" o bônus.\");\nII  int sum = 21; if( sum!=20) System.out.print(\"ganhou\");else System.out.print(\"perdeu\"); System.out.println(\" o bônus.\");\n\nO resultado da execução dos fragmentos em I e II será, respectivamente,",
+    "options": [
+      "perdeu e perdeu",
+      "ganhou e ganhou",
+      "perdeu o bônus e ganhou o bônus",
+      "perdeu o bônus e ganhou",
+      "perdeu e ganhou o bônus"
+    ],
+    "answer": 2,
+    "block": "Questões POO Java da Maria",
+    "explanation": "A alternativa correta é “perdeu o bônus e ganhou o bônus”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-maria-07",
+    "source": "Questões POO Java da Maria",
+    "prompt": "Sobre orientação a objetos, é INCORRETO afirmar:",
+    "options": [
+      "um objeto pode existir mesmo que não exista nenhum evento a ele associado.",
+      "os conceitos de generalização e especialização da orientação a objetos estão diretamente associados ao conceito de herança.",
+      "um construtor visa inicializar os atributos e pode ser executado automaticamente sempre que um novo objeto é criado.",
+      "polimorfismo é o princípio pelo qual duas ou mais classes derivadas de uma mesma superclasse podem invocar métodos que têm a mesma assinatura e mesmo comportamento.",
+      "uma classe define o comportamento dos objetos através de seus métodos, e quais estados ele é capaz de manter através de seus atributos."
+    ],
+    "answer": 3,
+    "block": "Questões POO Java da Maria",
+    "explanation": "A alternativa correta é “polimorfismo é o princípio pelo qual duas ou mais classes derivadas de uma mesma superclasse podem invocar métodos que têm a mesma assinatura e mesmo comportamento.”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-maria-08",
+    "source": "Questões POO Java da Maria",
+    "prompt": "Um programador está modelando um sistema de figuras geométricas com as classes Forma, Circulo e Retangulo. Cada forma calcula a área de maneira diferente, mas não faz sentido, no domínio do problema, criar um objeto genérico de Forma sem saber qual figura geométrica específica ela representa.\n\nQual é a abordagem mais adequada para modelar a classe Forma nesse cenário?",
+    "options": [
+      "Não criar a classe Forma; implementar todos os cálculos separadamente em Circulo e Retangulo, sem nenhuma relação de herança entre elas.",
+      "Declarar Forma como uma classe final, impedindo que outras classes a estendam.",
+      "Declarar Forma como uma classe abstrata, com um método abstrato calcularArea(), deixando que Circulo e Retangulo forneçam suas próprias implementações.",
+      "Declarar Forma como uma classe concreta comum, com um método calcularArea() que sempre retorna zero, para ser sobreposto pelas subclasses.",
+      "Declarar o método calcularArea() como static em Forma, para que todas as subclasses compartilhem exatamente o mesmo cálculo."
+    ],
+    "answer": 2,
+    "block": "Questões POO Java da Maria",
+    "explanation": "A alternativa correta é “Declarar Forma como uma classe abstrata, com um método abstrato calcularArea(), deixando que Circulo e Retangulo forneçam suas próprias implementações.”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-maria-09",
+    "source": "Questões POO Java da Maria",
+    "prompt": "Considere o seguinte código Java:\n\nQual é a saída do programa?",
+    "code": "abstract class Operacao {\n  public abstract int calcular(int a, int b);\n}\nclass Soma extends Operacao {\n  @Override\n  public int calcular(int a, int b) {\n    return a + b;\n  }\n}\nclass Multiplicacao extends Operacao {\n  @Override\n  public int calcular(int a, int b) {\n    return a * b;\n  }\n}\npublic class Main {\n  public static void main(String[] args) {\n    Operacao[] operacoes = {\n      new Soma(),\n      new Multiplicacao()\n    };\n    int resultado = 0;\n    for (Operacao op : operacoes) {\n      resultado += op.calcular(3, 4);\n    }\n    System.out.println(resultado);\n  }\n}",
+    "options": [
+      "12",
+      "7",
+      "16",
+      "19",
+      "O código não compila porque Operacao é abstrata."
+    ],
+    "answer": 3,
+    "block": "Questões POO Java da Maria",
+    "explanation": "A alternativa correta é “19”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-maria-10",
+    "source": "Questões POO Java da Maria",
+    "prompt": "Considere o programa Java a seguir:\n\nConsiderando o funcionamento das referências em Java, qual será a saída produzida pela execução do programa?",
+    "code": "class Produto {\n  String nome;\n  double preco;\n  Produto(String nome, double preco) {\n    this.nome = nome;\n    this.preco = preco;\n  }\n  public static void main(String[] args) {\n    Produto p1 = new Produto(\"Teclado\", 80.0);\n    Produto p2 = new Produto(\"Mouse\", 50.0);\n    Produto p3 = p1;\n    p1 = p2;\n    p2.preco += 10.0;\n    p3.preco -= 20.0;\n    System.out.println(p1.preco + \" \" + p3.preco);\n  }\n}",
+    "options": [
+      "60.0 60.0",
+      "50.0 80.0",
+      "60.0 60.0",
+      "80.0 60.0",
+      "60.0 80.0"
+    ],
+    "answer": 2,
+    "block": "Questões POO Java da Maria",
+    "explanation": "A alternativa correta é “60.0 60.0”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  }
+]

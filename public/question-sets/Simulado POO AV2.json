@@ -1,0 +1,169 @@
+[
+  {
+    "id": "pdf-av2-01",
+    "source": "Simulado POO AV2",
+    "prompt": "Considere o seguinte código Java:\n\nQual é a saída do programa?",
+    "code": "abstract class Animal {\n  public abstract String som();\n}\nclass Gato extends Animal {\n  @Override\n  public String som() {\n    return \"Miau\";\n  }\n}\npublic class Main {\n  public static void main(String[] args) {\n    Gato animal = new Gato();\n    System.out.println(animal.som());\n  }\n}",
+    "options": [
+      "O código não compila.",
+      "null",
+      "Miau",
+      "Gato",
+      "Animal"
+    ],
+    "answer": 2,
+    "explanation": "Gato implementa o método abstrato e retorna \"Miau\".",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-av2-02",
+    "source": "Simulado POO AV2",
+    "prompt": "Sobre as coleções genéricas ArrayList, LinkedList, HashMap e TreeMap, analise as afirmativas abaixo:\nI - ArrayList mantém os elementos na ordem em que foram inseridos, salvo remoções.\nII - LinkedList é implementada como uma lista duplamente encadeada, o que a torna eficiente para inserções e remoções nas extremidades.\nIII - HashMap garante que os pares chave-valor sejam percorridos na mesma ordem em que foram inseridos.\nIV - TreeMap organiza automaticamente as chaves de acordo com sua ordem natural ou um Comparator fornecido.\n\nAssinale a alternativa correta:",
+    "options": [
+      "Apenas II e IV estão corretas",
+      "Apenas III e IV estão corretas",
+      "Apenas I, II e IV estão corretas",
+      "I, II, III e IV estão corretas",
+      "Apenas I e II estão corretas"
+    ],
+    "answer": 2,
+    "explanation": "As afirmativas I, II e IV estão corretas. HashMap não garante ordem de percurso.",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-av2-03",
+    "source": "Simulado POO AV2",
+    "prompt": "Considere o seguinte código Java:\n\nQual é a saída do programa?",
+    "code": "abstract class Jogo {\n  protected String nome;\n  public Jogo(String nome) {\n    this.nome = nome;\n  }\n  public String descricao() {\n    return nome + \": \" + categoria();\n  }\n  public abstract String categoria();\n}\nclass RPG extends Jogo {\n  public RPG(String nome) {\n    super(nome);\n  }\n  @Override\n  public String categoria() {\n    return \"Aventura\";\n  }\n}\npublic class Main {\n  public static void main(String[] args) {\n    Jogo jogo = new RPG(\"Skyrim\");\n    System.out.println(jogo.descricao());\n  }\n}",
+    "options": [
+      "O código não compila porque categoria() é abstrato em Jogo.",
+      "Jogo: Aventura",
+      "Aventura: Skyrim",
+      "Skyrim: RPG",
+      "Skyrim: Aventura"
+    ],
+    "answer": 4,
+    "explanation": "descricao() utiliza o nome \"Skyrim\" e a implementação de categoria() de RPG.",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-av2-04",
+    "source": "Simulado POO AV2",
+    "prompt": "Observe o seguinte código em Java (cada classe em seu arquivo):\n\nAssinale a alternativa correta:",
+    "code": "class A {\n  void metodoA() {\n    System.out.println(\"Método A\");\n  }\n  public static void main(String[] args) {\n    A a;\n    B b = new B();\n    a = b;\n    a.metodoA();\n  }\n}\nclass B extends A {\n  void metodoA() {\n    System.out.println(\"Método A em B\");\n  }\n}",
+    "options": [
+      "O código compila, mas gera uma exceção na execução.",
+      "Classe A compila, mas a Classe B não.",
+      "O código compila e a saída é \"Método A em B\".",
+      "Classe A não compila (e nem a classe B).",
+      "O código compila e a saída é \"Método A\"."
+    ],
+    "answer": 2,
+    "explanation": "É um caso de polimorfismo por inclusão; o objeto é B e executa a sobreposição de metodoA().",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-av2-05",
+    "source": "Simulado POO AV2",
+    "prompt": "Considere o código Java abaixo:\n\nQual é o comportamento desse programa?",
+    "code": "import java.util.ArrayList;\npublic class Teste {\n  public static void main(String[] args) {\n    final ArrayList<String> nomes = new ArrayList<>();\n    nomes.add(\"Ana\");\n    nomes = new ArrayList<>();\n    System.out.println(nomes);\n  }\n}",
+    "options": [
+      "Imprime null",
+      "É lançada uma exceção em tempo de execução",
+      "Imprime []",
+      "Erro de compilação",
+      "Imprime [Ana]"
+    ],
+    "answer": 3,
+    "explanation": "Como nomes é final, a tentativa de reatribuir a variável gera erro de compilação.",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-av2-06",
+    "source": "Simulado POO AV2",
+    "prompt": "Analise o programa Java a seguir e assinale a alternativa que apresenta corretamente sua saída.",
+    "code": "class Contador {\n  int valor = 1;\n  static int total = 5;\n  public static void main(String[] args) {\n    Contador a = new Contador();\n    Contador b = new Contador();\n    b.valor = 3;\n    b.total = 8;\n    System.out.println(b.valor + \" \" + a.total);\n  }\n}",
+    "options": [
+      "O código não compila.",
+      "3 5",
+      "3 8",
+      "1 5",
+      "1 8"
+    ],
+    "answer": 2,
+    "explanation": "O atributo estático total foi alterado para 8, afetando todos os objetos da classe.",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-av2-07",
+    "source": "Simulado POO AV2",
+    "prompt": "Considere o seguinte código Java:\n\nQual é a saída do programa?",
+    "code": "import java.util.ArrayList;\npublic class Main {\n  public static void main(String[] args) {\n    ArrayList<Integer> a = new ArrayList<>();\n    ArrayList<Integer> b = a;\n    a.add(10);\n    a.add(20);\n    b.add(30);\n    b.set(0, a.get(1));\n    System.out.println(a.get(0) + \" \" + a.size());\n  }\n}",
+    "options": [
+      "30 3",
+      "20 3",
+      "10 3",
+      "20 2",
+      "10 2"
+    ],
+    "answer": 1,
+    "explanation": "a e b referenciam a mesma coleção; o primeiro elemento passa a 20 e a lista mantém três elementos.",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-av2-08",
+    "source": "Simulado POO AV2",
+    "prompt": "A figura a seguir representa o diagrama de classes de parte do sistema SOMANUT. Na classe Funcionario, foi implementado o método abstrato calcularSalario.\n\nPara que a classe Mecanico possa ser instanciada, é necessário que a(s) classe(s):",
+    "options": [
+      "Funcionario possua outros métodos concretos.",
+      "Mecanico e Eletricista redefinam o método calcularSalario;",
+      "Mecanico redefina o método calcularSalario;",
+      "Funcionario tenha definido um atributo salario que seja público;",
+      "Funcionario tenha definido um atributo salario que seja protegido;"
+    ],
+    "answer": 2,
+    "explanation": "Uma subclasse concreta precisa implementar o método abstrato herdado.",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-av2-09",
+    "source": "Simulado POO AV2",
+    "prompt": "Considere as seguintes afirmações sobre coleções genéricas em Java:\n1. ArrayList<String> e LinkedList<String> podem armazenar elementos repetidos.\n2. Em um HashMap<String, Integer>, duas chamadas a put() usando a mesma chave criam duas entradas distintas.\n3. Em um TreeMap<Integer, String>, cada chave está associada a no máximo um valor por vez.\n4. Os argumentos de tipo de uma coleção genérica, como String e Integer, não podem ser tipos primitivos.",
+    "options": [
+      "Todas as afirmativas estão corretas.",
+      "Apenas as afirmativas 1, 3 e 4 estão corretas.",
+      "Apenas as afirmativas 2 e 3 estão corretas.",
+      "Apenas as afirmativas 1, 2 e 4 estão corretas.",
+      "Apenas as afirmativas 1 e 2 estão corretas."
+    ],
+    "answer": 1,
+    "explanation": "As afirmativas 1, 3 e 4 estão corretas; uma nova associação para a mesma chave substitui o valor anterior.",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-av2-10",
+    "source": "Simulado POO AV2",
+    "prompt": "Considere as seguintes classes:\n\nQual afirmação sobre a classe Planeta está correta?",
+    "code": "final class Planeta {\n  String nome;\n  public Planeta(String nome) {\n    this.nome = nome;\n  }\n}",
+    "options": [
+      "A classe pode possuir subclasses, mas elas também precisam ser final.",
+      "Todos os métodos da classe tornam-se abstratos.",
+      "A classe pode ser instanciada, mas não pode possuir subclasses.",
+      "Todos os atributos da classe tornam-se automaticamente final.",
+      "Não é possível criar objetos da classe Planeta."
+    ],
+    "answer": 2,
+    "explanation": "final aplicado a uma classe impede que outras classes herdem dela.",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  }
+]
