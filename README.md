@@ -4,7 +4,7 @@ Aplicativo responsivo de estudo de Programação Orientada a Objetos, criado com
 
 ## Recursos
 
-- 30 questões de múltipla escolha;
+- cadernos independentes de questões carregados do GitHub;
 - correção imediata;
 - explicação da alternativa correta e do erro cometido;
 - revisão de erros;
@@ -13,11 +13,11 @@ Aplicativo responsivo de estudo de Programação Orientada a Objetos, criado com
 - interface adaptada para computador e Android;
 - suporte a instalação como PWA.
 
-## Atualizar as questões
+## Criar e atualizar abas de questões
 
-O banco de questões fica em [`public/questions.json`](public/questions.json). O site hospedado no ChatGPT Sites consulta esse arquivo público quando é aberto.
+Os cadernos ficam em [`public/question-sets`](public/question-sets). Cada arquivo JSON dessa pasta vira uma aba separada no site. O nome do arquivo, sem `.json`, é usado como nome da aba.
 
-Para adicionar uma questão, copie um objeto existente no JSON, mantenha a vírgula entre os objetos e altere os campos. Cada questão deve ter um `id` único e permanente. O campo `answer` começa em zero: `0` representa A, `1` representa B, e assim por diante.
+Por exemplo, um arquivo chamado `Novas questões de revisão.json` cria a aba **Novas questões de revisão**. Para adicionar uma questão, copie um objeto existente, mantenha a vírgula entre os objetos e altere os campos. Cada questão deve ter um `id` único e permanente em todos os cadernos. O campo `answer` começa em zero: `0` representa A, `1` representa B, e assim por diante.
 
 ```json
 {
@@ -34,7 +34,9 @@ Para adicionar uma questão, copie um objeto existente no JSON, mantenha a vírg
 }
 ```
 
-Depois de confirmar a alteração no GitHub, basta recarregar o site. O total, os tópicos, os blocos e as questões pendentes são calculados a partir do JSON. Se o GitHub estiver temporariamente indisponível ou o JSON for inválido, o aplicativo usa a cópia local de segurança com as 30 questões originais.
+Depois de confirmar a alteração no GitHub, a automação atualiza o índice dos cadernos. Quando ela terminar, basta recarregar o site. O total, as abas, os tópicos, os blocos e as questões pendentes são calculados a partir dos arquivos JSON. Se o GitHub estiver temporariamente indisponível, o aplicativo usa a cópia local de segurança com as 30 questões originais.
+
+Consulte o guia completo em [`GUIA_CADERNOS_DE_QUESTOES.md`](GUIA_CADERNOS_DE_QUESTOES.md).
 
 ## Executar localmente
 
