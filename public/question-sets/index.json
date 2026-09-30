@@ -1,42 +1,7 @@
 [
   {
-    "id": "colabweb-poo-2026-2-parte-1",
-    "title": "ColabWeb POO 2026-2 Parte 1",
-    "file": "ColabWeb POO 2026-2 Parte 1.json"
-  },
-  {
-    "id": "colabweb-poo-2026-2-parte-2",
-    "title": "ColabWeb POO 2026-2 Parte 2",
-    "file": "ColabWeb POO 2026-2 Parte 2.json"
-  },
-  {
-    "id": "questoes-poo-java-da-maria",
-    "title": "Questões POO Java da Maria",
-    "file": "Questões POO Java da Maria.json"
-  },
-  {
     "id": "sessao-de-estudos",
     "title": "Sessão de estudos",
     "file": "Sessão de estudos.json"
-  },
-  {
-    "id": "simulado-2-m",
-    "title": "Simulado 2 M",
-    "file": "Simulado 2 M.json"
-  },
-  {
-    "id": "simulado-poo-av2",
-    "title": "Simulado POO AV2",
-    "file": "Simulado POO AV2.json"
-  },
-  {
-    "id": "simulado02",
-    "title": "Simulado02",
-    "file": "Simulado02.json"
-  },
-  {
-    "id": "simulado2-poo",
-    "title": "Simulado2 POO",
-    "file": "Simulado2 POO.json"
   }
 ]

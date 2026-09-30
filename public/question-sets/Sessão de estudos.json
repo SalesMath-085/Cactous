@@ -1,29 +1,25 @@
 [
   {
-    "id": "cw1-01",
-    "source": "ColabWeb POO - Parte 1",
-    "topic": "Construtores",
-    "difficulty": "Médio",
-    "prompt": "Sobre a linguagem Java e construtores, analise as afirmativas: I. Java permite apenas um construtor por classe. II. Se um construtor não for especificado, um construtor implícito será criado. III. O construtor pode ser executado explicitamente várias vezes no mesmo objeto. IV. Sobrecarga se aplica a construtores. V. O construtor tem o mesmo nome da classe e não especifica retorno.",
+    "id": "pdf-cw1-01",
+    "source": "ColabWeb POO 2026/2 - Parte 1",
+    "prompt": "Sobre a linguagem Java e construtores, analise as afirmativas abaixo:\nI. Java permite apenas um método construtor por classe.\nII. Se um construtor não for especificado, um construtor implícito será criado automaticamente.\nIII. O método construtor pode ser executado explicitamente para o mesmo objeto quantas vezes for necessário.\nIV. O conceito de sobrecarga de métodos se aplica aos construtores.\nV. O construtor Java deve ter o mesmo nome da classe e não especifica retorno.\n\nCom base nas afirmativas acima, marque a alternativa CORRETA.",
     "options": [
-      "Apenas II, IV e V são verdadeiras.",
-      "Apenas I e V são verdadeiras.",
-      "Apenas I, III e V são verdadeiras.",
-      "Todas são verdadeiras.",
-      "Apenas I, II e V são verdadeiras."
+      "Apenas as afirmativas II, IV e V são verdadeiras.",
+      "Apenas as afirmativas I e V são verdadeiras.",
+      "Apenas as afirmativas I, III e V são verdadeiras.",
+      "Todas as afirmativas são verdadeiras.",
+      "Apenas as afirmativas I, II e V são verdadeiras."
     ],
     "answer": 0,
-    "explanation": "Java aceita vários construtores por sobrecarga. Quando nenhum é declarado, o compilador fornece um construtor padrão. Um construtor é acionado na criação do objeto, tem o nome da classe e não declara retorno.",
-    "wrong": "A alternativa escolhida combina pelo menos uma afirmação falsa: I é falsa porque pode haver sobrecarga, e III é falsa porque um construtor não é chamado novamente sobre o mesmo objeto.",
-    "block": "ColabWeb POO - Parte 1"
+    "explanation": "Uma classe em Java pode ter vários construtores e o método construtor não pode ser chamado explicitamente.",
+    "block": "ColabWeb POO 2026/2 - Parte 1",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "cw1-02",
-    "source": "ColabWeb POO - Parte 1",
-    "topic": "Coleções",
-    "difficulty": "Fácil",
-    "prompt": "Um HashMap recebe pontos.put(\"Ana\", 10), pontos.put(\"Bia\", 20) e depois pontos.put(\"Ana\", 30). Em seguida, imprime pontos.get(\"Ana\") + pontos.size(). Qual é a saída?",
-    "code": "HashMap<String, Integer> pontos = new HashMap<>();\npontos.put(\"Ana\", 10);\npontos.put(\"Bia\", 20);\npontos.put(\"Ana\", 30);\nSystem.out.println(pontos.get(\"Ana\") + pontos.size());",
+    "id": "pdf-cw1-02",
+    "source": "ColabWeb POO 2026/2 - Parte 1",
+    "prompt": "Considere o seguinte código Java:\n\nQual é a saída do programa?",
+    "code": "import java.util.HashMap;\npublic class Main {\n  public static void main(String[] args) {\n    HashMap<String, Integer> pontos = new HashMap<>();\n    pontos.put(\"Ana\", 10);\n    pontos.put(\"Bia\", 20);\n    pontos.put(\"Ana\", 30);\n    int total = pontos.get(\"Ana\") + pontos.size();\n    System.out.println(total);\n  }\n}",
     "options": [
       "33",
       "12",
@@ -32,17 +28,15 @@
       "30"
     ],
     "answer": 3,
-    "explanation": "Uma chave repetida substitui o valor anterior. “Ana” passa a valer 30 e o mapa continua com duas chaves; 30 + 2 = 32.",
-    "wrong": "A resposta ignora que inserir novamente a mesma chave substitui o valor, sem criar uma terceira entrada.",
-    "block": "ColabWeb POO - Parte 1"
+    "explanation": "O segundo put() para \"Ana\" substitui seu valor por 30 e o mapa possui duas chaves, resultando em 32.",
+    "block": "ColabWeb POO 2026/2 - Parte 1",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "cw1-03",
-    "source": "ColabWeb POO - Parte 1",
-    "topic": "Referências",
-    "difficulty": "Médio",
-    "prompt": "Três variáveis passam a apontar para o mesmo Produto. O preço começa em 80, é aumentado em 10 por p2 e reduzido em 20 por p3. O que p1 e p3 imprimem?",
-    "code": "Produto p1 = new Produto(\"Teclado\", 80.0);\nProduto p2 = new Produto(\"Mouse\", 50.0);\nProduto p3 = p1;\np2 = p1;\np2.preco += 10.0;\np3.preco -= 20.0;",
+    "id": "pdf-cw1-03",
+    "source": "ColabWeb POO 2026/2 - Parte 1",
+    "prompt": "Considere o programa Java a seguir:\n\nConsiderando o funcionamento das referências em Java, qual será a saída produzida pela execução do programa?",
+    "code": "class Produto {\n  String nome;\n  double preco;\n  Produto(String nome, double preco) {\n    this.nome = nome;\n    this.preco = preco;\n  }\n  public static void main(String[] args) {\n    Produto p1 = new Produto(\"Teclado\", 80.0);\n    Produto p2 = new Produto(\"Mouse\", 50.0);\n    Produto p3 = p1;\n    p2 = p1;\n    p2.preco += 10.0;\n    p3.preco -= 20.0;\n    System.out.println(p1.preco + \" \" + p3.preco);\n  }\n}",
     "options": [
       "90.0 60.0",
       "50.0 80.0",
@@ -51,17 +45,15 @@
       "60.0 80.0"
     ],
     "answer": 3,
-    "explanation": "p1, p2 e p3 referenciam o mesmo objeto. O preço vai de 80 para 90 e depois para 70; ambas as leituras mostram 70.",
-    "wrong": "A alternativa trata as referências como se fossem cópias independentes do objeto, mas todas apontam para a mesma instância.",
-    "block": "ColabWeb POO - Parte 1"
+    "explanation": "As três referências passam a apontar para o mesmo objeto; seu preço vai de 80.0 para 90.0 e depois para 70.0.",
+    "block": "ColabWeb POO 2026/2 - Parte 1",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "cw1-04",
-    "source": "ColabWeb POO - Parte 1",
-    "topic": "Coleções",
-    "difficulty": "Médio",
-    "prompt": "Duas variáveis, a e b, referenciam o mesmo ArrayList. Após adicionar 10, 20 e 30 e executar b.set(1, a.get(0)), o que é impresso por a.get(1) e a.size()?",
-    "code": "ArrayList<Integer> a = new ArrayList<>();\nArrayList<Integer> b = a;\na.add(10); a.add(20); b.add(30);\nb.set(1, a.get(0));",
+    "id": "pdf-cw1-04",
+    "source": "ColabWeb POO 2026/2 - Parte 1",
+    "prompt": "Considere o seguinte código Java:\n\nQual é a saída do programa?",
+    "code": "import java.util.ArrayList;\npublic class Main {\n  public static void main(String[] args) {\n    ArrayList<Integer> a = new ArrayList<>();\n    ArrayList<Integer> b = a;\n    a.add(10);\n    a.add(20);\n    b.add(30);\n    b.set(1, a.get(0));\n    System.out.println(a.get(1) + \" \" + a.size());\n  }\n}",
     "options": [
       "20 2",
       "10 3",
@@ -70,53 +62,47 @@
       "30 3"
     ],
     "answer": 1,
-    "explanation": "a e b apontam para a mesma lista. O índice 1 é substituído pelo valor do índice 0, portanto fica 10; a lista mantém três elementos.",
-    "wrong": "A resposta não considera simultaneamente o compartilhamento da lista e a substituição feita por set no índice 1.",
-    "block": "ColabWeb POO - Parte 1"
+    "explanation": "a e b referenciam a mesma coleção, e o elemento do índice 1 é substituído por 10.",
+    "block": "ColabWeb POO 2026/2 - Parte 1",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "cw1-05",
-    "source": "ColabWeb POO - Parte 1",
-    "topic": "Métodos",
-    "difficulty": "Fácil",
-    "prompt": "Complete: A ______ torna um método único. Ela é formada pelo seu nome, ______, quantidade e ______ de seus ______.",
+    "id": "pdf-cw1-05",
+    "source": "ColabWeb POO 2026/2 - Parte 1",
+    "prompt": "Assinale a alternativa que completa corretamente as lacunas sobre o conceito e função da assinatura de um método no referencial de orientação a objeto.\nA ________ torna um método único. Ela é formada pelo seu nome, ________, quantidade e ________ de seus ________.",
     "options": [
-      "assinatura, tipo, retorno, modos",
-      "assinatura, característica, parâmetro, métodos",
-      "assinatura, tipo, ordem, parâmetros",
-      "assinatura, tipo, ordem, comandos",
-      "assinatura, tipo de parâmetro, ordem, elementos"
+      "Assinatura, tipo, retorno, modos.",
+      "Assinatura, característica, parâmetro, Métodos.",
+      "Assinatura, tipo, ordem, parâmetros.",
+      "Assinatura, tipo, ordem, comandos.",
+      "Assinatura, tipo de parâmetro, ordem, elementos."
     ],
     "answer": 2,
-    "explanation": "A assinatura diferencia o método pelo nome e pela lista de parâmetros, considerando seus tipos, quantidade e ordem.",
-    "wrong": "Retorno, comandos e “modos” não compõem a assinatura usada para distinguir sobrecargas em Java.",
-    "block": "ColabWeb POO - Parte 1"
+    "block": "ColabWeb POO 2026/2 - Parte 1",
+    "explanation": "A alternativa correta é “Assinatura, tipo, ordem, parâmetros.”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "cw1-06",
-    "source": "ColabWeb POO - Parte 1",
-    "topic": "Herança",
-    "difficulty": "Médio",
-    "prompt": "Sobre generalização e especialização: 1. Generalização é um conceito mais abrangente. 2. Especialização pode acrescentar membros. 3. Carro extends Veiculo torna Carro uma especialização. 4. Uma classe pode ser especialização de sua superclasse e generalização de suas subclasses.",
+    "id": "pdf-cw1-06",
+    "source": "ColabWeb POO 2026/2 - Parte 1",
+    "prompt": "Considere as seguintes afirmações sobre generalização e especialização:\n1. Uma generalização representa um conceito mais abrangente compartilhado por conceitos mais específicos.\n2. Uma especialização pode acrescentar atributos e métodos específicos aos que são herdados de uma classe mais geral.\n3. Se Carro extends Veiculo, então Carro é uma especialização de Veiculo.\n4. Uma classe pode ser uma especialização em relação à sua superclasse e uma generalização em relação às suas subclasses.\n\nAssinale a alternativa correta.",
     "options": [
-      "Todas estão corretas.",
-      "Apenas 1 e 3.",
-      "Apenas 2 e 3.",
-      "Apenas 1, 3 e 4.",
-      "Apenas 1, 2 e 4."
+      "Todas as afirmativas estão corretas.",
+      "Apenas as afirmativas 1 e 3 estão corretas.",
+      "Apenas as afirmativas 2 e 3 estão corretas.",
+      "Apenas as afirmativas 1, 3 e 4 estão corretas.",
+      "Apenas as afirmativas 1, 2 e 4 estão corretas."
     ],
     "answer": 0,
-    "explanation": "As quatro afirmações descrevem corretamente a relação hierárquica: o papel de uma classe depende de sua posição relativa na árvore de herança.",
-    "wrong": "A alternativa exclui uma afirmação válida sobre generalização, especialização ou a posição relativa da classe na hierarquia.",
-    "block": "ColabWeb POO - Parte 1"
+    "explanation": "As quatro afirmativas estão corretas.",
+    "block": "ColabWeb POO 2026/2 - Parte 1",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "cw1-07",
-    "source": "ColabWeb POO - Parte 1",
-    "topic": "Polimorfismo",
-    "difficulty": "Fácil",
-    "prompt": "Animal é abstrata e declara som(). Gato implementa som() retornando “Miau”. O que imprime uma referência Animal que aponta para new Gato()?",
-    "code": "Animal animal = new Gato();\nSystem.out.println(animal.som());",
+    "id": "pdf-cw1-07",
+    "source": "ColabWeb POO 2026/2 - Parte 1",
+    "prompt": "Considere o seguinte código Java:\n\nQual é a saída do programa?",
+    "code": "abstract class Animal {\n  public abstract String som();\n}\nclass Gato extends Animal {\n  @Override\n  public String som() {\n    return \"Miau\";\n  }\n}\npublic class Main {\n  public static void main(String[] args) {\n    Animal animal = new Gato();\n    System.out.println(animal.som());\n  }\n}",
     "options": [
       "O código não compila.",
       "Animal",
@@ -125,198 +111,161 @@
       "Miau"
     ],
     "answer": 4,
-    "explanation": "A referência pode ter o tipo abstrato Animal, mas o objeto real é Gato. A chamada é resolvida para a implementação sobrescrita de Gato e imprime “Miau”.",
-    "wrong": "O tipo da referência não impede o polimorfismo: quem determina a implementação executada é o tipo real do objeto.",
-    "block": "ColabWeb POO - Parte 1"
+    "explanation": "O objeto criado é um Gato, cuja implementação de som() retorna \"Miau\".",
+    "block": "ColabWeb POO 2026/2 - Parte 1",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "cw1-08",
-    "source": "ColabWeb POO - Parte 1",
-    "topic": "Fundamentos",
-    "difficulty": "Médio",
-    "prompt": "Avalie: I. Um método é o modelo usado para definir objetos. II. Pilhas removem o mais recente e filas o mais antigo. III. Um objeto é criado ao instanciar uma classe. IV. Programação estruturada reduz tudo somente à decisão.",
+    "id": "pdf-cw1-08",
+    "source": "ColabWeb POO 2026/2 - Parte 1",
+    "prompt": "Analise as seguintes afirmações relacionadas a conceitos básicos de programação:\nI. Na programação Orientada a Objetos, um método é um modelo usado para definir vários objetos com características semelhantes.\nII. As pilhas e filas são conjuntos dinâmicos nos quais o elemento removido do conjunto pela operação de DELETE é especificado previamente. Em uma pilha, o elemento eliminado do conjunto é o mais recentemente inserido. De modo semelhante, em uma fila, o elemento eliminado é sempre o que esteve no conjunto por mais tempo.\nIII. Na programação Orientada a Objetos, um objeto é criado ao se instanciar uma classe.\nIV. Programação estruturada é um estilo de programação que determina que todos os programas possíveis de criação podem ser reduzidos a uma, e somente uma, estrutura denominada \"Decisão\".\n\nIndique a opção que contenha todas as afirmações verdadeiras.",
     "options": [
-      "II e IV",
-      "I e II",
-      "II e III",
-      "I e III",
-      "III e IV"
+      "II e IV.",
+      "I e II.",
+      "II e III.",
+      "I e III.",
+      "III e IV."
     ],
     "answer": 2,
-    "explanation": "II e III são verdadeiras. A classe, não o método, é o modelo de objetos. Programação estruturada usa sequência, decisão e repetição, não apenas decisão.",
-    "wrong": "A seleção inclui I ou IV, que confundem classe com método ou reduzem indevidamente as estruturas da programação estruturada.",
-    "block": "ColabWeb POO - Parte 1"
+    "explanation": "As afirmativas II e III são verdadeiras.",
+    "block": "ColabWeb POO 2026/2 - Parte 1",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "cw1-09",
-    "source": "ColabWeb POO - Parte 1",
-    "topic": "Abstração",
-    "difficulty": "Médio",
-    "prompt": "Sobre classes abstratas: I. Podem ter atributos, construtores e métodos concretos. II. Uma classe com método abstrato deve ser abstract. III. Subclasse concreta implementa todos os métodos abstratos. IV. Uma referência abstrata pode apontar para uma subclasse concreta.",
+    "id": "pdf-cw1-09",
+    "source": "ColabWeb POO 2026/2 - Parte 1",
+    "prompt": "Sobre classes e métodos abstratos em Java, analise as afirmativas abaixo:\nI - Uma classe abstrata pode possuir atributos, construtores e métodos concretos (com implementação), além de métodos abstratos.\nII - Se uma classe possui pelo menos um método abstrato, ela obrigatoriamente deve ser declarada como abstract.\nIII - Uma subclasse concreta que estende uma classe abstrata deve implementar todos os métodos abstratos herdados, ou também deve ser declarada como abstract.\nIV - É permitido criar uma variável de referência do tipo de uma classe abstrata, desde que ela aponte para um objeto de uma subclasse concreta.\n\nAssinale a alternativa correta:",
     "options": [
-      "Apenas III e IV",
-      "I, II, III e IV",
-      "Apenas I, II e III",
-      "Apenas I e IV",
-      "Apenas II, III e IV"
+      "Apenas III e IV estão corretas",
+      "I, II, III e IV estão corretas",
+      "Apenas I, II e III estão corretas",
+      "Apenas I e IV estão corretas",
+      "Apenas II, III e IV estão corretas"
     ],
     "answer": 1,
-    "explanation": "As quatro afirmações são regras válidas de classes abstratas em Java. O que não é permitido é instanciar diretamente a classe abstrata.",
-    "wrong": "A alternativa deixa de fora pelo menos uma característica válida das classes e referências abstratas.",
-    "block": "ColabWeb POO - Parte 1"
+    "explanation": "As quatro afirmativas estão corretas.",
+    "block": "ColabWeb POO 2026/2 - Parte 1",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "cw1-10",
-    "source": "ColabWeb POO - Parte 1",
-    "topic": "Polimorfismo",
-    "difficulty": "Fácil",
-    "prompt": "Na orientação a objetos, a sobrecarga de métodos é uma manifestação de qual conceito?",
+    "id": "pdf-cw1-10",
+    "source": "ColabWeb POO 2026/2 - Parte 1",
+    "prompt": "Na orientação a objetos, a sobrecarga é utilizada por meio do conceito de:",
     "options": [
-      "Abstração",
-      "Encapsulamento",
-      "Herança",
-      "Polimorfismo",
-      "Agregação"
+      "abstração.",
+      "encapsulamento.",
+      "herança.",
+      "polimorfismo.",
+      "agregação."
     ],
     "answer": 3,
-    "explanation": "Sobrecarga é polimorfismo ad-hoc: o mesmo nome de método assume comportamentos distintos conforme a lista de parâmetros.",
-    "wrong": "A sobrecarga não é uma relação de herança ou composição; ela é uma forma de polimorfismo determinada pelos parâmetros.",
-    "block": "ColabWeb POO - Parte 1"
+    "explanation": "Sobrecarga é considerada um tipo de polimorfismo, também conhecido como polimorfismo ad-hoc.",
+    "block": "ColabWeb POO 2026/2 - Parte 1",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "cw2-01",
-    "source": "ColabWeb POO - Parte 2",
-    "topic": "Fundamentos",
-    "difficulty": "Médio",
-    "prompt": "Considere: I. Valores de atributos são definidos no nível de classe. II. Métodos são definidos no nível de objeto. III. A invocação de uma operação ocorre no nível de objeto. O que está correto?",
+    "id": "pdf-cw2-01",
+    "source": "ColabWeb POO 2026/2 - Parte 2",
+    "prompt": "Sobre orientação a objetos, considere:\nI. Os valores dos atributos são definidos no nível de classe.\nII. Os métodos são definidos no nível de objeto.\nIII. A invocação de uma operação é definida no nível de objeto.\n\nEstá correto o que se afirma em:",
     "options": [
       "III, apenas.",
-      "II e III.",
+      "II e III, apenas.",
       "I, II e III.",
-      "I e II.",
-      "I e III."
+      "I e II, apenas.",
+      "I e III, apenas."
     ],
     "answer": 0,
-    "explanation": "Os valores de atributos de instância pertencem aos objetos; a implementação dos métodos pertence à classe; a chamada de um método de instância ocorre sobre um objeto.",
-    "wrong": "I e II invertem os níveis de definição: estado de instância fica no objeto, enquanto a implementação do método é compartilhada pela classe.",
-    "block": "ColabWeb POO - Parte 2"
+    "explanation": "As afirmativas I e II são falsas; a afirmativa III é verdadeira.",
+    "block": "ColabWeb POO 2026/2 - Parte 2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "cw2-02",
-    "source": "ColabWeb POO - Parte 2",
-    "topic": "Abstração",
-    "difficulty": "Médio",
-    "prompt": "Funcionario declara calcularSalario() como abstrato. Mecanico é uma subclasse concreta. O que é necessário para que Mecanico possa ser instanciada?",
+    "id": "pdf-cw2-02",
+    "source": "ColabWeb POO 2026/2 - Parte 2",
+    "prompt": "A figura a seguir representa o diagrama de classes de parte do sistema SOMANUT. Na classe Funcionario, foi implementado o método abstrato calcularSalario.\n\nPara que a classe Mecanico possa ser instanciada, é necessário que a(s) classe(s):",
     "options": [
-      "salario público em Funcionario",
-      "salario protegido em Funcionario",
-      "Mecanico redefinir calcularSalario()",
-      "Mecanico e Eletricista redefinirem o método",
-      "Funcionario possuir outros métodos concretos"
+      "Funcionario tenha definido um atributo salario que seja público;",
+      "Funcionario tenha definido um atributo salario que seja protegido;",
+      "Mecanico redefina o método calcularSalario;",
+      "Mecanico e Eletricista redefinam o método calcularSalario;",
+      "Funcionario possua outros métodos concretos."
     ],
     "answer": 2,
-    "explanation": "Toda subclasse concreta deve implementar os métodos abstratos herdados. A obrigação de Eletricista é independente da possibilidade de instanciar Mecanico.",
-    "wrong": "Visibilidade de atributos e implementação por outra subclasse não cumprem a obrigação abstrata específica de Mecanico.",
-    "block": "ColabWeb POO - Parte 2"
+    "block": "ColabWeb POO 2026/2 - Parte 2",
+    "explanation": "A alternativa correta é “Mecanico redefina o método calcularSalario;”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "cw2-03",
-    "source": "ColabWeb POO - Parte 2",
-    "topic": "Referências",
-    "difficulty": "Fácil",
-    "prompt": "a1 referencia um novo Aluno, a2 recebe a1 e depois a1 recebe null. O que acontece com o objeto Aluno?",
-    "code": "Aluno a1 = new Aluno();\nAluno a2 = a1;\na1 = null;",
+    "id": "pdf-cw2-03",
+    "source": "ColabWeb POO 2026/2 - Parte 2",
+    "prompt": "Considere o código Java:\n\nApós a última instrução, considerando apenas as referências mostradas no código, qual alternativa descreve corretamente a situação do objeto Aluno?",
+    "code": "class Aluno {\n  String nome;\n}\npublic class Teste {\n  public static void main(String[] args) {\n    Aluno a1 = new Aluno();\n    Aluno a2 = a1;\n    a1 = null;\n  }\n}",
     "options": [
-      "É coletado imediatamente, mas a2 continua apontando.",
-      "Torna-se elegível porque a1 virou null.",
-      "Não é elegível porque ainda é referenciado por a2.",
-      "a2 também recebe null.",
-      "É duplicado para a2."
+      "O objeto é coletado imediatamente, mas a2 continua apontando para ele.",
+      "O objeto torna-se elegível para coleta porque a1 recebeu null.",
+      "O objeto não se torna elegível para coleta porque ainda é referenciado por a2.",
+      "a2 também recebe null automaticamente.",
+      "O objeto é duplicado para que a2 possa continuar utilizando-o."
     ],
     "answer": 2,
-    "explanation": "O objeto continua alcançável pela referência a2. Alterar a1 não modifica a2 e a atribuição de referências não duplica objetos.",
-    "wrong": "A coleta depende de o objeto ficar inalcançável por todas as referências, e a2 ainda aponta para ele.",
-    "block": "ColabWeb POO - Parte 2"
+    "explanation": "O objeto continua alcançável por a2.",
+    "block": "ColabWeb POO 2026/2 - Parte 2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "cw2-04",
-    "source": "ColabWeb POO - Parte 2",
-    "topic": "Palavra final",
-    "difficulty": "Médio",
-    "prompt": "Sobre final: 1. Um atributo final não pode ser reatribuído depois de inicializado. 2. Um método final é herdado, mas não sobrescrito. 3. Uma classe final pode ser instanciada, mas não estendida. 4. Todo atributo final é automaticamente static.",
+    "id": "pdf-cw2-04",
+    "source": "ColabWeb POO 2026/2 - Parte 2",
+    "prompt": "Considere as seguintes afirmações sobre a palavra reservada final em Java:\n1. Um atributo final não pode receber um novo valor depois de inicializado.\n2. Um método final pode ser herdado, mas não pode ser sobreposto.\n3. Uma classe final pode ser instanciada, mas não pode ser estendida.\n4. Todo atributo final é automaticamente static.\n\nAssinale a alternativa correta.",
     "options": [
-      "Apenas 1, 2 e 3.",
-      "Apenas 1 e 2.",
-      "Apenas 2 e 4.",
-      "Apenas 1, 3 e 4.",
-      "Todas."
+      "Apenas as afirmativas 1, 2 e 3 estão corretas.",
+      "Apenas as afirmativas 1 e 2 estão corretas.",
+      "Apenas as afirmativas 2 e 4 estão corretas.",
+      "Apenas as afirmativas 1, 3 e 4 estão corretas.",
+      "Todas as afirmativas estão corretas."
     ],
     "answer": 0,
-    "explanation": "As três primeiras estão corretas. final e static são modificadores independentes; um campo final pode pertencer a cada instância.",
-    "wrong": "A afirmação 4 é falsa: final impede nova atribuição, mas não transforma o membro em static.",
-    "block": "ColabWeb POO - Parte 2"
+    "explanation": "As afirmativas 1, 2 e 3 estão corretas; final e static são características independentes.",
+    "block": "ColabWeb POO 2026/2 - Parte 2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "cw2-05",
-    "source": "ColabWeb POO - Parte 2",
-    "topic": "Fundamentos",
-    "difficulty": "Fácil",
-    "prompt": "Qual alternativa descreve corretamente um benefício da Programação Orientada a Objetos?",
+    "id": "pdf-cw2-05",
+    "source": "ColabWeb POO 2026/2 - Parte 2",
+    "prompt": "Sobre os benefícios da Programação Orientada a Objetos apresentados na disciplina, assinale a alternativa correta.",
     "options": [
-      "Facilita compreender o problema e a comunicação na modelagem.",
-      "Torna desnecessária qualquer representação.",
-      "Garante reutilização automática entre programas.",
-      "Dificulta expansão ao dividir em classes.",
-      "Exige representações incompatíveis entre análise e implementação."
+      "Na modelagem, a OO pode facilitar a compreensão do problema e melhorar a comunicação entre as pessoas envolvidas.",
+      "O uso de objetos torna desnecessária qualquer representação do sistema.",
+      "A OO garante que programas diferentes reutilizem automaticamente o mesmo código.",
+      "A OO torna a expansão do código mais difícil por dividir o sistema em classes.",
+      "A OO exige que análise, projeto e implementação utilizem representações incompatíveis."
     ],
     "answer": 0,
-    "explanation": "A modelagem orientada a objetos aproxima conceitos do domínio, favorecendo entendimento e comunicação. Reutilização e expansão são facilitadas, mas não automáticas.",
-    "wrong": "A alternativa atribui uma garantia absoluta ou um efeito contrário aos benefícios de modularidade e consistência da OO.",
-    "block": "ColabWeb POO - Parte 2"
+    "block": "ColabWeb POO 2026/2 - Parte 2",
+    "explanation": "A alternativa correta é “Na modelagem, a OO pode facilitar a compreensão do problema e melhorar a comunicação entre as pessoas envolvidas.”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "cw2-06",
-    "source": "ColabWeb POO - Parte 2",
-    "topic": "Construtores",
-    "difficulty": "Médio",
-    "prompt": "Sobre construtores Java: I. Só pode haver um. II. Ausente um construtor declarado, um implícito é criado. III. Pode ser chamado várias vezes no mesmo objeto. IV. Pode haver sobrecarga. V. Tem o nome da classe e não especifica retorno.",
+    "id": "pdf-cw2-07",
+    "source": "ColabWeb POO 2026/2 - Parte 2",
+    "prompt": "Considere o código Java abaixo:\n\nQual é o comportamento desse programa?",
+    "code": "abstract class Forma {\n  abstract double calcularArea();\n  abstract double calcularPerimetro();\n}\nabstract class QuadrilateroBase extends Forma {\n  double lado = 4;\n  double calcularArea() {\n    return lado * lado;\n  }\n}\npublic class Teste {\n  public static void main(String[] args) {\n    System.out.println(\"Fim\");\n  }\n}",
     "options": [
-      "I, II e V",
-      "I e V",
-      "I, III e V",
-      "Todas",
-      "II, IV e V"
-    ],
-    "answer": 4,
-    "explanation": "II, IV e V são verdadeiras. Uma classe pode sobrecarregar construtores e cada construção cria/inicializa um novo objeto.",
-    "wrong": "I e III são falsas: pode haver vários construtores e eles não são reinvocados como métodos comuns sobre o mesmo objeto.",
-    "block": "ColabWeb POO - Parte 2"
-  },
-  {
-    "id": "cw2-07",
-    "source": "ColabWeb POO - Parte 2",
-    "topic": "Abstração",
-    "difficulty": "Médio",
-    "prompt": "QuadrilateroBase é abstrata, implementa calcularArea(), mas não calcularPerimetro() herdado de Forma. O main apenas imprime “Fim”. O que ocorre?",
-    "options": [
-      "Exceção em execução",
-      "Imprime “Fim”",
+      "É lançada uma exceção em tempo de execução",
+      "Imprime \"Fim\"",
       "Erro de compilação",
       "Imprime 16.0",
       "Não imprime nada"
     ],
     "answer": 1,
-    "explanation": "Uma classe abstrata pode deixar métodos abstratos sem implementação. Como nenhuma instância é criada e o main imprime o texto, o programa compila e exibe “Fim”.",
-    "wrong": "A obrigação de implementar todos os métodos só se aplica quando a subclasse é concreta.",
-    "block": "ColabWeb POO - Parte 2"
+    "explanation": "QuadrilateroBase é abstrata e pode deixar calcularPerimetro() sem implementação; o programa imprime \"Fim\".",
+    "block": "ColabWeb POO 2026/2 - Parte 2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "cw2-08",
-    "source": "ColabWeb POO - Parte 2",
-    "topic": "Construtores",
-    "difficulty": "Difícil",
-    "prompt": "Contador() chama this(5), soma 2 ao valor; o construtor com parâmetro incrementa criados. c2 recebe c1.valor e depois c1.valor soma criados. Qual a saída?",
-    "code": "Contador c1 = new Contador();\nContador c2 = new Contador(c1.valor);\nc1.valor += criados;\nSystem.out.println(c1.valor + \" \" + c2.valor + \" \" + criados);",
+    "id": "pdf-cw2-08",
+    "source": "ColabWeb POO 2026/2 - Parte 2",
+    "prompt": "Considere o programa Java a seguir:\n\nConsiderando a execução dos construtores, o atributo estático e o estado dos objetos, qual será a saída apresentada?",
+    "code": "class Contador {\n  int valor;\n  static int criados = 0;\n  Contador(int valor) {\n    this.valor = valor;\n    criados++;\n  }\n  Contador() {\n    this(5);\n    valor += 2;\n  }\n  public static void main(String[] args) {\n    Contador c1 = new Contador();\n    Contador c2 = new Contador(c1.valor);\n    c1.valor += criados;\n    System.out.println(c1.valor + \" \" + c2.valor + \" \" + criados);\n  }\n}",
     "options": [
       "8 6 2",
       "9 7 2",
@@ -325,52 +274,48 @@
       "8 7 2"
     ],
     "answer": 1,
-    "explanation": "c1 vai de 5 para 7; criados vale 1. c2 nasce com 7 e criados vai a 2. Por fim, c1 soma 2 e chega a 9: “9 7 2”.",
-    "wrong": "A alternativa erra a cadeia de construtores ou conta this(5) como se criasse outro objeto, o que não ocorre.",
-    "block": "ColabWeb POO - Parte 2"
+    "explanation": "c1 passa de 5 para 7, c2 recebe 7 e depois c1.valor é incrementado em 2.",
+    "block": "ColabWeb POO 2026/2 - Parte 2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "cw2-09",
-    "source": "ColabWeb POO - Parte 2",
-    "topic": "Polimorfismo",
-    "difficulty": "Médio",
-    "prompt": "Um vetor Forma contém um Retangulo 4×5 e um Triangulo de base 6 e altura 3. O laço soma calcularArea() de cada objeto. Qual é a saída?",
+    "id": "pdf-cw2-09",
+    "source": "ColabWeb POO 2026/2 - Parte 2",
+    "prompt": "Considere o código Java abaixo:\n\nQual é a saída produzida por esse programa?",
+    "code": "abstract class Forma {\n  abstract double calcularArea();\n}\nclass Retangulo extends Forma {\n  double largura = 4, altura = 5;\n  double calcularArea() {\n    return largura * altura;\n  }\n}\nclass Triangulo extends Forma {\n  double base = 6, altura = 3;\n  double calcularArea() {\n    return (base * altura) / 2;\n  }\n}\npublic class Teste {\n  public static void main(String[] args) {\n    Forma[] formas = { new Retangulo(), new Triangulo() };\n    double soma = 0;\n    for (Forma f : formas) {\n      soma += f.calcularArea();\n    }\n    System.out.println(soma);\n  }\n}",
     "options": [
       "9.0",
       "29.0",
       "20.0",
       "Erro de compilação",
-      "Exceção em execução"
+      "É lançada uma exceção em tempo de execução"
     ],
     "answer": 1,
-    "explanation": "O polimorfismo chama cada implementação: retângulo = 20 e triângulo = 9. A soma é 29.",
-    "wrong": "A resposta considera apenas uma forma ou supõe que referências do tipo abstrato não podem apontar para objetos concretos.",
-    "block": "ColabWeb POO - Parte 2"
+    "explanation": "A área do retângulo é 20 e a do triângulo é 9; a soma é 29.",
+    "block": "ColabWeb POO 2026/2 - Parte 2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "cw2-10",
-    "source": "ColabWeb POO - Parte 2",
-    "topic": "Palavra final",
-    "difficulty": "Médio",
-    "prompt": "I. final em atributo impede alteração após a inicialização. II. final em método impede override. III. final em classe impede herança. IV. Um atributo final deve ser inicializado obrigatoriamente na declaração.",
+    "id": "pdf-cw2-10",
+    "source": "ColabWeb POO 2026/2 - Parte 2",
+    "prompt": "Sobre o uso da palavra reservada final em Java, analise as afirmativas abaixo:\nI - Quando aplicada a um atributo, final impede que o valor desse atributo seja alterado após sua inicialização.\nII - Quando aplicada a um método, final impede que esse método seja sobreposto (override) por qualquer subclasse.\nIII - Quando aplicada a uma classe, final impede que essa classe seja estendida (herdada) por qualquer outra classe.\nIV - Um atributo declarado como final deve obrigatoriamente ser inicializado no momento de sua declaração, não podendo ser inicializado posteriormente em um construtor.\n\nAssinale a alternativa correta:",
     "options": [
-      "Apenas II e IV",
-      "Apenas I, II e III",
-      "I, II, III e IV",
-      "Apenas I e IV",
-      "Apenas III e IV"
+      "Apenas II e IV estão corretas",
+      "Apenas I, II e III estão corretas",
+      "I, II, III e IV estão corretas",
+      "Apenas I e IV estão corretas",
+      "Apenas III e IV estão corretas"
     ],
     "answer": 1,
-    "explanation": "I, II e III estão corretas. Um campo final de instância também pode ser inicializado em cada construtor, desde que uma única vez.",
-    "wrong": "IV é falsa: a inicialização de um atributo final pode ocorrer na declaração ou no construtor.",
-    "block": "ColabWeb POO - Parte 2"
+    "explanation": "As afirmativas I, II e III estão corretas; um atributo final de instância também pode ser inicializado no construtor.",
+    "block": "ColabWeb POO 2026/2 - Parte 2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "maria-01",
+    "id": "pdf-maria-01",
     "source": "Questões POO Java da Maria",
-    "topic": "Construtores",
-    "difficulty": "Difícil",
-    "prompt": "Livro a começa como “Java”, 100 páginas. Livro b é criado com o título de a e a.paginas + 50. Depois a.alterar(\"POO\", 20) soma 20 páginas, e b.alterar(a.titulo, a.paginas) soma as páginas atuais de a. Qual saída?",
+    "prompt": "Considere o programa Java a seguir:\n\nConsiderando a execução dos construtores e do método alterar, qual será a saída apresentada?",
+    "code": "class Livro {\n  String titulo;\n  int paginas;\n  Livro(String titulo) {\n    this(titulo, 100);\n  }\n  Livro(String titulo, int paginas) {\n    this.titulo = titulo;\n    this.paginas = paginas;\n  }\n  void alterar(String titulo, int paginas) {\n    this.titulo = titulo;\n    this.paginas += paginas;\n  }\n  public static void main(String[] args) {\n    Livro a = new Livro(\"Java\");\n    Livro b = new Livro(a.titulo, a.paginas + 50);\n    a.alterar(\"POO\", 20);\n    b.alterar(a.titulo, a.paginas);\n    System.out.println(a.titulo + \" \" + a.paginas + \" | \" + b.titulo + \" \" + b.paginas);\n  }\n}",
     "options": [
       "Java 120 | POO 270",
       "POO 120 | Java 270",
@@ -379,88 +324,46 @@
       "POO 220 | POO 270"
     ],
     "answer": 3,
-    "explanation": "a termina como “POO”, 120. b começa com 150 páginas; ao receber o título e as 120 páginas de a, termina como “POO”, 270.",
-    "wrong": "A alternativa não acompanha corretamente a soma acumulada no método alterar ou o momento em que o título é copiado.",
-    "block": "Questões POO Java da Maria"
+    "block": "Questões POO Java da Maria",
+    "explanation": "A alternativa correta é “POO 120 | POO 270”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "maria-02",
+    "id": "pdf-maria-02",
     "source": "Questões POO Java da Maria",
-    "topic": "Membros estáticos",
-    "difficulty": "Médio",
-    "prompt": "I. Cada objeto tem sua cópia de atributos de instância. II. Em Java, um atributo estático usa static. III. Um método estático exige objetos já criados. IV. É obrigatório definir código de construção e destruição. Quais são verdadeiras?",
+    "prompt": "Analise as seguintes afirmações relacionadas a conceitos de programação Orientada a Objetos e da linguagem de programação Java:\nI. Considerando os atributos de Instância ou Estáticos, quando estes são de Instância, cada objeto tem a sua própria cópia destes atributos.\nII. Em um programa codificado em Java, um atributo estático é identificado com a palavra static.\nIII. Um método estático pode ser invocado usando-se o nome da classe seguido de parênteses contendo o nome do método. Além disso, é obrigatório que os objetos da classe tenham sido criados para que o método estático seja invocado.\nIV. Da mesma forma que é obrigatório especificar o código a ser executado na criação de um objeto, também é obrigatório especificar um código a ser executado na destruição deste objeto. Este princípio é denominado Visibilidade Privada.\n\nIndique a opção que contenha todas as afirmações verdadeiras.",
     "options": [
-      "II e III",
-      "I e II",
-      "III e IV",
-      "I e III",
-      "II e IV"
+      "II e III.",
+      "I e II.",
+      "III e IV.",
+      "I e III.",
+      "II e IV."
     ],
     "answer": 1,
-    "explanation": "I e II são verdadeiras. Métodos estáticos não exigem instância, e Java não obriga o programador a declarar construtor nem destrutor.",
-    "wrong": "III e IV são falsas: membros estáticos pertencem à classe e não há obrigação de declarar destrutor.",
-    "block": "Questões POO Java da Maria"
+    "block": "Questões POO Java da Maria",
+    "explanation": "A alternativa correta é “I e II.”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "maria-03",
+    "id": "pdf-maria-03",
     "source": "Questões POO Java da Maria",
-    "topic": "Herança",
-    "difficulty": "Médio",
-    "prompt": "Sobre generalização: 1. É conceito abrangente compartilhado por conceitos específicos. 2. Especialização acrescenta membros. 3. Carro extends Veiculo torna Carro uma generalização. 4. Uma classe pode ser especialização e generalização conforme a posição.",
+    "prompt": "Considere as seguintes afirmações sobre generalização e especialização:\n1. Uma generalização representa um conceito mais abrangente compartilhado por conceitos mais específicos.\n2. Uma especialização pode acrescentar atributos e métodos específicos aos que são herdados de uma classe mais geral.\n3. Se Carro extends Veiculo, então Carro é uma generalização de Veiculo.\n4. Uma classe pode ser uma especialização em relação à sua superclasse e uma generalização em relação às suas subclasses.\n\nAssinale a alternativa correta.",
     "options": [
-      "Apenas 2 e 3",
-      "Apenas 1 e 3",
-      "Apenas 1, 2 e 4",
-      "Apenas 1, 3 e 4",
-      "Todas"
+      "Apenas as afirmativas 2 e 3 estão corretas.",
+      "Apenas as afirmativas 1 e 3 estão corretas.",
+      "Apenas as afirmativas 1, 2 e 4 estão corretas.",
+      "Apenas as afirmativas 1, 3 e 4 estão corretas.",
+      "Todas as afirmativas estão corretas."
     ],
     "answer": 2,
-    "explanation": "1, 2 e 4 são verdadeiras. Carro é especialização de Veiculo, portanto a afirmação 3 inverte a relação.",
-    "wrong": "A alternativa trata Carro como generalização, quando extends indica que ele é o conceito mais específico.",
-    "block": "Questões POO Java da Maria"
+    "block": "Questões POO Java da Maria",
+    "explanation": "A alternativa correta é “Apenas as afirmativas 1, 2 e 4 estão corretas.”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "maria-04",
+    "id": "pdf-maria-06",
     "source": "Questões POO Java da Maria",
-    "topic": "Fundamentos",
-    "difficulty": "Médio",
-    "prompt": "I. Método é o modelo de objetos. II. Pilha remove o mais recente e fila o mais antigo. III. Objeto nasce ao instanciar classe. IV. Programação estruturada usa somente decisão. Quais são verdadeiras?",
-    "options": [
-      "II e III",
-      "I e II",
-      "III e IV",
-      "I e III",
-      "II e IV"
-    ],
-    "answer": 0,
-    "explanation": "II e III são verdadeiras. O modelo de objetos é a classe, e programação estruturada combina sequência, decisão e repetição.",
-    "wrong": "I e IV apresentam definições incorretas de classe/método e das estruturas fundamentais.",
-    "block": "Questões POO Java da Maria"
-  },
-  {
-    "id": "maria-05",
-    "source": "Questões POO Java da Maria",
-    "topic": "Construtores",
-    "difficulty": "Médio",
-    "prompt": "I. Só um construtor por classe. II. Sem construtor declarado, há um implícito. III. Pode-se chamar o construtor repetidamente no mesmo objeto. IV. Construtores aceitam sobrecarga. V. Têm nome da classe e nenhum retorno.",
-    "options": [
-      "I, III e V",
-      "I e V",
-      "I, II e V",
-      "Todas",
-      "II, IV e V"
-    ],
-    "answer": 4,
-    "explanation": "II, IV e V são corretas: há construtor padrão quando nenhum é declarado, sobrecarga é permitida e não existe tipo de retorno.",
-    "wrong": "I e III são falsas porque construtores podem ser sobrecarregados e não são métodos comuns reinvocados no mesmo objeto.",
-    "block": "Questões POO Java da Maria"
-  },
-  {
-    "id": "maria-06",
-    "source": "Questões POO Java da Maria",
-    "topic": "Fluxo de controle",
-    "difficulty": "Médio",
-    "prompt": "No fragmento I, sum=7 e o if(sum>20) imprime “perdeu”; depois sempre imprime “ o bônus.”. No II, sum=21 e if(sum!=20) imprime “ganhou”; depois sempre imprime “ o bônus.”. Qual resultado?",
+    "prompt": "Considere os seguintes fragmentos de código Java:\nI  int sum = 7; if ( sum > 20 ) { System.out.print(\"ganhou\");}else{ System.out.print(\"perdeu\");} System.out.println(\" o bônus.\");\nII  int sum = 21; if( sum!=20) System.out.print(\"ganhou\");else System.out.print(\"perdeu\"); System.out.println(\" o bônus.\");\n\nO resultado da execução dos fragmentos em I e II será, respectivamente,",
     "options": [
       "perdeu e perdeu",
       "ganhou e ganhou",
@@ -469,81 +372,507 @@
       "perdeu e ganhou o bônus"
     ],
     "answer": 2,
-    "explanation": "No primeiro teste a condição é falsa; no segundo é verdadeira. O println final está fora do if em ambos, completando as duas frases com “o bônus”.",
-    "wrong": "A alternativa desconsidera a condição de um dos ifs ou o comando final que sempre é executado.",
-    "block": "Questões POO Java da Maria"
+    "block": "Questões POO Java da Maria",
+    "explanation": "A alternativa correta é “perdeu o bônus e ganhou o bônus”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "maria-07",
+    "id": "pdf-maria-07",
     "source": "Questões POO Java da Maria",
-    "topic": "Polimorfismo",
-    "difficulty": "Fácil",
-    "prompt": "Qual afirmação sobre orientação a objetos está INCORRETA?",
+    "prompt": "Sobre orientação a objetos, é INCORRETO afirmar:",
     "options": [
-      "Um objeto pode existir sem evento associado.",
-      "Generalização e especialização relacionam-se à herança.",
-      "O construtor inicializa atributos ao criar um objeto.",
-      "Subclasses polimórficas invocam métodos de mesma assinatura e mesmo comportamento.",
-      "A classe define estados por atributos e comportamentos por métodos."
+      "um objeto pode existir mesmo que não exista nenhum evento a ele associado.",
+      "os conceitos de generalização e especialização da orientação a objetos estão diretamente associados ao conceito de herança.",
+      "um construtor visa inicializar os atributos e pode ser executado automaticamente sempre que um novo objeto é criado.",
+      "polimorfismo é o princípio pelo qual duas ou mais classes derivadas de uma mesma superclasse podem invocar métodos que têm a mesma assinatura e mesmo comportamento.",
+      "uma classe define o comportamento dos objetos através de seus métodos, e quais estados ele é capaz de manter através de seus atributos."
     ],
     "answer": 3,
-    "explanation": "O ponto do polimorfismo é permitir comportamentos diferentes sob a mesma operação/assinatura. Dizer “mesmo comportamento” contradiz o conceito.",
-    "wrong": "A afirmação escolhida é compatível com os conceitos básicos de classe, objeto, construtor ou herança.",
-    "block": "Questões POO Java da Maria"
+    "block": "Questões POO Java da Maria",
+    "explanation": "A alternativa correta é “polimorfismo é o princípio pelo qual duas ou mais classes derivadas de uma mesma superclasse podem invocar métodos que têm a mesma assinatura e mesmo comportamento.”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "maria-08",
+    "id": "pdf-maria-08",
     "source": "Questões POO Java da Maria",
-    "topic": "Abstração",
-    "difficulty": "Fácil",
-    "prompt": "Forma representa figuras, não deve ser instanciada genericamente e cada subclasse calcula a área de forma diferente. Qual modelagem é mais adequada?",
+    "prompt": "Um programador está modelando um sistema de figuras geométricas com as classes Forma, Circulo e Retangulo. Cada forma calcula a área de maneira diferente, mas não faz sentido, no domínio do problema, criar um objeto genérico de Forma sem saber qual figura geométrica específica ela representa.\n\nQual é a abordagem mais adequada para modelar a classe Forma nesse cenário?",
     "options": [
-      "Eliminar Forma e não usar herança.",
-      "Declarar Forma final.",
-      "Declarar Forma abstrata com calcularArea() abstrato.",
-      "Forma concreta cujo cálculo sempre retorna zero.",
-      "calcularArea() static compartilhado."
+      "Não criar a classe Forma; implementar todos os cálculos separadamente em Circulo e Retangulo, sem nenhuma relação de herança entre elas.",
+      "Declarar Forma como uma classe final, impedindo que outras classes a estendam.",
+      "Declarar Forma como uma classe abstrata, com um método abstrato calcularArea(), deixando que Circulo e Retangulo forneçam suas próprias implementações.",
+      "Declarar Forma como uma classe concreta comum, com um método calcularArea() que sempre retorna zero, para ser sobreposto pelas subclasses.",
+      "Declarar o método calcularArea() como static em Forma, para que todas as subclasses compartilhem exatamente o mesmo cálculo."
     ],
     "answer": 2,
-    "explanation": "Uma classe abstrata expressa o conceito comum sem permitir instância genérica, e o método abstrato obriga Circulo e Retangulo a fornecer seus cálculos.",
-    "wrong": "A alternativa impede a extensão, elimina o contrato comum ou compartilha um cálculo que deveria variar por subtipo.",
-    "block": "Questões POO Java da Maria"
+    "block": "Questões POO Java da Maria",
+    "explanation": "A alternativa correta é “Declarar Forma como uma classe abstrata, com um método abstrato calcularArea(), deixando que Circulo e Retangulo forneçam suas próprias implementações.”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "maria-09",
+    "id": "pdf-maria-09",
     "source": "Questões POO Java da Maria",
-    "topic": "Polimorfismo",
-    "difficulty": "Médio",
-    "prompt": "Um vetor Operacao contém Soma e Multiplicacao. Para cada objeto, calcula(3,4) é somado a resultado. Qual é a saída?",
-    "code": "Operacao[] operacoes = { new Soma(), new Multiplicacao() };\nint resultado = 0;\nfor (Operacao op : operacoes)\n  resultado += op.calcular(3, 4);",
+    "prompt": "Considere o seguinte código Java:\n\nQual é a saída do programa?",
+    "code": "abstract class Operacao {\n  public abstract int calcular(int a, int b);\n}\nclass Soma extends Operacao {\n  @Override\n  public int calcular(int a, int b) {\n    return a + b;\n  }\n}\nclass Multiplicacao extends Operacao {\n  @Override\n  public int calcular(int a, int b) {\n    return a * b;\n  }\n}\npublic class Main {\n  public static void main(String[] args) {\n    Operacao[] operacoes = {\n      new Soma(),\n      new Multiplicacao()\n    };\n    int resultado = 0;\n    for (Operacao op : operacoes) {\n      resultado += op.calcular(3, 4);\n    }\n    System.out.println(resultado);\n  }\n}",
     "options": [
       "12",
       "7",
       "16",
       "19",
-      "Não compila porque Operacao é abstrata"
+      "O código não compila porque Operacao é abstrata."
     ],
     "answer": 3,
-    "explanation": "Soma retorna 7 e Multiplicacao retorna 12. O vetor de referências abstratas pode guardar objetos concretos; o total é 19.",
-    "wrong": "A resposta considera apenas uma operação ou supõe, incorretamente, que um vetor do tipo abstrato não pode conter subclasses.",
-    "block": "Questões POO Java da Maria"
+    "block": "Questões POO Java da Maria",
+    "explanation": "A alternativa correta é “19”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   },
   {
-    "id": "av2-02",
-    "source": "Simulado POO AV2",
-    "topic": "Coleções",
-    "difficulty": "Médio",
-    "prompt": "Analise: I. ArrayList implementa List e preserva a ordem de inserção. II. LinkedList é uma lista duplamente encadeada, eficiente nas extremidades. III. HashMap garante que pares chave-valor sejam percorridos na ordem de inserção. IV. TreeMap ordena as chaves pela ordem natural ou por Comparator.",
+    "id": "pdf-maria-10",
+    "source": "Questões POO Java da Maria",
+    "prompt": "Considere o programa Java a seguir:\n\nConsiderando o funcionamento das referências em Java, qual será a saída produzida pela execução do programa?",
+    "code": "class Produto {\n  String nome;\n  double preco;\n  Produto(String nome, double preco) {\n    this.nome = nome;\n    this.preco = preco;\n  }\n  public static void main(String[] args) {\n    Produto p1 = new Produto(\"Teclado\", 80.0);\n    Produto p2 = new Produto(\"Mouse\", 50.0);\n    Produto p3 = p1;\n    p1 = p2;\n    p2.preco += 10.0;\n    p3.preco -= 20.0;\n    System.out.println(p1.preco + \" \" + p3.preco);\n  }\n}",
     "options": [
-      "Apenas II e IV estão corretas.",
-      "Apenas III e IV estão corretas.",
-      "Apenas I, II e IV estão corretas.",
-      "I, II, III e IV estão corretas.",
-      "Apenas I e II estão corretas."
+      "60.0 60.0",
+      "50.0 80.0",
+      "60.0 60.0",
+      "80.0 60.0",
+      "60.0 80.0"
     ],
     "answer": 2,
-    "explanation": "I, II e IV estão corretas. ArrayList mantém a ordem da lista, LinkedList é duplamente encadeada e TreeMap ordena suas chaves.",
-    "wrong": "A afirmação III é falsa: HashMap não garante uma ordem específica de iteração; para ordem de inserção, usa-se LinkedHashMap.",
-    "block": "Simulado POO AV2"
+    "block": "Questões POO Java da Maria",
+    "explanation": "A alternativa correta é “60.0 60.0”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-s2m-03",
+    "source": "Simulado 2 M",
+    "prompt": "Considere o código Java abaixo:\n\nQual é a saída produzida por esse programa?",
+    "code": "abstract class Pessoa {\n  String nome;\n  Pessoa(String nome) {\n    this.nome = nome;\n  }\n  abstract String descricao();\n}\nclass Professor extends Pessoa {\n  Professor(String nome) {\n  }\n  String descricao() {\n    return \"Professor: \" + nome;\n  }\n}\npublic class Teste {\n  public static void main(String[] args) {\n    Professor p = new Professor(\"Ana\");\n    System.out.println(p.descricao());\n  }\n}",
+    "options": [
+      "Erro de compilação",
+      "É lançada uma exceção em tempo de execução",
+      "Ana",
+      "Professor: Ana",
+      "Professor: null"
+    ],
+    "answer": 0,
+    "block": "Simulado 2 M",
+    "explanation": "A alternativa correta é “Erro de compilação”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-s2m-07",
+    "source": "Simulado 2 M",
+    "prompt": "Na linguagem Java, os operadores unários \"!\" e \"~\" estão relacionados à operação lógica de negação, no entanto, eles diferem entre si porque o operador",
+    "options": [
+      "\"!\" apenas pode ser utilizado sobre valores numéricos inteiros.",
+      "\"~\" calcula o complemento do operando bit-a-bit.",
+      "\"~\" utiliza dois operandos ao invés de um.",
+      "\"!\" calcula o complemento do operando bit-a-bit.",
+      "\"~\" apenas pode ser utilizado sobre valores booleanos."
+    ],
+    "answer": 1,
+    "block": "Simulado 2 M",
+    "explanation": "A alternativa correta é “\"~\" calcula o complemento do operando bit-a-bit.”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-s2m-08",
+    "source": "Simulado 2 M",
+    "prompt": "Considere o código Java abaixo:\n\nQual é o comportamento desse programa?",
+    "code": "public class Teste {\n  public static void main(String[] args) {\n    final int LIMITE = 10;\n    LIMITE = 20;\n    System.out.println(LIMITE);\n  }\n}",
+    "options": [
+      "Imprime 20",
+      "Erro de compilação na linha \"final int LIMITE\"",
+      "Imprime 0",
+      "Imprime 10",
+      "Erro de compilação na linha \"LIMITE = 20\""
+    ],
+    "answer": 4,
+    "block": "Simulado 2 M",
+    "explanation": "A alternativa correta é “Erro de compilação na linha \"LIMITE = 20\"”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-s2m-09",
+    "source": "Simulado 2 M",
+    "prompt": "Considere o código Java abaixo:\n\nQual é a saída produzida por esse programa?",
+    "code": "import java.util.TreeMap;\npublic class Teste {\n  public static void main(String[] args) {\n    TreeMap<Integer, String> mapa = new TreeMap<>();\n    mapa.put(30, \"C\");\n    mapa.put(10, \"A\");\n    mapa.put(20, \"B\");\n    System.out.println(mapa.firstKey() + \" \" + mapa.lastKey());\n  }\n}",
+    "options": [
+      "30 10",
+      "30 20",
+      "Erro de compilação",
+      "10 30",
+      "20 10"
+    ],
+    "answer": 3,
+    "block": "Simulado 2 M",
+    "explanation": "A alternativa correta é “10 30”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-s2m-10",
+    "source": "Simulado 2 M",
+    "prompt": "Sobre a compilação virtual utilizada pela linguagem Java, analise as afirmativas a seguir:\nI. O compilador javac gera o bytecode a partir do código-fonte.\nII. A JVM precisa receber o código-fonte original para conseguir executar o bytecode.\nIII. O bytecode pode ser armazenado em arquivos com extensão .class.\n\nAssinale a alternativa correta.",
+    "options": [
+      "Apenas a afirmativa II está correta.",
+      "Apenas as afirmativas I e III estão corretas.",
+      "Todas as afirmativas estão corretas.",
+      "Apenas a afirmativa I está correta.",
+      "Apenas as afirmativas II e III estão corretas."
+    ],
+    "answer": 1,
+    "block": "Simulado 2 M",
+    "explanation": "A alternativa correta é “Apenas as afirmativas I e III estão corretas.”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-av2-01",
+    "source": "Simulado POO AV2",
+    "prompt": "Considere o seguinte código Java:\n\nQual é a saída do programa?",
+    "code": "abstract class Animal {\n  public abstract String som();\n}\nclass Gato extends Animal {\n  @Override\n  public String som() {\n    return \"Miau\";\n  }\n}\npublic class Main {\n  public static void main(String[] args) {\n    Gato animal = new Gato();\n    System.out.println(animal.som());\n  }\n}",
+    "options": [
+      "O código não compila.",
+      "null",
+      "Miau",
+      "Gato",
+      "Animal"
+    ],
+    "answer": 2,
+    "explanation": "Gato implementa o método abstrato e retorna \"Miau\".",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-av2-02",
+    "source": "Simulado POO AV2",
+    "prompt": "Sobre as coleções genéricas ArrayList, LinkedList, HashMap e TreeMap, analise as afirmativas abaixo:\nI - ArrayList mantém os elementos na ordem em que foram inseridos, salvo remoções.\nII - LinkedList é implementada como uma lista duplamente encadeada, o que a torna eficiente para inserções e remoções nas extremidades.\nIII - HashMap garante que os pares chave-valor sejam percorridos na mesma ordem em que foram inseridos.\nIV - TreeMap organiza automaticamente as chaves de acordo com sua ordem natural ou um Comparator fornecido.\n\nAssinale a alternativa correta:",
+    "options": [
+      "Apenas II e IV estão corretas",
+      "Apenas III e IV estão corretas",
+      "Apenas I, II e IV estão corretas",
+      "I, II, III e IV estão corretas",
+      "Apenas I e II estão corretas"
+    ],
+    "answer": 2,
+    "explanation": "As afirmativas I, II e IV estão corretas. HashMap não garante ordem de percurso.",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-av2-03",
+    "source": "Simulado POO AV2",
+    "prompt": "Considere o seguinte código Java:\n\nQual é a saída do programa?",
+    "code": "abstract class Jogo {\n  protected String nome;\n  public Jogo(String nome) {\n    this.nome = nome;\n  }\n  public String descricao() {\n    return nome + \": \" + categoria();\n  }\n  public abstract String categoria();\n}\nclass RPG extends Jogo {\n  public RPG(String nome) {\n    super(nome);\n  }\n  @Override\n  public String categoria() {\n    return \"Aventura\";\n  }\n}\npublic class Main {\n  public static void main(String[] args) {\n    Jogo jogo = new RPG(\"Skyrim\");\n    System.out.println(jogo.descricao());\n  }\n}",
+    "options": [
+      "O código não compila porque categoria() é abstrato em Jogo.",
+      "Jogo: Aventura",
+      "Aventura: Skyrim",
+      "Skyrim: RPG",
+      "Skyrim: Aventura"
+    ],
+    "answer": 4,
+    "explanation": "descricao() utiliza o nome \"Skyrim\" e a implementação de categoria() de RPG.",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-av2-04",
+    "source": "Simulado POO AV2",
+    "prompt": "Observe o seguinte código em Java (cada classe em seu arquivo):\n\nAssinale a alternativa correta:",
+    "code": "class A {\n  void metodoA() {\n    System.out.println(\"Método A\");\n  }\n  public static void main(String[] args) {\n    A a;\n    B b = new B();\n    a = b;\n    a.metodoA();\n  }\n}\nclass B extends A {\n  void metodoA() {\n    System.out.println(\"Método A em B\");\n  }\n}",
+    "options": [
+      "O código compila, mas gera uma exceção na execução.",
+      "Classe A compila, mas a Classe B não.",
+      "O código compila e a saída é \"Método A em B\".",
+      "Classe A não compila (e nem a classe B).",
+      "O código compila e a saída é \"Método A\"."
+    ],
+    "answer": 2,
+    "explanation": "É um caso de polimorfismo por inclusão; o objeto é B e executa a sobreposição de metodoA().",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-av2-05",
+    "source": "Simulado POO AV2",
+    "prompt": "Considere o código Java abaixo:\n\nQual é o comportamento desse programa?",
+    "code": "import java.util.ArrayList;\npublic class Teste {\n  public static void main(String[] args) {\n    final ArrayList<String> nomes = new ArrayList<>();\n    nomes.add(\"Ana\");\n    nomes = new ArrayList<>();\n    System.out.println(nomes);\n  }\n}",
+    "options": [
+      "Imprime null",
+      "É lançada uma exceção em tempo de execução",
+      "Imprime []",
+      "Erro de compilação",
+      "Imprime [Ana]"
+    ],
+    "answer": 3,
+    "explanation": "Como nomes é final, a tentativa de reatribuir a variável gera erro de compilação.",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-av2-06",
+    "source": "Simulado POO AV2",
+    "prompt": "Analise o programa Java a seguir e assinale a alternativa que apresenta corretamente sua saída.",
+    "code": "class Contador {\n  int valor = 1;\n  static int total = 5;\n  public static void main(String[] args) {\n    Contador a = new Contador();\n    Contador b = new Contador();\n    b.valor = 3;\n    b.total = 8;\n    System.out.println(b.valor + \" \" + a.total);\n  }\n}",
+    "options": [
+      "O código não compila.",
+      "3 5",
+      "3 8",
+      "1 5",
+      "1 8"
+    ],
+    "answer": 2,
+    "explanation": "O atributo estático total foi alterado para 8, afetando todos os objetos da classe.",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-av2-07",
+    "source": "Simulado POO AV2",
+    "prompt": "Considere o seguinte código Java:\n\nQual é a saída do programa?",
+    "code": "import java.util.ArrayList;\npublic class Main {\n  public static void main(String[] args) {\n    ArrayList<Integer> a = new ArrayList<>();\n    ArrayList<Integer> b = a;\n    a.add(10);\n    a.add(20);\n    b.add(30);\n    b.set(0, a.get(1));\n    System.out.println(a.get(0) + \" \" + a.size());\n  }\n}",
+    "options": [
+      "30 3",
+      "20 3",
+      "10 3",
+      "20 2",
+      "10 2"
+    ],
+    "answer": 1,
+    "explanation": "a e b referenciam a mesma coleção; o primeiro elemento passa a 20 e a lista mantém três elementos.",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-av2-09",
+    "source": "Simulado POO AV2",
+    "prompt": "Considere as seguintes afirmações sobre coleções genéricas em Java:\n1. ArrayList<String> e LinkedList<String> podem armazenar elementos repetidos.\n2. Em um HashMap<String, Integer>, duas chamadas a put() usando a mesma chave criam duas entradas distintas.\n3. Em um TreeMap<Integer, String>, cada chave está associada a no máximo um valor por vez.\n4. Os argumentos de tipo de uma coleção genérica, como String e Integer, não podem ser tipos primitivos.",
+    "options": [
+      "Todas as afirmativas estão corretas.",
+      "Apenas as afirmativas 1, 3 e 4 estão corretas.",
+      "Apenas as afirmativas 2 e 3 estão corretas.",
+      "Apenas as afirmativas 1, 2 e 4 estão corretas.",
+      "Apenas as afirmativas 1 e 2 estão corretas."
+    ],
+    "answer": 1,
+    "explanation": "As afirmativas 1, 3 e 4 estão corretas; uma nova associação para a mesma chave substitui o valor anterior.",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-av2-10",
+    "source": "Simulado POO AV2",
+    "prompt": "Considere as seguintes classes:\n\nQual afirmação sobre a classe Planeta está correta?",
+    "code": "final class Planeta {\n  String nome;\n  public Planeta(String nome) {\n    this.nome = nome;\n  }\n}",
+    "options": [
+      "A classe pode possuir subclasses, mas elas também precisam ser final.",
+      "Todos os métodos da classe tornam-se abstratos.",
+      "A classe pode ser instanciada, mas não pode possuir subclasses.",
+      "Todos os atributos da classe tornam-se automaticamente final.",
+      "Não é possível criar objetos da classe Planeta."
+    ],
+    "answer": 2,
+    "explanation": "final aplicado a uma classe impede que outras classes herdem dela.",
+    "block": "Simulado POO AV2",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-s02-02",
+    "source": "Simulado02",
+    "prompt": "Em programação orientada a objetos, é correto afirmar que herança múltipla:",
+    "options": [
+      "ocorre quando uma classe é a instância de vários objetos.",
+      "define no máximo uma classe pai.",
+      "permite que uma classe herde atributos e métodos de duas ou mais classes.",
+      "é a instância de uma classe abstrata.",
+      "significa o mesmo que polimorfismo."
+    ],
+    "answer": 2,
+    "block": "Simulado02",
+    "explanation": "A alternativa correta é “permite que uma classe herde atributos e métodos de duas ou mais classes.”.",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-s02-05",
+    "source": "Simulado02",
+    "prompt": "Considere o programa Java a seguir:\n\nConsiderando a execução dos construtores, o atributo estático e o estado dos objetos, qual será a saída apresentada?",
+    "code": "class Contador {\n  int valor;\n  static int criados = 0;\n  Contador(int valor) {\n    this.valor = valor;\n    criados++;\n  }\n  Contador() {\n    this(5);\n    valor++;\n  }\n  public static void main(String[] args) {\n    Contador c1 = new Contador();\n    Contador c2 = new Contador(c1.valor);\n    c1.valor += criados;\n    System.out.println(c1.valor + \" \" + c2.valor + \" \" + criados);\n  }\n}",
+    "options": [
+      "8 6 3",
+      "7 5 2",
+      "8 6 2",
+      "6 6 2",
+      "7 6 2"
+    ],
+    "answer": 2,
+    "explanation": "c1 inicia com 6, c2 recebe 6 e criados vale 2; depois c1.valor passa para 8.",
+    "block": "Simulado02",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-s02-06",
+    "source": "Simulado02",
+    "prompt": "Analise o código Java a seguir:\n\nApós a execução de destaque = null;, considerando apenas as referências mostradas, o que ocorre com o objeto criado por new Livro()?",
+    "code": "class Livro {\n  String titulo;\n}\npublic class Biblioteca {\n  static Livro destaque;\n  public static void main(String[] args) {\n    Livro livro = new Livro();\n    destaque = livro;\n    livro = null;\n    destaque = null;\n  }\n}",
+    "options": [
+      "Continua alcançável por meio do atributo estático destaque.",
+      "Permanece alcançável por meio da referência local livro.",
+      "Torna-se um tipo primitivo porque perdeu suas referências.",
+      "Torna-se elegível para coleta pois não há referência alcançável para ele.",
+      "É automaticamente substituído por um novo objeto Livro."
+    ],
+    "answer": 3,
+    "explanation": "As duas referências deixaram de apontar para o objeto.",
+    "block": "Simulado02",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-s02-08",
+    "source": "Simulado02",
+    "prompt": "Considere o programa Java a seguir:\n\nQual será a saída produzida pela execução do programa?",
+    "code": "class Caixa {\n  int valor;\n  Caixa(int valor) {\n    this.valor = valor;\n  }\n  static void alterar(Caixa a, Caixa b) {\n    a.valor = a.valor + 2;\n    a = b;\n    a.valor = a.valor + 3;\n  }\n  public static void main(String[] args) {\n    Caixa x = new Caixa(5);\n    Caixa y = new Caixa(10);\n    alterar(x, y);\n    System.out.println(x.valor + \" \" + y.valor);\n  }\n}",
+    "options": [
+      "10 13",
+      "10 10",
+      "7 13",
+      "5 10",
+      "7 10"
+    ],
+    "answer": 2,
+    "explanation": "Primeiro o objeto de x passa a valer 7; depois a referencia o objeto de y, que passa a valer 13.",
+    "block": "Simulado02",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-s02-09",
+    "source": "Simulado02",
+    "prompt": "Java possui, como a maioria das linguagens, números de tamanho limitado. Um int, por exemplo, possui 32 bits, sendo que o primeiro bit (o mais significativo) é usado para armazenar o sinal. Desta forma, um int pode assumir os valores entre 2.147.483.647 e -2.147.483.648. Java possui, inclusive, constantes contendo tais números (e.g., Integer.MAX_VALUE).\n\nAo executar operações que ultrapassem tais limites, resultados estranhos (mas previsíveis) podem acontecer. Por exemplo, ao somar um ao valor do tipo int, cujo valor é o maior inteiro possível, o seu bit mais significativo passa a ser 1, fazendo com que este número passe a ser o menor número negativo possível (i.e., 2147483647 + 1 = -2147483648). Isso é conhecido como integer overflow.\n\nSabendo disso, o programa a seguir (Fonte: Bloch e Gafter, 2005) conta a quantidade de loops.\n\neste programa:",
+    "code": "class InTheLoop {\n  public static void main(String[] args) {\n    int end = Integer.MAX_VALUE;\n    int start = end - 100;\n    int count = 0;\n    for (int i = start; i <= end; i++)\n      count++;\n    System.out.println(count);\n  }\n}",
+    "options": [
+      "fica em loop infinito",
+      "imprime 100",
+      "imprime 101",
+      "imprime 99",
+      "gera erro na compilação"
+    ],
+    "answer": 0,
+    "explanation": "Quando i ultrapassa Integer.MAX_VALUE ocorre overflow; i volta ao menor inteiro e a condição i <= end permanece verdadeira.",
+    "block": "Simulado02",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-s02-10",
+    "source": "Simulado02",
+    "prompt": "Sobre os tipos de dados em Java, assinale a alternativa correta.",
+    "options": [
+      "boolean é um tipo referência.",
+      "String é um tipo primitivo destinado ao armazenamento de textos.",
+      "byte, short, int e long são tipos primitivos inteiros.",
+      "Java possui apenas tipos referência, pois todo valor é obrigatoriamente um objeto.",
+      "float é um tipo inteiro de 32 bits."
+    ],
+    "answer": 2,
+    "explanation": "byte, short, int e long são tipos primitivos inteiros.",
+    "block": "Simulado02",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-s2poo-01",
+    "source": "Simulado2 POO",
+    "prompt": "Considere a seguinte classe em Java:\n\nMarque a alternativa que indica corretamente o que acontecerá.",
+    "code": "class Test {\n  int i;\n  Integer j;\n  void println() {\n    System.out.print(i);\n    System.out.print(j);\n  }\n  public static void main(String args[]) {\n    Test t = new Test();\n    t.j = 2;\n    t.i = t.j;\n    t.println();\n  }\n}",
+    "options": [
+      "Erro de compilação na linha \"t.i = t.j;\"",
+      "Nenhum erro. Saída: 22",
+      "Erro de compilação na linha \"void println() {\"",
+      "Erro de compilação na linha \"t.j = 2;\"",
+      "Nenhum erro. Saída: 02"
+    ],
+    "answer": 1,
+    "explanation": "Em t.j = 2 ocorre autoboxing e em t.i = t.j ocorre unboxing.",
+    "block": "Simulado2 POO",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-s2poo-03",
+    "source": "Simulado2 POO",
+    "prompt": "Considere a seguinte hierarquia:\n\nAssinale a alternativa correta.",
+    "code": "abstract class A {\n  public abstract int valor();\n}\nabstract class B extends A {\n  @Override\n  public int valor() {\n    return 20;\n  }\n}\nclass C extends B {\n}",
+    "options": [
+      "B não pode implementar um método abstrato porque também é uma classe abstrata.",
+      "C precisa ser declarada abstract porque sua superclasse é abstrata.",
+      "C pode ser concreta porque valor() já foi implementado por B.",
+      "C precisa implementar novamente valor().",
+      "O método valor() continua abstrato mesmo possuindo corpo em B."
+    ],
+    "answer": 2,
+    "explanation": "B fornece uma implementação concreta para valor(), que é herdada por C.",
+    "block": "Simulado2 POO",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-s2poo-04",
+    "source": "Simulado2 POO",
+    "prompt": "Sobre a inicialização de valores em Java, assinale a alternativa correta.",
+    "options": [
+      "Uma variável local do tipo boolean recebe automaticamente false.",
+      "Atributos do tipo boolean são automaticamente inicializados com true.",
+      "Uma variável local precisa receber um valor antes de ser utilizada.",
+      "Toda variável local do tipo int recebe automaticamente o valor zero.",
+      "Nenhum atributo de tipo primitivo possui inicialização automática."
+    ],
+    "answer": 2,
+    "explanation": "Variáveis locais devem ser inicializadas antes do uso.",
+    "block": "Simulado2 POO",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-s2poo-05",
+    "source": "Simulado2 POO",
+    "prompt": "Considere as seguintes afirmações sobre coleções genéricas em Java:\n1. Uma coleção ArrayList<String> restringe os elementos adicionados por add() ao tipo String e tipos compatíveis.\n2. É possível adicionar diretamente um valor int a um ArrayList<Integer> por causa do boxing automático.\n3. O método size() de um ArrayList retorna a quantidade de elementos armazenados na coleção.\n4. Um ArrayList<String> pode armazenar também objetos Integer, pois todas as classes herdam de Object.\n\nAssinale a alternativa correta.",
+    "options": [
+      "Apenas as afirmativas 1, 2 e 3 estão corretas.",
+      "Apenas as afirmativas 1, 3 e 4 estão corretas.",
+      "Apenas as afirmativas 1 e 4 estão corretas.",
+      "Apenas as afirmativas 2 e 4 estão corretas.",
+      "Todas as afirmativas estão corretas."
+    ],
+    "answer": 0,
+    "explanation": "As afirmativas 1, 2 e 3 estão corretas; ArrayList<String> não aceita Integer.",
+    "block": "Simulado2 POO",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-s2poo-06",
+    "source": "Simulado2 POO",
+    "prompt": "Considere o código Java abaixo:\n\nQual é a saída produzida por esse programa?",
+    "code": "import java.util.TreeMap;\npublic class Teste {\n  public static void main(String[] args) {\n    TreeMap<Integer, String> mapa = new TreeMap<>();\n    mapa.put(5, \"x\");\n    mapa.put(50, \"y\");\n    mapa.put(25, \"z\");\n    System.out.println(mapa.firstKey() + \" \" + mapa.lastKey());\n  }\n}",
+    "options": [
+      "50 5",
+      "25 50",
+      "10 30",
+      "5 50",
+      "Erro de compilação"
+    ],
+    "answer": 3,
+    "explanation": "TreeMap mantém as chaves ordenadas; a menor é 5 e a maior é 50.",
+    "block": "Simulado2 POO",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+  },
+  {
+    "id": "pdf-s2poo-07",
+    "source": "Simulado2 POO",
+    "prompt": "Um estudante deseja apenas executar programas Java já compilados, enquanto outro deseja desenvolver e compilar novos programas. De acordo com os conceitos apresentados, qual alternativa está correta?",
+    "options": [
+      "O JDK não permite executar programas Java.",
+      "O compilador javac faz parte exclusivamente do JRE.",
+      "O JDK contém o JRE, o compilador javac e outras ferramentas de desenvolvimento.",
+      "O JRE contém apenas o código-fonte da Máquina Virtual Java.",
+      "Para desenvolver em Java não é necessário possuir um compilador."
+    ],
+    "answer": 2,
+    "explanation": "O JDK contém o JRE, o compilador javac e outras ferramentas de desenvolvimento.",
+    "block": "Simulado2 POO",
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
   }
 ]
