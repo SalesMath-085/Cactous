@@ -1,5 +1,23 @@
 import { useEffect, useMemo, useState } from 'react';
-import { questions, sources } from './data/questions';
+import { questions as fallbackQuestions, sources } from './data/questions';
+
+const QUESTIONS_URL = 'https://raw.githubusercontent.com/SalesMath-085/poo-em-foco/main/public/questions.json';
+
+function validateQuestions(data) {
+  if (!Array.isArray(data) || !data.length) throw new Error('O JSON não contém questões.');
+  const ids = new Set();
+  data.forEach((question, index) => {
+    if (!question?.id || !question?.prompt || !Array.isArray(question.options) || question.options.length < 2) {
+      throw new Error(`Questão inválida na posição ${index + 1}.`);
+    }
+    if (!Number.isInteger(question.answer) || question.answer < 0 || question.answer >= question.options.length) {
+      throw new Error(`Gabarito inválido na questão ${question.id}.`);
+    }
+    if (ids.has(question.id)) throw new Error(`ID repetido: ${question.id}.`);
+    ids.add(question.id);
+  });
+  return data;
+}
 
 const Icon = ({ name, size = 21 }) => {
   const paths = {
@@ -29,11 +47,11 @@ function loadProgress() {
   catch { return {}; }
 }
 
-function Sidebar({ view, setView }) {
+function Sidebar({ view, setView, questionCount }) {
   return <aside className="sidebar">
     <div className="brand"><span>POO</span> em Foco</div>
     <nav>{NAV.map(item => <button key={item.id} className={view === item.id ? 'active' : ''} onClick={() => setView(item.id)}><Icon name={item.icon}/><span>{item.label}</span></button>)}</nav>
-    <div className="sidebar-foot"><span>30</span> questões validadas<br/>a partir de 7 PDFs</div>
+    <div className="sidebar-foot"><span>{questionCount}</span> questões disponíveis<br/>atualizadas pelo GitHub</div>
   </aside>;
 }
 
@@ -49,7 +67,7 @@ function Header({ title, subtitle, progress }) {
   </header>;
 }
 
-function Quiz({ progress, setProgress, setView, filterIds }) {
+function Quiz({ questions, progress, setProgress, setView, filterIds }) {
   const pool = filterIds ? questions.filter(q => filterIds.includes(q.id)) : questions;
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState(null);
@@ -82,7 +100,7 @@ function Quiz({ progress, setProgress, setView, filterIds }) {
         <section className="question-block">
           <div className="question-number">{String(index + 1).padStart(2, '0')}</div>
           <div className="question-content">
-            <div className="question-meta"><span>{question.difficulty}</span><span>{question.source}</span></div>
+            <div className="question-meta"><span>{question.difficulty}</span><span>{question.block || question.source}</span></div>
             <h2>{question.prompt}</h2>
             {question.code && <pre><code>{question.code}</code></pre>}
             <div className="options" role="radiogroup" aria-label="Alternativas">
@@ -122,7 +140,7 @@ function EmptyReview({ setView }) {
   return <div className="empty-state"><div><Icon name="spark" size={34}/></div><h2>Nenhum erro para revisar</h2><p>Quando você errar uma questão, ela aparece aqui com a explicação pronta para uma nova tentativa.</p><button className="primary" onClick={() => setView('study')}>Começar a estudar<Icon name="arrow"/></button></div>;
 }
 
-function Stats({ progress, reset }) {
+function Stats({ questions, progress, reset }) {
   const entries = Object.values(progress), answered = entries.length, correct = entries.filter(x => x.correct).length;
   const rate = answered ? Math.round(correct / answered * 100) : 0;
   const byTopic = useMemo(() => {
@@ -143,12 +161,12 @@ function Stats({ progress, reset }) {
   </>;
 }
 
-function Sources() {
+function Sources({ questions, syncStatus }) {
   return <><Header title="Fontes e extração" subtitle="Rastreabilidade dos PDFs ao banco de questões"/>
     <main className="page-content sources-page">
       <section className="strategy"><div className="strategy-number">01</div><div><h2>Como os PDFs viraram um quiz confiável</h2><p>O processo combina extração textual, leitura visual das páginas, separação de enunciado e alternativas, identificação do gabarito, validação das explicações e remoção de duplicatas entre simulados.</p></div></section>
       <div className="pipeline"><div><span>1</span><strong>Extrair</strong><p>Texto, código e imagens</p></div><i/><div><span>2</span><strong>Estruturar</strong><p>Enunciado + A–E</p></div><i/><div><span>3</span><strong>Validar</strong><p>Gabarito e explicação</p></div><i/><div><span>4</span><strong>Deduplicar</strong><p>Uma versão por questão</p></div></div>
-      <section className="source-list"><div className="section-heading"><div><h2>Arquivos processados</h2><p>7 PDFs encontrados na pasta do Google Drive.</p></div><span className="source-count">30 questões ativas</span></div>
+      <section className="source-list"><div className="section-heading"><div><h2>Arquivos processados</h2><p>7 PDFs encontrados na pasta do Google Drive. Banco de questões: {syncStatus === 'github' ? 'sincronizado com o GitHub' : 'cópia local de segurança'}.</p></div><span className="source-count">{questions.length} questões ativas</span></div>
         {sources.map((source, i) => <div className="source-row" key={source.name}><div className="file-index">{String(i+1).padStart(2,'0')}</div><div><strong>{source.name}</strong><span>PDF • Programação Orientada a Objetos</span></div><em className={source.tone}>{source.status}</em></div>)}
       </section>
     </main>
@@ -158,16 +176,36 @@ function Sources() {
 export default function App() {
   const [view, setView] = useState('study');
   const [progress, setProgress] = useState(loadProgress);
+  const [questions, setQuestions] = useState(fallbackQuestions);
+  const [syncStatus, setSyncStatus] = useState('loading');
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch(`${QUESTIONS_URL}?updated=${Date.now()}`, { cache: 'no-store', signal: controller.signal })
+      .then(response => {
+        if (!response.ok) throw new Error(`GitHub respondeu ${response.status}.`);
+        return response.json();
+      })
+      .then(data => {
+        setQuestions(validateQuestions(data));
+        setSyncStatus('github');
+      })
+      .catch(error => {
+        if (error.name !== 'AbortError') setSyncStatus('fallback');
+      });
+    return () => controller.abort();
+  }, []);
+
   useEffect(() => { localStorage.setItem('poo-em-foco-progress', JSON.stringify(progress)); }, [progress]);
   const wrongIds = Object.entries(progress).filter(([,v]) => !v.correct).map(([id]) => id);
   const reset = () => { setProgress({}); setView('study'); };
   return <div className="app-shell">
-    <Sidebar view={view} setView={setView}/>
+    <Sidebar view={view} setView={setView} questionCount={questions.length}/>
     <section className="app-view">
-      {view === 'study' && <Quiz progress={progress} setProgress={setProgress} setView={setView}/>} 
-      {view === 'review' && <Quiz progress={progress} setProgress={setProgress} setView={setView} filterIds={wrongIds}/>} 
-      {view === 'stats' && <Stats progress={progress} reset={reset}/>} 
-      {view === 'sources' && <Sources/>}
+      {view === 'study' && <Quiz questions={questions} progress={progress} setProgress={setProgress} setView={setView}/>} 
+      {view === 'review' && <Quiz questions={questions} progress={progress} setProgress={setProgress} setView={setView} filterIds={wrongIds}/>} 
+      {view === 'stats' && <Stats questions={questions} progress={progress} reset={reset}/>} 
+      {view === 'sources' && <Sources questions={questions} syncStatus={syncStatus}/>} 
     </section>
     <MobileNav view={view} setView={setView}/>
   </div>;
