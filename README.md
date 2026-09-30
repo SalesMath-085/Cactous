@@ -1,42 +1,93 @@
 # Cactous
 
-Aplicativo responsivo de estudo de Programação Orientada a Objetos, criado com React e Vite.
+Sistema de questões para estudar, praticar e revisar conteúdos, criado com React e Vite. O projeto começou com questões de Programação Orientada a Objetos e evoluiu para organizar cadernos de estudo que podem abordar diferentes assuntos.
+
+**O próprio repositório GitHub funciona como banco de dados das questões:** cada caderno é um arquivo JSON, e cada alteração fica registrada no histórico do Git.
+
+## Como funciona
+
+1. Os cadernos são armazenados em `public/question-sets/`.
+2. O arquivo `index.json` informa quais cadernos o site deve carregar.
+3. O site lê esses arquivos do GitHub e apresenta os cadernos na seção **Estudar**.
+4. Ao responder, o estudante recebe a correção e a explicação.
+5. Respostas, desempenho e questões adicionadas individualmente ficam salvos no navegador.
+
+Não é necessário um banco SQL para armazenar as questões. Os arquivos JSON guardam os dados, enquanto o Git registra suas versões e permite consultar alterações anteriores.
 
 ## Recursos
 
-- cadernos independentes de questões carregados do GitHub;
-- correção imediata;
-- explicação da alternativa correta e do erro cometido;
-- revisão de erros;
-- desempenho por tópico;
-- progresso salvo no navegador;
-- interface adaptada para computador e Android;
-- suporte a instalação como PWA.
+- Cadernos independentes de questões.
+- Correção imediata e explicações.
+- Revisão das questões respondidas incorretamente.
+- Desempenho por assunto.
+- Navegação para a questão anterior e a próxima.
+- Progresso salvo no navegador.
+- Adição individual de questões no navegador.
+- Importação de um caderno JSON e publicação no GitHub pelo site.
+- Modelo JSON disponível para download.
+- Interface responsiva e suporte a instalação como PWA.
 
-## Criar e atualizar abas de questões
+## Onde os dados ficam
 
-Os cadernos ficam em [`public/question-sets`](public/question-sets). Cada arquivo JSON dessa pasta vira uma aba separada no site. O nome do arquivo, sem `.json`, é usado como nome da aba.
+| Dados | Armazenamento |
+| --- | --- |
+| Cadernos compartilhados | Arquivos JSON em `public/question-sets/` |
+| Lista de cadernos | `public/question-sets/index.json` |
+| Histórico das questões | Commits do repositório |
+| Respostas e desempenho do estudante | `localStorage` do navegador |
+| Questões adicionadas pelo formulário individual | `localStorage` do navegador |
 
-Por exemplo, um arquivo chamado `Novas questões de revisão.json` cria a aba **Novas questões de revisão**. Para adicionar uma questão, copie um objeto existente, mantenha a vírgula entre os objetos e altere os campos. Cada questão deve ter um `id` único e permanente em todos os cadernos. O campo `answer` começa em zero: `0` representa A, `1` representa B, e assim por diante.
+O progresso pessoal não é enviado ao GitHub nem sincronizado entre dispositivos. Limpar os dados do navegador pode apagar esse progresso.
+
+## Adicionar um caderno pelo site
+
+Em **Adicionar questões**:
+
+1. Informe o nome do caderno.
+2. Escolha um arquivo `.json` ou cole seu conteúdo.
+3. Confira a validação das questões.
+4. Informe um token do GitHub e clique em **Publicar JSON no GitHub**.
+
+O sistema cria o arquivo do caderno e atualiza o índice em um único commit, preservando os cadernos existentes. O novo caderno aparece na sessão de estudo após o envio.
+
+A importação aceita até **1000 questões** e **2 MB**. Cada questão precisa de cinco alternativas, uma explicação e um ID único entre todos os cadernos. IDs já existentes são rejeitados.
+
+Atualmente, a publicação pelo site é restrita à conta **SalesMath-085**. O token deve ter acesso a este repositório e permissão **Contents: Read and write**. Ele não fica salvo no navegador e é apagado do formulário após cada tentativa de envio.
+
+## Formato do JSON
+
+Cada arquivo contém uma lista de objetos:
 
 ```json
-{
-  "id": "bloco-03-q001",
-  "block": "Bloco 3",
-  "source": "Novo simulado",
-  "topic": "Encapsulamento",
-  "difficulty": "Médio",
-  "prompt": "Texto da questão",
-  "options": ["Alternativa A", "Alternativa B", "Alternativa C", "Alternativa D", "Alternativa E"],
-  "answer": 2,
-  "explanation": "Por que a alternativa correta está certa.",
-  "wrong": "Por que as demais alternativas não funcionam."
-}
+[
+  {
+    "id": "heranca-001",
+    "source": "Meu caderno",
+    "topic": "Herança",
+    "difficulty": "Fácil",
+    "prompt": "Qual palavra indica herança entre classes em Java?",
+    "options": ["extends", "implements", "new", "static", "final"],
+    "answer": 0,
+    "explanation": "extends indica que uma classe herda de outra."
+  }
+]
 ```
 
-Depois de confirmar a alteração no GitHub, a automação atualiza o índice dos cadernos. Quando ela terminar, basta recarregar o site. O total, as abas, os tópicos, os blocos e as questões pendentes são calculados a partir dos arquivos JSON. Se o GitHub estiver temporariamente indisponível, o aplicativo usa a cópia local de segurança com as 53 questões conferidas nos PDFs.
+`answer` usa índices de **0 a 4**: 0 = A, 1 = B, 2 = C, 3 = D e 4 = E.
 
-Consulte o guia completo em [`GUIA_CADERNOS_DE_QUESTOES.md`](GUIA_CADERNOS_DE_QUESTOES.md).
+Os campos `code` e `wrong` são opcionais: permitem incluir um trecho de código e uma explicação adicional sobre os erros. Mantenha o ID de uma questão estável para preservar sua associação com o progresso salvo.
+
+## Editar diretamente no repositório
+
+Também é possível criar ou editar arquivos JSON em [public/question-sets](public/question-sets). A automação do GitHub atualiza o índice quando esses arquivos mudam. Após ela terminar, recarregue o site.
+
+Para gerar o índice manualmente:
+
+```bash
+npm run questions:index
+```
+
+Veja também o [guia de cadernos](GUIA_CADERNOS_DE_QUESTOES.md).
 
 ## Executar localmente
 
@@ -45,14 +96,15 @@ npm install
 npm run dev
 ```
 
-## Gerar versão de produção
+O servidor Vite atende a interface. A publicação no GitHub depende da rota `/api/question-sets`, implementada em `worker/index.js`, e de um runtime Worker; essa rota não é servida pelo Vite local.
+
+## Build e testes
 
 ```bash
 npm run build
+npm test
 ```
 
-## Importar pelo site
+O build prepara a interface em `dist/client` e o Worker em `dist/server` para publicação no Sites.
 
-Em Adicionar questões, envie um arquivo JSON ou cole uma lista no formato do modelo. O site valida até 1000 questões e 2 MB, rejeita IDs já existentes e cria um novo caderno e seu índice em um único commit. A publicação requer um token da conta SalesMath-085 com acesso ao repositório e Contents: Read and write. O token não é persistido e é apagado após cada tentativa de envio.
-
-A rota `/api/question-sets` é implementada em `worker/index.js`; ela precisa de um runtime Worker para publicar no GitHub. O servidor Vite local atende a interface; a API não está disponível nele. O build prepara os arquivos em `dist/client` e `dist/server` para o Sites.
+Se o carregamento dos cadernos do GitHub falhar, o site usa uma cópia de segurança incorporada, atualmente com 53 questões conferidas nos PDFs de POO.
