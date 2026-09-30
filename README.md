@@ -1,4 +1,4 @@
-# POO em Foco
+# Cactous
 
 Aplicativo responsivo de estudo de Programação Orientada a Objetos, criado com React e Vite.
 
@@ -34,7 +34,7 @@ Por exemplo, um arquivo chamado `Novas questões de revisão.json` cria a aba **
 }
 ```
 
-Depois de confirmar a alteração no GitHub, a automação atualiza o índice dos cadernos. Quando ela terminar, basta recarregar o site. O total, as abas, os tópicos, os blocos e as questões pendentes são calculados a partir dos arquivos JSON. Se o GitHub estiver temporariamente indisponível, o aplicativo usa a cópia local de segurança com as 30 questões originais.
+Depois de confirmar a alteração no GitHub, a automação atualiza o índice dos cadernos. Quando ela terminar, basta recarregar o site. O total, as abas, os tópicos, os blocos e as questões pendentes são calculados a partir dos arquivos JSON. Se o GitHub estiver temporariamente indisponível, o aplicativo usa a cópia local de segurança com as 53 questões conferidas nos PDFs.
 
 Consulte o guia completo em [`GUIA_CADERNOS_DE_QUESTOES.md`](GUIA_CADERNOS_DE_QUESTOES.md).
 
@@ -50,3 +50,9 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Importar pelo site
+
+Em Adicionar questões, envie um arquivo JSON ou cole uma lista no formato do modelo. O site valida até 1000 questões e 2 MB, rejeita IDs já existentes e cria um novo caderno e seu índice em um único commit. A publicação requer um token da conta SalesMath-085 com acesso ao repositório e Contents: Read and write. O token não é persistido e é apagado após cada tentativa de envio.
+
+A rota `/api/question-sets` é implementada em `worker/index.js`; ela precisa de um runtime Worker para publicar no GitHub. O servidor Vite local atende a interface; a API não está disponível nele. O build prepara os arquivos em `dist/client` e `dist/server` para o Sites.

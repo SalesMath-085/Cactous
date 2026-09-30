@@ -1,4 +1,4 @@
-export const questions = [
+[
   {
     "id": "pdf-cw1-01",
     "source": "ColabWeb POO 2026/2 - Parte 1",
@@ -1439,4 +1439,4 @@ export const questions = [
     "difficulty": "Médio",
     "topic": "Fundamentos"
   }
-];
+]

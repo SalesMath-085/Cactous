@@ -1,6 +1,6 @@
 {
-  "name": "POO em Foco",
-  "short_name": "POO em Foco",
+  "name": "Cactous",
+  "short_name": "Cactous",
   "description": "Quiz de Programação Orientada a Objetos com explicações.",
   "start_url": "/",
   "display": "standalone",

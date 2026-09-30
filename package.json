@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "vite build",
+    "build": "vite build && node scripts/prepare-sites-build.mjs",
     "preview": "vite preview --host 0.0.0.0",
-    "questions:index": "node scripts/generate-question-set-index.mjs"
+    "test:sites": "node --test tests/sites-worker.test.mjs",
+    "questions:index": "node scripts/generate-question-set-index.mjs",
+    "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
