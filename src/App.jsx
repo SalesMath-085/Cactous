@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { questions as fallbackQuestions, sources } from './data/questions';
 
-const QUESTIONS_URL = 'https://raw.githubusercontent.com/SalesMath-085/poo-em-foco/main/public/questions.json';
+const QUESTIONS_ROOT_URL = 'https://raw.githubusercontent.com/SalesMath-085/poo-em-foco/main/public/question-sets';
+const QUESTIONS_INDEX_URL = `${QUESTIONS_ROOT_URL}/index.json`;
 
 function validateQuestions(data) {
   if (!Array.isArray(data) || !data.length) throw new Error('O JSON não contém questões.');
@@ -17,6 +18,27 @@ function validateQuestions(data) {
     ids.add(question.id);
   });
   return data;
+}
+
+async function fetchQuestionSets(signal) {
+  const stamp = Date.now();
+  const indexResponse = await fetch(`${QUESTIONS_INDEX_URL}?updated=${stamp}`, { cache: 'no-store', signal });
+  if (!indexResponse.ok) throw new Error(`Índice de cadernos respondeu ${indexResponse.status}.`);
+  const index = await indexResponse.json();
+  if (!Array.isArray(index) || !index.length) throw new Error('Nenhum caderno foi encontrado.');
+  const sets = await Promise.all(index.map(async entry => {
+    if (!entry?.id || !entry?.title || !entry?.file) throw new Error('Entrada inválida no índice de cadernos.');
+    const encodedFile = entry.file.split('/').map(encodeURIComponent).join('/');
+    const response = await fetch(`${QUESTIONS_ROOT_URL}/${encodedFile}?updated=${stamp}`, { cache: 'no-store', signal });
+    if (!response.ok) throw new Error(`O caderno ${entry.title} respondeu ${response.status}.`);
+    return { ...entry, questions: validateQuestions(await response.json()) };
+  }));
+  const ids = new Set();
+  sets.forEach(set => set.questions.forEach(question => {
+    if (ids.has(question.id)) throw new Error(`ID repetido entre cadernos: ${question.id}.`);
+    ids.add(question.id);
+  }));
+  return sets;
 }
 
 const Icon = ({ name, size = 21 }) => {
@@ -67,7 +89,15 @@ function Header({ title, subtitle, progress }) {
   </header>;
 }
 
-function Quiz({ questions, progress, setProgress, setView, filterIds }) {
+function QuestionSetTabs({ sets, activeId, onSelect }) {
+  return <nav className="question-set-tabs" aria-label="Cadernos de questões" role="tablist">
+    {sets.map(set => <button key={set.id} type="button" role="tab" aria-selected={set.id === activeId} className={set.id === activeId ? 'active' : ''} onClick={() => onSelect(set.id)}>
+      <strong>{set.title}</strong><span>{set.questions.length} questões</span>
+    </button>)}
+  </nav>;
+}
+
+function Quiz({ questions, progress, setProgress, setView, filterIds, questionSets, activeSetId, onSelectSet, title }) {
   const pool = filterIds ? questions.filter(q => filterIds.includes(q.id)) : questions;
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState(null);
@@ -94,7 +124,8 @@ function Quiz({ questions, progress, setProgress, setView, filterIds }) {
   const percent = Math.round(((index + (revealed ? 1 : 0)) / pool.length) * 100);
 
   return <>
-    <Header title={filterIds ? 'Revisão de erros' : 'Sessão de estudo'} subtitle={question.topic} progress={{current:index + 1,total:pool.length,percent}}/>
+    <Header title={filterIds ? 'Revisão de erros' : title} subtitle={question.topic} progress={{current:index + 1,total:pool.length,percent}}/>
+    {!filterIds && <QuestionSetTabs sets={questionSets} activeId={activeSetId} onSelect={onSelectSet}/>}
     <div className="quiz-layout">
       <main className="quiz-main">
         <section className="question-block">
@@ -149,7 +180,7 @@ function Stats({ questions, progress, reset }) {
       const hits = done.filter(q => progress[q.id]?.correct).length;
       return { topic, done: done.length, total: qs.length, rate: done.length ? Math.round(hits / done.length * 100) : 0 };
     }).sort((a,b) => b.done - a.done);
-  }, [progress]);
+  }, [progress, questions]);
   return <><Header title="Seu desempenho" subtitle="Um retrato claro do que já está dominado"/>
     <main className="page-content">
       <section className="stats-hero"><div><span>APROVEITAMENTO GERAL</span><strong>{rate}%</strong><p>{answered} de {questions.length} questões respondidas</p></div><div className="big-ring" style={{'--score': `${rate}%`}}><Icon name="chart" size={36}/></div></section>
@@ -176,18 +207,18 @@ function Sources({ questions, syncStatus }) {
 export default function App() {
   const [view, setView] = useState('study');
   const [progress, setProgress] = useState(loadProgress);
-  const [questions, setQuestions] = useState(fallbackQuestions);
+  const [questionSets, setQuestionSets] = useState([{ id: 'sessao-de-estudos', title: 'Sessão de estudos', file: 'Sessão de estudos.json', questions: fallbackQuestions }]);
+  const [activeSetId, setActiveSetId] = useState('sessao-de-estudos');
   const [syncStatus, setSyncStatus] = useState('loading');
+  const activeSet = questionSets.find(set => set.id === activeSetId) || questionSets[0];
+  const questions = useMemo(() => questionSets.flatMap(set => set.questions), [questionSets]);
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch(`${QUESTIONS_URL}?updated=${Date.now()}`, { cache: 'no-store', signal: controller.signal })
-      .then(response => {
-        if (!response.ok) throw new Error(`GitHub respondeu ${response.status}.`);
-        return response.json();
-      })
-      .then(data => {
-        setQuestions(validateQuestions(data));
+    fetchQuestionSets(controller.signal)
+      .then(sets => {
+        setQuestionSets(sets);
+        setActiveSetId(current => sets.some(set => set.id === current) ? current : sets[0].id);
         setSyncStatus('github');
       })
       .catch(error => {
@@ -202,8 +233,8 @@ export default function App() {
   return <div className="app-shell">
     <Sidebar view={view} setView={setView} questionCount={questions.length}/>
     <section className="app-view">
-      {view === 'study' && <Quiz questions={questions} progress={progress} setProgress={setProgress} setView={setView}/>} 
-      {view === 'review' && <Quiz questions={questions} progress={progress} setProgress={setProgress} setView={setView} filterIds={wrongIds}/>} 
+      {view === 'study' && <Quiz key={activeSet.id} title={activeSet.title} questions={activeSet.questions} questionSets={questionSets} activeSetId={activeSet.id} onSelectSet={setActiveSetId} progress={progress} setProgress={setProgress} setView={setView}/>}
+      {view === 'review' && <Quiz title="Revisão de erros" questions={questions} progress={progress} setProgress={setProgress} setView={setView} filterIds={wrongIds}/>}
       {view === 'stats' && <Stats questions={questions} progress={progress} reset={reset}/>} 
       {view === 'sources' && <Sources questions={questions} syncStatus={syncStatus}/>} 
     </section>

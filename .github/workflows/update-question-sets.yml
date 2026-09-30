@@ -1,0 +1,34 @@
+name: Atualizar índice dos cadernos
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'public/question-sets/*.json'
+      - 'scripts/generate-question-set-index.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v4
+
+      - name: Gerar o índice dos cadernos
+        run: node scripts/generate-question-set-index.mjs
+
+      - name: Salvar o índice quando necessário
+        run: |
+          if git diff --quiet -- public/question-sets/index.json; then
+            echo "O índice já está atualizado."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/question-sets/index.json
+          git commit -m "Atualiza índice dos cadernos de questões"
+          git push
