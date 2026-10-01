@@ -4,6 +4,7 @@ import { enrichQuestion } from './data/audit';
 import { isCorrectAnswer, correctLetters } from './data/answer';
 import ImportQuestions from './components/ImportQuestions';
 import { questionSubjects, subjectStats } from './data/subject-stats.js';
+import { sanitizeBookmarks, toggleBookmark, markedQuestions, sessionAfterUnmark } from './data/bookmarks.js';
 
 import { validateImport } from '../worker/index.js';
 import { fetchQuestionSets, mergePublishedSets } from './data/question-sets.js';
@@ -15,6 +16,7 @@ const Icon = ({ name, size = 21 }) => {
     alert: <><path d="M10.3 3.7 2.2 18a2 2 0 0 0 1.8 3h16a2 2 0 0 0 1.8-3L13.7 3.7a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></>,
     chart: <><path d="M4 20V10h4v10"/><path d="M10 20V4h4v16"/><path d="M16 20v-7h4v7"/></>,
     plus: <path d="M12 5v14M5 12h14"/>,
+    bookmark: <path d="M6 3h12v18l-6-4-6 4z"/>,
     check: <path d="m5 12 4 4L19 6"/>,
     close: <path d="m6 6 12 12M18 6 6 18"/>,
     arrow: <path d="M5 12h14m-5-5 5 5-5 5"/>,
@@ -28,6 +30,7 @@ const Icon = ({ name, size = 21 }) => {
 const NAV = [
   { id: 'study', label: 'Estudar', icon: 'book' },
   { id: 'review', label: 'Revisar erros', icon: 'alert' },
+  { id: 'marked', label: 'Marcadas', icon: 'bookmark' },
   { id: 'stats', label: 'Desempenho', icon: 'chart' },
   { id: 'add', label: 'Adicionar questões', icon: 'plus' }
 ];
@@ -44,10 +47,10 @@ function loadCustomQuestions() {
   });
 }
 
-function Sidebar({ view, setView, total }) {
+function Sidebar({ view, setView, total, markedCount }) {
   return <aside className="sidebar">
     <div className="brand" aria-label="Cactous"><span className="brand-full" aria-hidden="true">Cactous</span><span className="brand-short" aria-hidden="true">Ct</span></div>
-    <nav>{NAV.map(item => <button key={item.id} className={view === item.id ? 'active' : ''} onClick={() => setView(item.id)}><Icon name={item.icon}/><span>{item.label}</span></button>)}</nav>
+    <nav>{NAV.map(item => <button key={item.id} className={view === item.id ? 'active' : ''} aria-current={view === item.id ? 'page' : undefined} onClick={() => setView(item.id)}><Icon name={item.icon}/><span>{item.label}{item.id === 'marked' && <small className="bookmark-count">{markedCount}</small>}</span></button>)}</nav>
     <div className="sidebar-foot"><span>{total}</span> questões para estudar</div>
   </aside>;
 }
@@ -72,7 +75,7 @@ function QuestionSetTabs({ sets, activeId, onSelect }) {
   </nav>;
 }
 
-function Quiz({ questions, progress, setProgress, setView, filterIds, session, setSession, questionSets, activeSetId, onSelectSet, title }) {
+function Quiz({ questions, progress, setProgress, setView, filterIds, session, setSession, questionSets, activeSetId, onSelectSet, title, bookmarks, onToggleBookmark, onBackToMarked }) {
   const pool = filterIds ? questions.filter(q => filterIds.includes(q.id)) : questions;
   const reviewing = Boolean(filterIds);
   const { index, question, selected, percent } = quizPosition(pool, session, progress, reviewing);
@@ -109,12 +112,16 @@ function Quiz({ questions, progress, setProgress, setView, filterIds, session, s
 
   return <>
     <Header title={filterIds ? 'Revisão de erros' : title} subtitle={question.topic} progress={{current:index + 1,total:pool.length,percent}}/>
-    {!filterIds && <QuestionSetTabs sets={questionSets} activeId={activeSetId} onSelect={onSelectSet}/>}
+    {!filterIds && questionSets && <QuestionSetTabs sets={questionSets} activeId={activeSetId} onSelect={onSelectSet}/>}
     <div className="quiz-layout">
       <main className="quiz-main">
         <section className="question-block">
           <div className="question-number">{String(index + 1).padStart(2, '0')}</div>
           <div className="question-content">
+            <div className="question-tools">
+              {onBackToMarked && <button type="button" className="secondary" onClick={onBackToMarked}>Ver lista de marcadas</button>}
+              <button type="button" className={`secondary mark-question ${bookmarks.has(question.id) ? 'is-marked' : ''}`} aria-pressed={bookmarks.has(question.id)} onClick={() => onToggleBookmark(question.id)}><Icon name="bookmark"/>{bookmarks.has(question.id) ? 'Desmarcar questão' : 'Marcar questão'}</button>
+            </div>
             <div className="question-meta"><span>{question.difficulty}</span><span>{question.block || question.source}</span></div>
             <ul className="question-tags" aria-label="Assuntos da questão">{questionSubjects(question).map(tag => <li key={tag}>{tag}</li>)}</ul>
             <h2>{question.prompt}</h2>
@@ -162,6 +169,23 @@ function Quiz({ questions, progress, setProgress, setView, filterIds, session, s
 
 function EmptyReview({ setView }) {
   return <div className="empty-state"><div><Icon name="spark" size={34}/></div><h2>Nenhum erro para revisar</h2><p>Quando você errar uma questão, ela aparece aqui com a explicação pronta para uma nova tentativa.</p><button className="primary" onClick={() => setView('study')}>Começar a estudar<Icon name="arrow"/></button></div>;
+}
+
+function MarkedQuestions({ questions, questionSets, progress, onOpen, onToggleBookmark, setView }) {
+  const notebooks = new Map(questionSets.flatMap(set => set.questions.map(q => [q.id,set.title])));
+  return <><Header title="Questões marcadas" subtitle={`${questions.length} ${questions.length === 1 ? 'questão salva' : 'questões salvas'} para consultar e estudar`}/>
+    {!questions.length ? <div className="empty-state"><div><Icon name="bookmark" size={34}/></div><h2>Nenhuma questão marcada</h2><p>Use “Marcar questão” durante o estudo ou a revisão. Suas questões aparecerão aqui, reunidas de todos os cadernos.</p><button className="primary" onClick={() => setView('study')}>Ir para estudar<Icon name="arrow"/></button></div>
+    : <main className="page-content marked-page">
+      <div className="section-heading"><p>As marcações ficam salvas neste navegador.</p><button className="primary" onClick={() => onOpen()}>Estudar marcadas<Icon name="arrow"/></button></div>
+      <ol className="marked-list">{questions.map((q,index) => <li key={q.id}>
+        <div className="marked-details"><small>{notebooks.get(q.id)} · {progress[q.id] ? progress[q.id].correct ? 'Respondida corretamente' : 'Resposta incorreta' : 'Pendente'}</small>
+          <button className="marked-prompt" onClick={() => onOpen(q.id)}><span>{String(index+1).padStart(2,'0')}.</span> {q.prompt}</button>
+          <ul className="question-tags" aria-label="Assuntos da questão">{questionSubjects(q).map(tag => <li key={tag}>{tag}</li>)}</ul>
+        </div>
+        <div className="marked-row-actions"><button className="secondary" onClick={() => onOpen(q.id)}>Abrir questão</button><button className="secondary" onClick={() => onToggleBookmark(q.id)} aria-label={`Desmarcar questão ${index+1}`}><Icon name="bookmark"/>Desmarcar</button></div>
+      </li>)}</ol>
+    </main>}
+  </>;
 }
 
 function Stats({ questions, progress, reset }) {
@@ -249,6 +273,12 @@ export default function App() {
   const [customQuestions, setCustomQuestions] = useState(loadCustomQuestions);
   const [reviewSession, setReviewSession] = useState({ questionId: '', answers: {} });
   const [reviewIds, setReviewIds] = useState([]);
+  const [bookmarkIds, setBookmarkIds] = useState(() => sanitizeBookmarks(readStored('cactous-bookmarks-v1', [])));
+  const [bookmarkSession, setBookmarkSession] = useState(() => {
+    const saved = readStored('cactous-bookmark-session-v1', null);
+    return {questionId:typeof saved?.questionId === 'string' ? saved.questionId : ''};
+  });
+  const [studyingMarked, setStudyingMarked] = useState(false);
   const questionSets = useMemo(() => {
     const remoteIds = new Set(remoteSets.flatMap(set => set.questions.map(q => q.id)));
     const local = customQuestions.filter(q => !remoteIds.has(q.id));
@@ -256,6 +286,16 @@ export default function App() {
   }, [remoteSets, customQuestions]);
   const activeSet = questionSets.find(set => set.id === activeSetId) || questionSets[0];
   const questions = useMemo(() => questionSets.flatMap(set => set.questions), [questionSets]);
+  const bookmarks = useMemo(() => new Set(bookmarkIds), [bookmarkIds]);
+  const selectedQuestions = useMemo(() => markedQuestions(questions, bookmarkIds), [questions, bookmarkIds]);
+  const toggleMarked = id => {
+    if (bookmarks.has(id)) setBookmarkSession(current => sessionAfterUnmark(selectedQuestions, current, id));
+    setBookmarkIds(current => toggleBookmark(current, id));
+  };
+  const openMarked = id => {
+    if (id) setBookmarkSession({questionId:id});
+    setStudyingMarked(true); setView('marked');
+  };
 
   const progress = useMemo(() => reconcileProgress(savedProgress, questions), [savedProgress, questions]);
   const studySession = own(studyState.sessions, activeSet.id) || { questionId: activeSet.questions[0]?.id || '' };
@@ -281,12 +321,15 @@ export default function App() {
     const results = [
       writeStored('poo-em-foco-progress', savedProgress),
       writeStored('poo-em-foco-questions', customQuestions),
-      writeStored('cactous-study-state-v2', studyState)
+      writeStored('cactous-study-state-v2', studyState),
+      writeStored('cactous-bookmarks-v1', bookmarkIds),
+      writeStored('cactous-bookmark-session-v1', bookmarkSession)
     ];
     setStorageError(results.some(success => !success));
-  }, [savedProgress, customQuestions, studyState]);
+  }, [savedProgress, customQuestions, studyState, bookmarkIds, bookmarkSession]);
   const wrongIds = questions.filter(q => progress[q.id] && !progress[q.id].correct).map(q => q.id);
   const navigate = target => {
+    if (target === 'marked') setStudyingMarked(false);
     if (target === 'review' && view !== 'review') { setReviewIds(wrongIds); setReviewSession({ questionId: wrongIds[0] || '', answers: {} }); }
     setView(target);
   };
@@ -306,14 +349,17 @@ export default function App() {
     publishedSets.current = mergePublishedSets(publishedSets.current, [normalized]);
     setRemoteSets(current => mergePublishedSets(current, [normalized]));
   };
-  const removeQuestion = id => { setCustomQuestions(prev => prev.filter(q => q.id !== id)); setProgress(prev => { const next = {...prev}; delete next[id]; return next; }); };
+  const removeQuestion = id => { setCustomQuestions(prev => prev.filter(q => q.id !== id)); setBookmarkIds(prev => prev.filter(markedId => markedId !== id)); setBookmarkSession(current => sessionAfterUnmark(selectedQuestions,current,id)); setProgress(prev => { const next = {...prev}; delete next[id]; return next; }); };
   return <div className="app-shell">
-    <Sidebar view={view} setView={navigate} total={questions.length}/>
+    <Sidebar view={view} setView={navigate} total={questions.length} markedCount={selectedQuestions.length}/>
     <section className="app-view">
       {storageError && <p className="app-notice" role="alert">Não foi possível salvar neste navegador. Suas alterações podem se perder ao fechar a página. Libere espaço ou permita o armazenamento local.</p>}
       {loadError && <p className="app-notice" role="status">{loadError}</p>}
-      {view === 'study' && <Quiz key={activeSet.id} title={activeSet.title} questions={activeSet.questions} questionSets={questionSets} activeSetId={activeSet.id} onSelectSet={selectQuestionSet} progress={progress} setProgress={setProgress} setView={navigate} session={studySession} setSession={setStudySession}/>}
-      {view === 'review' && <Quiz questions={questions} progress={progress} setProgress={setProgress} setView={navigate} filterIds={reviewIds} session={reviewSession} setSession={setReviewSession}/>}
+      {view === 'study' && <Quiz key={activeSet.id} title={activeSet.title} questions={activeSet.questions} questionSets={questionSets} activeSetId={activeSet.id} onSelectSet={selectQuestionSet} progress={progress} setProgress={setProgress} setView={navigate} session={studySession} setSession={setStudySession} bookmarks={bookmarks} onToggleBookmark={toggleMarked}/>}
+      {view === 'review' && <Quiz questions={questions} progress={progress} setProgress={setProgress} setView={navigate} filterIds={reviewIds} session={reviewSession} setSession={setReviewSession} bookmarks={bookmarks} onToggleBookmark={toggleMarked}/>}
+      {view === 'marked' && (studyingMarked && selectedQuestions.length
+        ? <Quiz title="Questões marcadas" questions={selectedQuestions} progress={progress} setProgress={setProgress} setView={navigate} session={bookmarkSession} setSession={setBookmarkSession} bookmarks={bookmarks} onToggleBookmark={toggleMarked} onBackToMarked={() => setStudyingMarked(false)}/>
+        : <MarkedQuestions questions={selectedQuestions} questionSets={questionSets} progress={progress} onOpen={openMarked} onToggleBookmark={toggleMarked} setView={navigate}/>)}
       {view === 'stats' && <Stats questions={questions} progress={progress} reset={reset}/>}
       {view === 'add' && <AddQuestions onPublished={published} customQuestions={customQuestions} onAdd={q => setCustomQuestions(prev => [...prev, q])} onDelete={removeQuestion} setView={target => target === 'study' ? selectQuestionSet(LOCAL_SET_ID) : navigate(target)}/>}
     </section>

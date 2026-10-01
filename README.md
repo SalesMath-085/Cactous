@@ -19,6 +19,7 @@ Não é necessário um banco SQL para armazenar as questões. Os arquivos JSON g
 - Cadernos independentes de questões.
 - Correção imediata e explicações.
 - Revisão das questões respondidas incorretamente.
+- Marcação de questões e seção **Marcadas**, com lista e estudo da seleção.
 - Desempenho por assunto.
 - Navegação para a questão anterior e a próxima.
 - Progresso salvo no navegador.
@@ -36,6 +37,8 @@ Não é necessário um banco SQL para armazenar as questões. Os arquivos JSON g
 | Histórico das questões | Commits do repositório |
 | Respostas e desempenho do estudante | `localStorage` do navegador |
 | Questões adicionadas pelo formulário individual | `localStorage` do navegador |
+
+As marcações também ficam no `localStorage` deste navegador. Use **Marcar questão** no estudo ou na revisão, e abra **Marcadas** para consultar a lista ou estudar somente a seleção. Desmarcar não apaga respostas; recomeçar o progresso mantém as marcações.
 
 O progresso pessoal não é enviado ao GitHub nem sincronizado entre dispositivos. Limpar os dados do navegador pode apagar esse progresso.
 
