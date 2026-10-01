@@ -4,7 +4,7 @@ import { validateImport, publishQuestions } from '../worker/index.js';
 const question = {id:'test-new-01',prompt:'Pergunta?',options:['A','B','C','D','E'],answer:0,explanation:'Porque A.'};
 const request = (questions=[question]) => new Request('https://site.test/api/question-sets',{method:'POST',headers:{Origin:'https://site.test','Content-Type':'application/json',Authorization:'Bearer test-token'},body:JSON.stringify({title:'Meu caderno',questions})});
 const encoded = data => ({encoding:'base64',content:Buffer.from(JSON.stringify(data)).toString('base64')});
-function githubMock({existing=[],conflict=false,user='SalesMath-085'}={}) {
+function githubMock({existing=[],conflict=false,user='SalesMath-085',large=false,full=false}={}) {
  const calls=[];
  const fetcher=async (url,options) => {
   const path=new URL(url).pathname;
@@ -13,8 +13,9 @@ function githubMock({existing=[],conflict=false,user='SalesMath-085'}={}) {
   if(path==='/user') data={login:user};
   else if(path.endsWith('/git/ref/heads/main'))data={object:{sha:'head-sha'}};
   else if(path.endsWith('/git/commits/head-sha'))data={tree:{sha:'old-tree'}};
-  else if(path.endsWith('/contents/public/question-sets/index.json'))data=encoded([{id:'original',title:'Original',file:'original.json'}]);
-  else if(path.endsWith('/contents/public/question-sets/original.json'))data=encoded(existing);
+  else if(path.endsWith('/contents/public/question-sets/index.json'))data=encoded(Array.from({length:full?100:1},(_,i)=>({id:`original-${i}`,title:'Original',file:'original.json'})));
+  else if(path.endsWith('/contents/public/question-sets/original.json'))data=large?{encoding:'none',sha:'a'.repeat(40)}:encoded(existing);
+  else if(path.endsWith('/git/blobs/'+'a'.repeat(40)))data=encoded(existing);
   else if(path.endsWith('/git/trees'))data={sha:'new-tree'};
   else if(path.endsWith('/git/commits'))data={sha:'new-commit'};
   else if(path.endsWith('/git/refs/heads/main')) {
@@ -35,10 +36,20 @@ test('publishes file and index in one commit, preserving existing data',async()=
  const tree=mock.calls.find(c=>c.path.endsWith('/git/trees')).body;
  assert.equal(tree.base_tree,'old-tree');assert.equal(tree.tree.length,2);
  const index=JSON.parse(tree.tree.find(f=>f.path.endsWith('/index.json')).content);
- assert.equal(index[0].id,'original');assert.equal(index[1].id,data.set.id);
+ assert.equal(index[0].id,'original-0');assert.equal(index[1].id,data.set.id);
  const commit=mock.calls.find(c=>c.path.endsWith('/git/commits')).body;assert.deepEqual(commit.parents,['head-sha']);
  assert.equal(mock.calls.at(-1).body.force,false);
  for(const call of mock.calls)assert.ok(!JSON.stringify(call.body||{}).includes('test-token'));
+});
+test('reads existing large notebooks through the blob API',async()=>{
+ const mock=githubMock({large:true});assert.equal((await publishQuestions(request(),mock.fetcher)).status,201);
+ assert.ok(mock.calls.some(call=>call.path.includes('/git/blobs/')));
+});
+test('rejects notebook overflow, invalid auth schemes and null JSON',async()=>{
+ const mock=githubMock({full:true});assert.equal((await publishQuestions(request(),mock.fetcher)).status,400);
+ assert.ok(mock.calls.every(call=>call.method==='GET'));
+ const auth=request();auth.headers.set('Authorization','test-token');assert.equal((await publishQuestions(auth)).status,401);
+ const invalid=new Request(request(),{body:'null'});assert.equal((await publishQuestions(invalid)).status,400);
 });
 test('rejects existing IDs without writing and never forces a conflicting branch',async()=>{
  const duplicate=githubMock({existing:[question]});assert.equal((await publishQuestions(request(),duplicate.fetcher)).status,409);assert.ok(duplicate.calls.every(c=>c.method==='GET'));

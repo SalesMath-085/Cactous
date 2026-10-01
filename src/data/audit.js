@@ -1,4 +1,4 @@
-import { questions } from "./questions";
+import { questions } from "./questions.js";
 
 const audited = new Map(questions.map(question => [question.id, question]));
 export function enrichQuestion(question) {

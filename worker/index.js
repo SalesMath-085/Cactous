@@ -14,8 +14,13 @@ export function validateImport(data) {
     if (!Array.isArray(q.options) || q.options.length !== 5 || q.options.some(x => typeof x !== 'string' || !x.trim())) throw new Error(`${label}: preencha cinco alternativas.`);
     if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer > 4) throw new Error(`${label}: answer deve ser um número de 0 a 4 (A a E).`);
     if (typeof q.explanation !== 'string' || !q.explanation.trim()) throw new Error(`${label}: explicação vazia.`);
-    for (const key of ['source', 'topic', 'difficulty', 'code', 'wrong']) if (q[key] !== undefined && typeof q[key] !== 'string') throw new Error(`${label}: ${key} deve ser texto.`);
-    return { id: q.id, prompt: q.prompt.trim(), options: q.options.map(x => x.trim()), answer: q.answer, explanation: q.explanation.trim(), source: q.source || 'Questões importadas', topic: q.topic || 'Fundamentos', difficulty: q.difficulty || 'Médio', ...(q.code ? {code:q.code} : {}), ...(q.wrong ? {wrong:q.wrong} : {}) };
+    for (const key of ['source', 'topic', 'difficulty', 'code', 'wrong', 'context', 'note', 'block']) if (q[key] !== undefined && typeof q[key] !== 'string') throw new Error(`${label}: ${key} deve ser texto.`);
+    if (q.references !== undefined && (!Array.isArray(q.references) || q.references.some(ref => {
+      if (!ref || typeof ref.file !== 'string' || !['string','number'].includes(typeof ref.question) || typeof ref.url !== 'string') return true;
+      try { return !['https:','http:'].includes(new URL(ref.url).protocol); } catch { return true; }
+    }))) throw new Error(`${label}: referências inválidas.`);
+    const extras = Object.fromEntries(['code','wrong','context','note','block','references'].filter(key => q[key] !== undefined).map(key => [key,q[key]]));
+    return { id: q.id, prompt: q.prompt.trim(), options: q.options.map(x => x.trim()), answer: q.answer, explanation: q.explanation.trim(), source: q.source?.trim() || 'Questões importadas', topic: q.topic?.trim() || 'Fundamentos', difficulty: q.difficulty?.trim() || 'Médio', ...extras };
   });
 }
 
@@ -25,7 +30,7 @@ export async function publishQuestions(request, fetcher = fetch) {
   if (request.method !== 'POST') return json({error:'Método não permitido.'},405);
   if (request.headers.get('Origin') !== new URL(request.url).origin) return json({error:'Origem não permitida.'},403);
   if (!request.headers.get('Content-Type')?.includes('application/json')) return json({error:'Envie um JSON.'},415);
-  const token = request.headers.get('Authorization')?.replace(/^Bearer /, '') || '';
+  const token = request.headers.get('Authorization')?.match(/^Bearer ([^\s]+)$/i)?.[1] || '';
   if (!token || token.length > 500 || /\s/.test(token)) return json({error:'Informe um token válido do GitHub.'},401);
   const reader = request.body?.getReader();
   const chunks = []; let size = 0;
@@ -41,7 +46,7 @@ export async function publishQuestions(request, fetcher = fetch) {
   for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.length; }
   const raw = new TextDecoder().decode(bytes);
   let body, questions;
-  try { body = JSON.parse(raw); questions = validateImport(body.questions); } catch (error) { return json({error:error instanceof SyntaxError ? 'JSON inválido.' : error.message},400); }
+  try { body = JSON.parse(raw); questions = validateImport(body?.questions); } catch (error) { return json({error:error instanceof SyntaxError ? 'JSON inválido.' : error.message},400); }
   if (typeof body.title !== 'string' || !body.title.trim() || body.title.length > 100) return json({error:'Informe um nome de caderno com até 100 caracteres.'},400);
   const title = body.title.trim();
   const api = async (path, method = 'GET', payload) => {
@@ -55,7 +60,9 @@ export async function publishQuestions(request, fetcher = fetch) {
   };
   const read = async (file, sha) => {
     if (typeof file !== 'string' || file.startsWith('/') || file.split('/').some(x => !x || x === '.' || x === '..')) throw new Error('O índice de cadernos possui um caminho inválido.');
-    const data = await api(`/repos/${REPO}/contents/${ROOT}${file.split('/').map(encodeURIComponent).join('/')}?ref=${sha}`);
+    let data = await api(`/repos/${REPO}/contents/${ROOT}${file.split('/').map(encodeURIComponent).join('/')}?ref=${sha}`);
+    // Contents omits base64 for files above 1 MB; the blob API still returns it.
+    if (data.encoding === 'none' && /^[a-f0-9]{40,64}$/i.test(data.sha || '')) data = await api(`/repos/${REPO}/git/blobs/${data.sha}`);
     if (data.encoding !== 'base64' || !data.content) throw new Error('Não foi possível ler um caderno do repositório.');
     const bytes = Uint8Array.from(atob(data.content.replace(/\s/g,'')), x => x.charCodeAt(0));
     return JSON.parse(new TextDecoder().decode(bytes));
@@ -66,7 +73,8 @@ export async function publishQuestions(request, fetcher = fetch) {
     const ref = await api(`/repos/${REPO}/git/ref/heads/main`);
     const head = ref.object.sha;
     const [commit, index] = await Promise.all([api(`/repos/${REPO}/git/commits/${head}`), read('index.json',head)]);
-    if (!Array.isArray(index) || index.length > 100) throw new Error('Índice de cadernos inválido.');
+    if (!Array.isArray(index) || index.some(entry => !entry || typeof entry.file !== 'string')) throw new Error('Índice de cadernos inválido.');
+    if (index.length >= 100) return json({error:'O limite de 100 cadernos foi atingido.'},400);
     const existingSets = await Promise.all(index.map(entry => read(entry.file,head)));
     const existingIds = new Set(existingSets.flatMap(set => { if (!Array.isArray(set)) throw new Error('Caderno existente inválido.'); return set.map(q=>q.id); }));
     const duplicate = questions.find(q=>existingIds.has(q.id));
@@ -84,6 +92,7 @@ export async function publishQuestions(request, fetcher = fetch) {
 export default {
   async fetch(request, env) {
     if (new URL(request.url).pathname === '/api/question-sets') return publishQuestions(request);
+    if (new URL(request.url).pathname.startsWith('/api/')) return json({error:'Rota não encontrada.'},404);
     const response = await env.ASSETS.fetch(request);
     const acceptsHtml = request.headers.get('accept')?.includes('text/html');
     if (response.status !== 404 || !acceptsHtml || !['GET','HEAD'].includes(request.method)) return response;

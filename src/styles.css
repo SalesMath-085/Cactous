@@ -29,3 +29,20 @@
 .json-import summary { cursor: pointer; color: var(--blue); }
 .json-import pre { overflow: auto; background: var(--surface); padding: 16px; font-size: 12px; line-height: 1.5; }
 @media(max-width:700px) { .json-import { padding: 16px; } }
+
+/* Long imported text and narrow screens must not overflow the study area. */
+.app-view,.question-content,.question-form,.form-grid>label { min-width:0; }
+.question-content h2,.question-content p,.options button>span,.topbar h1,.topbar p,.app-notice { overflow-wrap:anywhere; }
+.options button { grid-template-columns:34px minmax(0,1fr) 24px; }
+.quiz-actions { flex-wrap:wrap; }
+.app-notice { margin:12px 16px; padding:12px 16px; background:#fff8e5; color:#644b10; border:1px solid #eddbab; border-radius:7px; font-size:14px; line-height:1.5; }
+@media(max-width:700px){
+  .options button { grid-template-columns:29px minmax(0,1fr) 20px; }
+  .question-meta { white-space:normal; flex-wrap:wrap; }
+  .upload-json { flex-wrap:wrap; min-width:0; max-width:100%; }
+  .upload-json input { min-width:0; max-width:100%; }
+  .quiz-action-buttons .secondary { white-space:normal; justify-content:center; }
+  .mobile-nav { height:calc(63px + env(safe-area-inset-bottom)); }
+  .quiz-actions { bottom:calc(62px + env(safe-area-inset-bottom)); }
+  body { padding-bottom:calc(70px + env(safe-area-inset-bottom)); }
+}

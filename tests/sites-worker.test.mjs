@@ -33,6 +33,7 @@ test("falls back to index.html for an unknown app route", async () => {
 test("does not turn missing API or write requests into the app shell", async () => {
   for (const request of [
     new Request("https://example.test/api/missing", { headers: { accept: "application/json" } }),
+    new Request("https://example.test/api/missing", { headers: { accept: "text/html" } }),
     new Request("https://example.test/flow", { method: "POST", headers: { accept: "text/html" } }),
   ]) {
     let calls = 0;
@@ -41,7 +42,7 @@ test("does not turn missing API or write requests into the app shell", async () 
       return new Response("missing", { status: 404 });
     } } });
     assert.equal(response.status, 404);
-    assert.equal(calls, 1);
+    assert.equal(calls, new URL(request.url).pathname.startsWith('/api/') ? 0 : 1);
   }
 });
 

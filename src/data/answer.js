@@ -1,5 +1,6 @@
 export function isCorrectAnswer(question, choice) {
-  return question.options[choice] === question.options[question.answer];
+  return Number.isInteger(choice) && choice >= 0 && choice < question.options.length
+    && question.options[choice] === question.options[question.answer];
 }
 
 export function correctLetters(question) {
