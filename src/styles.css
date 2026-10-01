@@ -46,3 +46,16 @@
   .quiz-actions { bottom:calc(62px + env(safe-area-inset-bottom)); }
   body { padding-bottom:calc(70px + env(safe-area-inset-bottom)); }
 }
+
+.question-tags { display:flex; flex-wrap:wrap; gap:6px; list-style:none; padding:0; margin:0 0 14px; }
+.question-tags li { background:var(--blue-2); color:#174d8c; border-radius:4px; padding:4px 8px; font-size:11px; line-height:1.4; overflow-wrap:anywhere; }
+.subject-help { color:var(--muted); font-size:13px; line-height:1.5; }
+.subject-table-wrap { overflow-x:auto; }
+.subject-table { border-collapse:collapse; width:100%; font-size:13px; }
+.subject-table th,.subject-table td { border-bottom:1px solid var(--line); padding:14px 12px; text-align:right; }
+.subject-table th:first-child { text-align:left; min-width:180px; }
+.subject-table thead th { color:#38536e; white-space:nowrap; background:var(--surface); }
+.subject-table small { display:block; font-weight:400; font-size:11px; color:var(--muted); margin-top:5px; }
+.subject-errors { color:#b32834; font-weight:750; }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+@media(max-width:700px){.subject-table th,.subject-table td{padding:12px 8px}.question-tags li{font-size:10px}}

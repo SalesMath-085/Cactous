@@ -32,7 +32,12 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Construtores"
+    "topic": "Construtores",
+    "tags": [
+      "Construtores",
+      "Sobrecarga de construtores",
+      "Construtor padrão"
+    ]
   },
   {
     "id": "pdf-cw1-02",
@@ -58,7 +63,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Coleções"
+    "topic": "HashMap",
+    "tags": [
+      "HashMap",
+      "Chaves e valores em mapas"
+    ]
   },
   {
     "id": "pdf-cw1-03",
@@ -84,7 +93,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Referências"
+    "topic": "Referências a objetos",
+    "tags": [
+      "Referências a objetos",
+      "Estado dos objetos"
+    ]
   },
   {
     "id": "pdf-cw1-04",
@@ -110,7 +123,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Coleções"
+    "topic": "ArrayList",
+    "tags": [
+      "ArrayList",
+      "Referências a objetos"
+    ]
   },
   {
     "id": "pdf-cw1-05",
@@ -135,7 +152,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Assinatura de métodos",
+    "tags": [
+      "Assinatura de métodos",
+      "Sobrecarga de métodos"
+    ]
   },
   {
     "id": "pdf-cw1-06",
@@ -165,7 +186,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Herança",
+    "tags": [
+      "Herança",
+      "Generalização e especialização"
+    ]
   },
   {
     "id": "pdf-cw1-07",
@@ -196,7 +221,12 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Polimorfismo",
+    "tags": [
+      "Polimorfismo",
+      "Sobrescrita de métodos",
+      "Classes e métodos abstratos"
+    ]
   },
   {
     "id": "pdf-cw1-08",
@@ -226,7 +256,12 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Classes e objetos",
+    "tags": [
+      "Classes e objetos",
+      "Pilhas e filas",
+      "Programação estruturada"
+    ]
   },
   {
     "id": "pdf-cw1-09",
@@ -251,7 +286,12 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Construtores"
+    "topic": "Classes e métodos abstratos",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Herança",
+      "Referências a objetos"
+    ]
   },
   {
     "id": "pdf-cw1-10",
@@ -276,7 +316,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Sobrecarga de métodos",
+    "tags": [
+      "Sobrecarga de métodos",
+      "Polimorfismo"
+    ]
   },
   {
     "id": "pdf-cw2-01",
@@ -306,7 +350,12 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Atributos de instância",
+    "tags": [
+      "Atributos de instância",
+      "Métodos de instância",
+      "Classes e objetos"
+    ]
   },
   {
     "id": "pdf-cw2-02",
@@ -341,8 +390,13 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Abstração",
-    "context": "No diagrama do PDF, Mecanico e Eletricista são subclasses de Funcionario."
+    "topic": "Classes e métodos abstratos",
+    "context": "No diagrama do PDF, Mecanico e Eletricista são subclasses de Funcionario.",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Sobrescrita de métodos",
+      "Herança"
+    ]
   },
   {
     "id": "pdf-cw2-03",
@@ -373,7 +427,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Referências"
+    "topic": "Coleta de lixo",
+    "tags": [
+      "Coleta de lixo",
+      "Referências a objetos"
+    ]
   },
   {
     "id": "pdf-cw2-04",
@@ -398,7 +456,12 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Palavra final"
+    "topic": "Modificador final",
+    "tags": [
+      "Modificador final",
+      "Herança",
+      "Sobrescrita de métodos"
+    ]
   },
   {
     "id": "pdf-cw2-05",
@@ -423,7 +486,10 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Modelagem orientada a objetos",
+    "tags": [
+      "Modelagem orientada a objetos"
+    ]
   },
   {
     "id": "pdf-cw2-07",
@@ -449,7 +515,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Classes e métodos abstratos",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Herança"
+    ]
   },
   {
     "id": "pdf-cw2-08",
@@ -480,7 +550,13 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Construtores"
+    "topic": "Encadeamento de construtores",
+    "tags": [
+      "Encadeamento de construtores",
+      "Sobrecarga de construtores",
+      "Atributos estáticos",
+      "Estado dos objetos"
+    ]
   },
   {
     "id": "pdf-cw2-09",
@@ -511,7 +587,12 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Polimorfismo",
+    "tags": [
+      "Polimorfismo",
+      "Classes e métodos abstratos",
+      "Sobrescrita de métodos"
+    ]
   },
   {
     "id": "pdf-cw2-10",
@@ -536,7 +617,12 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Construtores"
+    "topic": "Modificador final",
+    "tags": [
+      "Modificador final",
+      "Herança",
+      "Inicialização de variáveis"
+    ]
   },
   {
     "id": "pdf-maria-01",
@@ -562,7 +648,13 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Construtores"
+    "topic": "Encadeamento de construtores",
+    "tags": [
+      "Encadeamento de construtores",
+      "Sobrecarga de construtores",
+      "Uso de this",
+      "Estado dos objetos"
+    ]
   },
   {
     "id": "pdf-maria-02",
@@ -592,7 +684,13 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Membros estáticos"
+    "topic": "Atributos estáticos",
+    "tags": [
+      "Atributos estáticos",
+      "Atributos de instância",
+      "Métodos estáticos",
+      "Coleta de lixo"
+    ]
   },
   {
     "id": "pdf-maria-03",
@@ -617,7 +715,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Herança",
+    "tags": [
+      "Herança",
+      "Generalização e especialização"
+    ]
   },
   {
     "id": "pdf-maria-06",
@@ -642,7 +744,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Condicionais if/else",
+    "tags": [
+      "Condicionais if/else",
+      "Operadores relacionais"
+    ]
   },
   {
     "id": "pdf-maria-07",
@@ -667,7 +773,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Polimorfismo",
+    "tags": [
+      "Polimorfismo",
+      "Sobrescrita de métodos"
+    ]
   },
   {
     "id": "pdf-maria-08",
@@ -692,7 +802,12 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Classes e métodos abstratos",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Modelagem orientada a objetos",
+      "Polimorfismo"
+    ]
   },
   {
     "id": "pdf-maria-09",
@@ -718,7 +833,12 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Polimorfismo",
+    "tags": [
+      "Polimorfismo",
+      "Sobrescrita de métodos",
+      "Classes e métodos abstratos"
+    ]
   },
   {
     "id": "pdf-maria-10",
@@ -744,8 +864,12 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Referências",
-    "note": "O PDF repete a saída 60.0 60.0 nas alternativas A e C. As duas são aceitas."
+    "topic": "Referências a objetos",
+    "note": "O PDF repete a saída 60.0 60.0 nas alternativas A e C. As duas são aceitas.",
+    "tags": [
+      "Referências a objetos",
+      "Estado dos objetos"
+    ]
   },
   {
     "id": "pdf-s2m-03",
@@ -776,7 +900,12 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Construtores na herança",
+    "tags": [
+      "Construtores na herança",
+      "Construtor padrão",
+      "Classes e métodos abstratos"
+    ]
   },
   {
     "id": "pdf-s2m-07",
@@ -806,7 +935,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Operadores lógicos",
+    "tags": [
+      "Operadores lógicos",
+      "Operadores bit a bit"
+    ]
   },
   {
     "id": "pdf-s2m-08",
@@ -832,7 +965,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Palavra final"
+    "topic": "Modificador final",
+    "tags": [
+      "Modificador final",
+      "Inicialização de variáveis"
+    ]
   },
   {
     "id": "pdf-s2m-09",
@@ -858,7 +995,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Coleções"
+    "topic": "TreeMap",
+    "tags": [
+      "TreeMap",
+      "Ordenação de chaves"
+    ]
   },
   {
     "id": "pdf-s2m-10",
@@ -883,7 +1024,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Compilação e bytecode",
+    "tags": [
+      "Compilação e bytecode",
+      "JVM"
+    ]
   },
   {
     "id": "pdf-av2-01",
@@ -914,7 +1059,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Classes e métodos abstratos",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Sobrescrita de métodos"
+    ]
   },
   {
     "id": "pdf-av2-02",
@@ -939,7 +1088,14 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Coleções"
+    "topic": "ArrayList",
+    "tags": [
+      "ArrayList",
+      "LinkedList",
+      "HashMap",
+      "TreeMap",
+      "Ordenação de coleções"
+    ]
   },
   {
     "id": "pdf-av2-03",
@@ -965,7 +1121,13 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Construtores na herança",
+    "tags": [
+      "Construtores na herança",
+      "Polimorfismo",
+      "Sobrescrita de métodos",
+      "Classes e métodos abstratos"
+    ]
   },
   {
     "id": "pdf-av2-04",
@@ -991,7 +1153,12 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Polimorfismo",
+    "tags": [
+      "Polimorfismo",
+      "Sobrescrita de métodos",
+      "Herança"
+    ]
   },
   {
     "id": "pdf-av2-05",
@@ -1027,7 +1194,12 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Coleções"
+    "topic": "Modificador final",
+    "tags": [
+      "Modificador final",
+      "Referências a objetos",
+      "ArrayList"
+    ]
   },
   {
     "id": "pdf-av2-06",
@@ -1053,7 +1225,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Atributos estáticos",
+    "tags": [
+      "Atributos estáticos",
+      "Atributos de instância"
+    ]
   },
   {
     "id": "pdf-av2-07",
@@ -1079,7 +1255,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Coleções"
+    "topic": "ArrayList",
+    "tags": [
+      "ArrayList",
+      "Referências a objetos"
+    ]
   },
   {
     "id": "pdf-av2-09",
@@ -1104,7 +1284,15 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Coleções"
+    "topic": "Generics",
+    "tags": [
+      "Generics",
+      "ArrayList",
+      "LinkedList",
+      "HashMap",
+      "TreeMap",
+      "Chaves e valores em mapas"
+    ]
   },
   {
     "id": "pdf-av2-10",
@@ -1130,7 +1318,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Palavra final"
+    "topic": "Modificador final",
+    "tags": [
+      "Modificador final",
+      "Herança"
+    ]
   },
   {
     "id": "pdf-s02-02",
@@ -1155,7 +1347,10 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Herança"
+    "topic": "Herança múltipla",
+    "tags": [
+      "Herança múltipla"
+    ]
   },
   {
     "id": "pdf-s02-05",
@@ -1181,7 +1376,13 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Construtores"
+    "topic": "Encadeamento de construtores",
+    "tags": [
+      "Encadeamento de construtores",
+      "Sobrecarga de construtores",
+      "Atributos estáticos",
+      "Estado dos objetos"
+    ]
   },
   {
     "id": "pdf-s02-06",
@@ -1207,7 +1408,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Referências"
+    "topic": "Coleta de lixo",
+    "tags": [
+      "Coleta de lixo",
+      "Referências a objetos"
+    ]
   },
   {
     "id": "pdf-s02-08",
@@ -1233,7 +1438,12 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Passagem de parâmetros por valor",
+    "tags": [
+      "Passagem de parâmetros por valor",
+      "Referências a objetos",
+      "Estado dos objetos"
+    ]
   },
   {
     "id": "pdf-s02-09",
@@ -1259,7 +1469,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Overflow de inteiros",
+    "tags": [
+      "Overflow de inteiros",
+      "Laços de repetição"
+    ]
   },
   {
     "id": "pdf-s02-10",
@@ -1284,7 +1498,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Tipos primitivos",
+    "tags": [
+      "Tipos primitivos",
+      "Classes wrapper"
+    ]
   },
   {
     "id": "pdf-s2poo-01",
@@ -1310,7 +1528,12 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Autoboxing e unboxing",
+    "tags": [
+      "Autoboxing e unboxing",
+      "Classes wrapper",
+      "Tipos primitivos"
+    ]
   },
   {
     "id": "pdf-s2poo-03",
@@ -1336,7 +1559,12 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Classes e métodos abstratos",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Herança",
+      "Sobrescrita de métodos"
+    ]
   },
   {
     "id": "pdf-s2poo-04",
@@ -1361,7 +1589,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "Inicialização de variáveis",
+    "tags": [
+      "Inicialização de variáveis",
+      "Variáveis locais"
+    ]
   },
   {
     "id": "pdf-s2poo-05",
@@ -1386,7 +1618,12 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Coleções"
+    "topic": "Generics",
+    "tags": [
+      "Generics",
+      "ArrayList",
+      "Autoboxing e unboxing"
+    ]
   },
   {
     "id": "pdf-s2poo-06",
@@ -1412,7 +1649,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Coleções"
+    "topic": "TreeMap",
+    "tags": [
+      "TreeMap",
+      "Ordenação de chaves"
+    ]
   },
   {
     "id": "pdf-s2poo-07",
@@ -1437,6 +1678,11 @@ export const questions = [
       }
     ],
     "difficulty": "Médio",
-    "topic": "Fundamentos"
+    "topic": "JDK e JRE",
+    "tags": [
+      "JDK e JRE",
+      "Compilação e bytecode",
+      "JVM"
+    ]
   }
 ];

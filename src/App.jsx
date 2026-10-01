@@ -3,6 +3,7 @@ import { questions as baseQuestions } from './data/questions';
 import { enrichQuestion } from './data/audit';
 import { isCorrectAnswer, correctLetters } from './data/answer';
 import ImportQuestions from './components/ImportQuestions';
+import { questionSubjects, subjectStats } from './data/subject-stats.js';
 
 import { validateImport } from '../worker/index.js';
 import { fetchQuestionSets, mergePublishedSets } from './data/question-sets.js';
@@ -115,6 +116,7 @@ function Quiz({ questions, progress, setProgress, setView, filterIds, session, s
           <div className="question-number">{String(index + 1).padStart(2, '0')}</div>
           <div className="question-content">
             <div className="question-meta"><span>{question.difficulty}</span><span>{question.block || question.source}</span></div>
+            <ul className="question-tags" aria-label="Assuntos da questão">{questionSubjects(question).map(tag => <li key={tag}>{tag}</li>)}</ul>
             <h2>{question.prompt}</h2>
             {question.context && <p>{question.context}</p>}
             {question.note && <p className="source-note">{question.note}</p>}
@@ -165,25 +167,20 @@ function EmptyReview({ setView }) {
 function Stats({ questions, progress, reset }) {
   const entries = questions.filter(q => progress[q.id]).map(q => progress[q.id]), answered = entries.length, correct = entries.filter(x => x.correct).length;
   const rate = answered ? Math.round(correct / answered * 100) : 0;
-  const byTopic = useMemo(() => {
-    return [...new Set(questions.map(q => q.topic))].map(topic => {
-      const qs = questions.filter(q => q.topic === topic), done = qs.filter(q => progress[q.id]);
-      const hits = done.filter(q => progress[q.id]?.correct).length;
-      return { topic, done: done.length, total: qs.length, rate: done.length ? Math.round(hits / done.length * 100) : 0 };
-    }).sort((a,b) => b.done - a.done);
-  }, [progress, questions]);
+  const byTopic = useMemo(() => subjectStats(questions, progress), [progress, questions]);
   return <><Header title="Seu desempenho" subtitle="Um retrato claro do que já está dominado"/>
     <main className="page-content">
       <section className="stats-hero"><div><span>APROVEITAMENTO GERAL</span><strong>{rate}%</strong><p>{answered} de {questions.length} questões respondidas</p></div><div className="big-ring" style={{'--score': `${rate}%`}}><Icon name="chart" size={36}/></div></section>
       <div className="stat-strip"><div><strong>{correct}</strong><span>acertos</span></div><div><strong>{answered - correct}</strong><span>erros</span></div><div><strong>{questions.length - answered}</strong><span>pendentes</span></div></div>
-      <section className="topic-section"><div className="section-heading"><div><h2>Desempenho por tópico</h2><p>Priorize os assuntos com menor aproveitamento.</p></div><button className="secondary" onClick={reset}><Icon name="rotate"/>Recomeçar</button></div>
-        <div className="topic-list">{byTopic.map(t => <div className="topic-row" key={t.topic}><div><strong>{t.topic}</strong><span>{t.done} de {t.total} respondidas</span></div><div className="topic-bar"><i style={{width:`${t.rate}%`}}/></div><b>{t.done ? `${t.rate}%` : '—'}</b></div>)}</div>
+      <section className="topic-section"><div className="section-heading"><div><h2>Desempenho por assunto</h2><p>Os assuntos com mais erros aparecem primeiro.</p></div><button className="secondary" onClick={reset}><Icon name="rotate"/>Recomeçar</button></div>
+        <p className="subject-help">Uma questão pode contar em vários assuntos. Os totais por assunto não devem ser somados ao total geral.</p>
+        <div className="subject-table-wrap"><table className="subject-table"><caption className="sr-only">Acertos e erros por assunto</caption><thead><tr><th scope="col">Assunto</th><th scope="col">Acertos</th><th scope="col">Erros</th><th scope="col">Pendentes</th><th scope="col">Taxa de erro</th></tr></thead><tbody>{byTopic.map(t => <tr key={t.topic}><th scope="row">{t.topic}<small>{t.done} de {t.total} respondidas</small></th><td>{t.correct}</td><td className={t.errors ? 'subject-errors' : ''}>{t.errors}</td><td>{t.pending}</td><td>{t.done ? `${t.errorRate}%` : '—'}</td></tr>)}</tbody></table></div>
       </section>
     </main>
   </>;
 }
 
-const blankForm = () => ({ topic: '', difficulty: 'Médio', prompt: '', code: '', options: ['', '', '', '', ''], answer: 0, explanation: '', wrong: '' });
+const blankForm = () => ({ topic: '', tags: '', difficulty: 'Médio', prompt: '', code: '', options: ['', '', '', '', ''], answer: 0, explanation: '', wrong: '' });
 
 function AddQuestions({ customQuestions, onAdd, onDelete, setView, onPublished }) {
   const [form, setForm] = useState(blankForm);
@@ -196,9 +193,11 @@ function AddQuestions({ customQuestions, onAdd, onDelete, setView, onPublished }
     if (![form.topic, form.prompt, form.explanation, ...form.options].every(value => value.trim())) {
       setFormError('Preencha o assunto, o enunciado, as cinco alternativas e a explicação com texto.'); return;
     }
+    const tags = [...new Set([form.topic.trim(), ...form.tags.split(',').map(tag => tag.trim()).filter(Boolean)])];
+    if (tags.length > 20 || tags.some(tag => tag.length > 80)) { setFormError('Use até 20 assuntos com até 80 caracteres cada.'); return; }
     onAdd({
       id: `user-${crypto.randomUUID()}`, source: 'Questão adicionada',
-      topic: form.topic.trim(), difficulty: form.difficulty,
+      topic: form.topic.trim(), tags, difficulty: form.difficulty,
       prompt: form.prompt.trim(), code: form.code.trim(),
       options: form.options.map(option => option.trim()), answer: Number(form.answer),
       explanation: form.explanation.trim(), wrong: form.wrong.trim()
@@ -215,6 +214,7 @@ function AddQuestions({ customQuestions, onAdd, onDelete, setView, onPublished }
           <label>Assunto<input required maxLength="80" value={form.topic} onChange={e => update('topic', e.target.value)} placeholder="Ex.: Herança"/></label>
           <label>Dificuldade<select value={form.difficulty} onChange={e => update('difficulty', e.target.value)}><option>Fácil</option><option>Médio</option><option>Difícil</option></select></label>
         </div>
+        <label>Outros assuntos (opcional)<input maxLength="1600" value={form.tags} onChange={e => update('tags', e.target.value)} placeholder="Separe por vírgula. Ex.: Polimorfismo, Sobrescrita de métodos"/></label>
         <label>Enunciado<textarea required rows="3" maxLength="3000" value={form.prompt} onChange={e => update('prompt', e.target.value)} placeholder="Escreva a pergunta aqui"/></label>
         <label>Código (opcional)<textarea rows="4" className="code-input" value={form.code} onChange={e => update('code', e.target.value)} placeholder="Cole um trecho de Java, se necessário"/></label>
         <fieldset className="alternative-fields"><legend>Alternativas</legend><p>Preencha as cinco opções e marque a resposta correta.</p>

@@ -64,6 +64,7 @@ Cada arquivo contém uma lista de objetos:
     "id": "heranca-001",
     "source": "Meu caderno",
     "topic": "Herança",
+    "tags": ["Herança", "Generalização e especialização"],
     "difficulty": "Fácil",
     "prompt": "Qual palavra indica herança entre classes em Java?",
     "options": ["extends", "implements", "new", "static", "final"],
@@ -74,6 +75,10 @@ Cada arquivo contém uma lista de objetos:
 ```
 
 `answer` usa índices de **0 a 4**: 0 = A, 1 = B, 2 = C, 3 = D e 4 = E.
+
+`tags` lista os assuntos específicos abordados pela questão (de 1 a 20 tags, até 80 caracteres por tag). `topic` indica o assunto principal. Se `tags` não for informado, o sistema usa `topic` como única tag.
+
+Em **Desempenho por assunto**, cada questão respondida conta uma vez em cada uma de suas tags. A tabela mostra acertos, erros, pendentes e taxa de erro (erros ÷ respondidas), ordenada pelos assuntos com mais erros. Questões pendentes não entram na taxa. Como uma questão pode abordar vários assuntos, os totais por tag não devem ser somados ao total geral. As 53 questões atuais foram classificadas individualmente.
 
 Os campos `code` e `wrong` são opcionais: permitem incluir um trecho de código e uma explicação adicional sobre os erros. Mantenha o ID de uma questão estável para preservar sua associação com o progresso salvo.
 

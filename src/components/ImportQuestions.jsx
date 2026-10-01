@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
 import { validateImport } from '../../worker/index.js';
 
-const example = [{id:'heranca-001',source:'Meu caderno',topic:'Herança',difficulty:'Fácil',prompt:'Qual palavra indica herança entre classes em Java?',options:['extends','implements','new','static','final'],answer:0,explanation:'extends indica que uma classe herda de outra.'}];
+const example = [{id:'heranca-001',source:'Meu caderno',topic:'Herança',tags:['Herança','Generalização e especialização'],difficulty:'Fácil',prompt:'Qual palavra indica herança entre classes em Java?',options:['extends','implements','new','static','final'],answer:0,explanation:'extends indica que uma classe herda de outra.'}];
 const exampleText = JSON.stringify(example,null,2);
 
 export default function ImportQuestions({ onPublished }) {
@@ -51,6 +51,7 @@ export default function ImportQuestions({ onPublished }) {
   return <section className="json-import">
     <h2>Importar um caderno JSON</h2>
     <p>Envie um arquivo ou cole a lista de questões. A publicação cria um novo caderno no repositório <a href="https://github.com/SalesMath-085/Cactous" target="_blank" rel="noreferrer">Cactous</a>.</p>
+    <p>Use <code>tags</code> para listar os assuntos de cada questão. Eles alimentam as estatísticas de acertos e erros.</p>
     <form className="question-form" onSubmit={submit}>
       <label>Nome do caderno<input required maxLength={100} value={title} onChange={e=>setTitle(e.target.value)} disabled={busy} placeholder="Ex.: Revisão de herança"/></label>
       <div className="import-tools"><label className="secondary upload-json">Escolher arquivo .json<input type="file" accept=".json,application/json" disabled={busy} onChange={upload}/></label><button type="button" className="secondary" onClick={download}>Baixar modelo</button></div>

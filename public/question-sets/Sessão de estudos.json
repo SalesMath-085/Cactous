@@ -13,7 +13,13 @@
     "answer": 0,
     "explanation": "Uma classe em Java pode ter vários construtores e o método construtor não pode ser chamado explicitamente.",
     "block": "ColabWeb POO 2026/2 - Parte 1",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Construtores",
+    "tags": [
+      "Construtores",
+      "Sobrecarga de construtores",
+      "Construtor padrão"
+    ]
   },
   {
     "id": "pdf-cw1-02",
@@ -30,7 +36,12 @@
     "answer": 3,
     "explanation": "O segundo put() para \"Ana\" substitui seu valor por 30 e o mapa possui duas chaves, resultando em 32.",
     "block": "ColabWeb POO 2026/2 - Parte 1",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "HashMap",
+    "tags": [
+      "HashMap",
+      "Chaves e valores em mapas"
+    ]
   },
   {
     "id": "pdf-cw1-03",
@@ -47,7 +58,12 @@
     "answer": 3,
     "explanation": "As três referências passam a apontar para o mesmo objeto; seu preço vai de 80.0 para 90.0 e depois para 70.0.",
     "block": "ColabWeb POO 2026/2 - Parte 1",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Referências a objetos",
+    "tags": [
+      "Referências a objetos",
+      "Estado dos objetos"
+    ]
   },
   {
     "id": "pdf-cw1-04",
@@ -64,7 +80,12 @@
     "answer": 1,
     "explanation": "a e b referenciam a mesma coleção, e o elemento do índice 1 é substituído por 10.",
     "block": "ColabWeb POO 2026/2 - Parte 1",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "ArrayList",
+    "tags": [
+      "ArrayList",
+      "Referências a objetos"
+    ]
   },
   {
     "id": "pdf-cw1-05",
@@ -80,7 +101,12 @@
     "answer": 2,
     "block": "ColabWeb POO 2026/2 - Parte 1",
     "explanation": "A alternativa correta é “Assinatura, tipo, ordem, parâmetros.”.",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Assinatura de métodos",
+    "tags": [
+      "Assinatura de métodos",
+      "Sobrecarga de métodos"
+    ]
   },
   {
     "id": "pdf-cw1-06",
@@ -96,7 +122,12 @@
     "answer": 0,
     "explanation": "As quatro afirmativas estão corretas.",
     "block": "ColabWeb POO 2026/2 - Parte 1",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Herança",
+    "tags": [
+      "Herança",
+      "Generalização e especialização"
+    ]
   },
   {
     "id": "pdf-cw1-07",
@@ -113,7 +144,13 @@
     "answer": 4,
     "explanation": "O objeto criado é um Gato, cuja implementação de som() retorna \"Miau\".",
     "block": "ColabWeb POO 2026/2 - Parte 1",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Polimorfismo",
+    "tags": [
+      "Polimorfismo",
+      "Sobrescrita de métodos",
+      "Classes e métodos abstratos"
+    ]
   },
   {
     "id": "pdf-cw1-08",
@@ -129,7 +166,13 @@
     "answer": 2,
     "explanation": "As afirmativas II e III são verdadeiras.",
     "block": "ColabWeb POO 2026/2 - Parte 1",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Classes e objetos",
+    "tags": [
+      "Classes e objetos",
+      "Pilhas e filas",
+      "Programação estruturada"
+    ]
   },
   {
     "id": "pdf-cw1-09",
@@ -145,7 +188,13 @@
     "answer": 1,
     "explanation": "As quatro afirmativas estão corretas.",
     "block": "ColabWeb POO 2026/2 - Parte 1",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Classes e métodos abstratos",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Herança",
+      "Referências a objetos"
+    ]
   },
   {
     "id": "pdf-cw1-10",
@@ -161,7 +210,12 @@
     "answer": 3,
     "explanation": "Sobrecarga é considerada um tipo de polimorfismo, também conhecido como polimorfismo ad-hoc.",
     "block": "ColabWeb POO 2026/2 - Parte 1",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Sobrecarga de métodos",
+    "tags": [
+      "Sobrecarga de métodos",
+      "Polimorfismo"
+    ]
   },
   {
     "id": "pdf-cw2-01",
@@ -177,7 +231,13 @@
     "answer": 0,
     "explanation": "As afirmativas I e II são falsas; a afirmativa III é verdadeira.",
     "block": "ColabWeb POO 2026/2 - Parte 2",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Atributos de instância",
+    "tags": [
+      "Atributos de instância",
+      "Métodos de instância",
+      "Classes e objetos"
+    ]
   },
   {
     "id": "pdf-cw2-02",
@@ -193,7 +253,13 @@
     "answer": 2,
     "block": "ColabWeb POO 2026/2 - Parte 2",
     "explanation": "A alternativa correta é “Mecanico redefina o método calcularSalario;”.",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Classes e métodos abstratos",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Sobrescrita de métodos",
+      "Herança"
+    ]
   },
   {
     "id": "pdf-cw2-03",
@@ -210,7 +276,12 @@
     "answer": 2,
     "explanation": "O objeto continua alcançável por a2.",
     "block": "ColabWeb POO 2026/2 - Parte 2",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Coleta de lixo",
+    "tags": [
+      "Coleta de lixo",
+      "Referências a objetos"
+    ]
   },
   {
     "id": "pdf-cw2-04",
@@ -226,7 +297,13 @@
     "answer": 0,
     "explanation": "As afirmativas 1, 2 e 3 estão corretas; final e static são características independentes.",
     "block": "ColabWeb POO 2026/2 - Parte 2",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Modificador final",
+    "tags": [
+      "Modificador final",
+      "Herança",
+      "Sobrescrita de métodos"
+    ]
   },
   {
     "id": "pdf-cw2-05",
@@ -242,7 +319,11 @@
     "answer": 0,
     "block": "ColabWeb POO 2026/2 - Parte 2",
     "explanation": "A alternativa correta é “Na modelagem, a OO pode facilitar a compreensão do problema e melhorar a comunicação entre as pessoas envolvidas.”.",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Modelagem orientada a objetos",
+    "tags": [
+      "Modelagem orientada a objetos"
+    ]
   },
   {
     "id": "pdf-cw2-07",
@@ -259,7 +340,12 @@
     "answer": 1,
     "explanation": "QuadrilateroBase é abstrata e pode deixar calcularPerimetro() sem implementação; o programa imprime \"Fim\".",
     "block": "ColabWeb POO 2026/2 - Parte 2",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Classes e métodos abstratos",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Herança"
+    ]
   },
   {
     "id": "pdf-cw2-08",
@@ -276,7 +362,14 @@
     "answer": 1,
     "explanation": "c1 passa de 5 para 7, c2 recebe 7 e depois c1.valor é incrementado em 2.",
     "block": "ColabWeb POO 2026/2 - Parte 2",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Encadeamento de construtores",
+    "tags": [
+      "Encadeamento de construtores",
+      "Sobrecarga de construtores",
+      "Atributos estáticos",
+      "Estado dos objetos"
+    ]
   },
   {
     "id": "pdf-cw2-09",
@@ -293,7 +386,13 @@
     "answer": 1,
     "explanation": "A área do retângulo é 20 e a do triângulo é 9; a soma é 29.",
     "block": "ColabWeb POO 2026/2 - Parte 2",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Polimorfismo",
+    "tags": [
+      "Polimorfismo",
+      "Classes e métodos abstratos",
+      "Sobrescrita de métodos"
+    ]
   },
   {
     "id": "pdf-cw2-10",
@@ -309,7 +408,13 @@
     "answer": 1,
     "explanation": "As afirmativas I, II e III estão corretas; um atributo final de instância também pode ser inicializado no construtor.",
     "block": "ColabWeb POO 2026/2 - Parte 2",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Modificador final",
+    "tags": [
+      "Modificador final",
+      "Herança",
+      "Inicialização de variáveis"
+    ]
   },
   {
     "id": "pdf-maria-01",
@@ -326,7 +431,14 @@
     "answer": 3,
     "block": "Questões POO Java da Maria",
     "explanation": "A alternativa correta é “POO 120 | POO 270”.",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Encadeamento de construtores",
+    "tags": [
+      "Encadeamento de construtores",
+      "Sobrecarga de construtores",
+      "Uso de this",
+      "Estado dos objetos"
+    ]
   },
   {
     "id": "pdf-maria-02",
@@ -342,7 +454,14 @@
     "answer": 1,
     "block": "Questões POO Java da Maria",
     "explanation": "A alternativa correta é “I e II.”.",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Atributos estáticos",
+    "tags": [
+      "Atributos estáticos",
+      "Atributos de instância",
+      "Métodos estáticos",
+      "Coleta de lixo"
+    ]
   },
   {
     "id": "pdf-maria-03",
@@ -358,7 +477,12 @@
     "answer": 2,
     "block": "Questões POO Java da Maria",
     "explanation": "A alternativa correta é “Apenas as afirmativas 1, 2 e 4 estão corretas.”.",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Herança",
+    "tags": [
+      "Herança",
+      "Generalização e especialização"
+    ]
   },
   {
     "id": "pdf-maria-06",
@@ -374,7 +498,12 @@
     "answer": 2,
     "block": "Questões POO Java da Maria",
     "explanation": "A alternativa correta é “perdeu o bônus e ganhou o bônus”.",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Condicionais if/else",
+    "tags": [
+      "Condicionais if/else",
+      "Operadores relacionais"
+    ]
   },
   {
     "id": "pdf-maria-07",
@@ -390,7 +519,12 @@
     "answer": 3,
     "block": "Questões POO Java da Maria",
     "explanation": "A alternativa correta é “polimorfismo é o princípio pelo qual duas ou mais classes derivadas de uma mesma superclasse podem invocar métodos que têm a mesma assinatura e mesmo comportamento.”.",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Polimorfismo",
+    "tags": [
+      "Polimorfismo",
+      "Sobrescrita de métodos"
+    ]
   },
   {
     "id": "pdf-maria-08",
@@ -406,7 +540,13 @@
     "answer": 2,
     "block": "Questões POO Java da Maria",
     "explanation": "A alternativa correta é “Declarar Forma como uma classe abstrata, com um método abstrato calcularArea(), deixando que Circulo e Retangulo forneçam suas próprias implementações.”.",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Classes e métodos abstratos",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Modelagem orientada a objetos",
+      "Polimorfismo"
+    ]
   },
   {
     "id": "pdf-maria-09",
@@ -423,7 +563,13 @@
     "answer": 3,
     "block": "Questões POO Java da Maria",
     "explanation": "A alternativa correta é “19”.",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Polimorfismo",
+    "tags": [
+      "Polimorfismo",
+      "Sobrescrita de métodos",
+      "Classes e métodos abstratos"
+    ]
   },
   {
     "id": "pdf-maria-10",
@@ -440,7 +586,12 @@
     "answer": 2,
     "block": "Questões POO Java da Maria",
     "explanation": "A alternativa correta é “60.0 60.0”.",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Referências a objetos",
+    "tags": [
+      "Referências a objetos",
+      "Estado dos objetos"
+    ]
   },
   {
     "id": "pdf-s2m-03",
@@ -457,7 +608,13 @@
     "answer": 0,
     "block": "Simulado 2 M",
     "explanation": "A alternativa correta é “Erro de compilação”.",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Construtores na herança",
+    "tags": [
+      "Construtores na herança",
+      "Construtor padrão",
+      "Classes e métodos abstratos"
+    ]
   },
   {
     "id": "pdf-s2m-07",
@@ -473,7 +630,12 @@
     "answer": 1,
     "block": "Simulado 2 M",
     "explanation": "A alternativa correta é “\"~\" calcula o complemento do operando bit-a-bit.”.",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Operadores lógicos",
+    "tags": [
+      "Operadores lógicos",
+      "Operadores bit a bit"
+    ]
   },
   {
     "id": "pdf-s2m-08",
@@ -490,7 +652,12 @@
     "answer": 4,
     "block": "Simulado 2 M",
     "explanation": "A alternativa correta é “Erro de compilação na linha \"LIMITE = 20\"”.",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Modificador final",
+    "tags": [
+      "Modificador final",
+      "Inicialização de variáveis"
+    ]
   },
   {
     "id": "pdf-s2m-09",
@@ -507,7 +674,12 @@
     "answer": 3,
     "block": "Simulado 2 M",
     "explanation": "A alternativa correta é “10 30”.",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "TreeMap",
+    "tags": [
+      "TreeMap",
+      "Ordenação de chaves"
+    ]
   },
   {
     "id": "pdf-s2m-10",
@@ -523,7 +695,12 @@
     "answer": 1,
     "block": "Simulado 2 M",
     "explanation": "A alternativa correta é “Apenas as afirmativas I e III estão corretas.”.",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Compilação e bytecode",
+    "tags": [
+      "Compilação e bytecode",
+      "JVM"
+    ]
   },
   {
     "id": "pdf-av2-01",
@@ -540,7 +717,12 @@
     "answer": 2,
     "explanation": "Gato implementa o método abstrato e retorna \"Miau\".",
     "block": "Simulado POO AV2",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Classes e métodos abstratos",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Sobrescrita de métodos"
+    ]
   },
   {
     "id": "pdf-av2-02",
@@ -556,7 +738,15 @@
     "answer": 2,
     "explanation": "As afirmativas I, II e IV estão corretas. HashMap não garante ordem de percurso.",
     "block": "Simulado POO AV2",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "ArrayList",
+    "tags": [
+      "ArrayList",
+      "LinkedList",
+      "HashMap",
+      "TreeMap",
+      "Ordenação de coleções"
+    ]
   },
   {
     "id": "pdf-av2-03",
@@ -573,7 +763,14 @@
     "answer": 4,
     "explanation": "descricao() utiliza o nome \"Skyrim\" e a implementação de categoria() de RPG.",
     "block": "Simulado POO AV2",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Construtores na herança",
+    "tags": [
+      "Construtores na herança",
+      "Polimorfismo",
+      "Sobrescrita de métodos",
+      "Classes e métodos abstratos"
+    ]
   },
   {
     "id": "pdf-av2-04",
@@ -590,7 +787,13 @@
     "answer": 2,
     "explanation": "É um caso de polimorfismo por inclusão; o objeto é B e executa a sobreposição de metodoA().",
     "block": "Simulado POO AV2",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Polimorfismo",
+    "tags": [
+      "Polimorfismo",
+      "Sobrescrita de métodos",
+      "Herança"
+    ]
   },
   {
     "id": "pdf-av2-05",
@@ -607,7 +810,13 @@
     "answer": 3,
     "explanation": "Como nomes é final, a tentativa de reatribuir a variável gera erro de compilação.",
     "block": "Simulado POO AV2",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Modificador final",
+    "tags": [
+      "Modificador final",
+      "Referências a objetos",
+      "ArrayList"
+    ]
   },
   {
     "id": "pdf-av2-06",
@@ -624,7 +833,12 @@
     "answer": 2,
     "explanation": "O atributo estático total foi alterado para 8, afetando todos os objetos da classe.",
     "block": "Simulado POO AV2",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Atributos estáticos",
+    "tags": [
+      "Atributos estáticos",
+      "Atributos de instância"
+    ]
   },
   {
     "id": "pdf-av2-07",
@@ -641,7 +855,12 @@
     "answer": 1,
     "explanation": "a e b referenciam a mesma coleção; o primeiro elemento passa a 20 e a lista mantém três elementos.",
     "block": "Simulado POO AV2",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "ArrayList",
+    "tags": [
+      "ArrayList",
+      "Referências a objetos"
+    ]
   },
   {
     "id": "pdf-av2-09",
@@ -657,7 +876,16 @@
     "answer": 1,
     "explanation": "As afirmativas 1, 3 e 4 estão corretas; uma nova associação para a mesma chave substitui o valor anterior.",
     "block": "Simulado POO AV2",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Generics",
+    "tags": [
+      "Generics",
+      "ArrayList",
+      "LinkedList",
+      "HashMap",
+      "TreeMap",
+      "Chaves e valores em mapas"
+    ]
   },
   {
     "id": "pdf-av2-10",
@@ -674,7 +902,12 @@
     "answer": 2,
     "explanation": "final aplicado a uma classe impede que outras classes herdem dela.",
     "block": "Simulado POO AV2",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Modificador final",
+    "tags": [
+      "Modificador final",
+      "Herança"
+    ]
   },
   {
     "id": "pdf-s02-02",
@@ -690,7 +923,11 @@
     "answer": 2,
     "block": "Simulado02",
     "explanation": "A alternativa correta é “permite que uma classe herde atributos e métodos de duas ou mais classes.”.",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Herança múltipla",
+    "tags": [
+      "Herança múltipla"
+    ]
   },
   {
     "id": "pdf-s02-05",
@@ -707,7 +944,14 @@
     "answer": 2,
     "explanation": "c1 inicia com 6, c2 recebe 6 e criados vale 2; depois c1.valor passa para 8.",
     "block": "Simulado02",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Encadeamento de construtores",
+    "tags": [
+      "Encadeamento de construtores",
+      "Sobrecarga de construtores",
+      "Atributos estáticos",
+      "Estado dos objetos"
+    ]
   },
   {
     "id": "pdf-s02-06",
@@ -724,7 +968,12 @@
     "answer": 3,
     "explanation": "As duas referências deixaram de apontar para o objeto.",
     "block": "Simulado02",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Coleta de lixo",
+    "tags": [
+      "Coleta de lixo",
+      "Referências a objetos"
+    ]
   },
   {
     "id": "pdf-s02-08",
@@ -741,7 +990,13 @@
     "answer": 2,
     "explanation": "Primeiro o objeto de x passa a valer 7; depois a referencia o objeto de y, que passa a valer 13.",
     "block": "Simulado02",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Passagem de parâmetros por valor",
+    "tags": [
+      "Passagem de parâmetros por valor",
+      "Referências a objetos",
+      "Estado dos objetos"
+    ]
   },
   {
     "id": "pdf-s02-09",
@@ -758,7 +1013,12 @@
     "answer": 0,
     "explanation": "Quando i ultrapassa Integer.MAX_VALUE ocorre overflow; i volta ao menor inteiro e a condição i <= end permanece verdadeira.",
     "block": "Simulado02",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Overflow de inteiros",
+    "tags": [
+      "Overflow de inteiros",
+      "Laços de repetição"
+    ]
   },
   {
     "id": "pdf-s02-10",
@@ -774,7 +1034,12 @@
     "answer": 2,
     "explanation": "byte, short, int e long são tipos primitivos inteiros.",
     "block": "Simulado02",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Tipos primitivos",
+    "tags": [
+      "Tipos primitivos",
+      "Classes wrapper"
+    ]
   },
   {
     "id": "pdf-s2poo-01",
@@ -791,7 +1056,13 @@
     "answer": 1,
     "explanation": "Em t.j = 2 ocorre autoboxing e em t.i = t.j ocorre unboxing.",
     "block": "Simulado2 POO",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Autoboxing e unboxing",
+    "tags": [
+      "Autoboxing e unboxing",
+      "Classes wrapper",
+      "Tipos primitivos"
+    ]
   },
   {
     "id": "pdf-s2poo-03",
@@ -808,7 +1079,13 @@
     "answer": 2,
     "explanation": "B fornece uma implementação concreta para valor(), que é herdada por C.",
     "block": "Simulado2 POO",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Classes e métodos abstratos",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Herança",
+      "Sobrescrita de métodos"
+    ]
   },
   {
     "id": "pdf-s2poo-04",
@@ -824,7 +1101,12 @@
     "answer": 2,
     "explanation": "Variáveis locais devem ser inicializadas antes do uso.",
     "block": "Simulado2 POO",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Inicialização de variáveis",
+    "tags": [
+      "Inicialização de variáveis",
+      "Variáveis locais"
+    ]
   },
   {
     "id": "pdf-s2poo-05",
@@ -840,7 +1122,13 @@
     "answer": 0,
     "explanation": "As afirmativas 1, 2 e 3 estão corretas; ArrayList<String> não aceita Integer.",
     "block": "Simulado2 POO",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "Generics",
+    "tags": [
+      "Generics",
+      "ArrayList",
+      "Autoboxing e unboxing"
+    ]
   },
   {
     "id": "pdf-s2poo-06",
@@ -857,7 +1145,12 @@
     "answer": 3,
     "explanation": "TreeMap mantém as chaves ordenadas; a menor é 5 e a maior é 50.",
     "block": "Simulado2 POO",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "TreeMap",
+    "tags": [
+      "TreeMap",
+      "Ordenação de chaves"
+    ]
   },
   {
     "id": "pdf-s2poo-07",
@@ -873,6 +1166,12 @@
     "answer": 2,
     "explanation": "O JDK contém o JRE, o compilador javac e outras ferramentas de desenvolvimento.",
     "block": "Simulado2 POO",
-    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão."
+    "wrong": "A alternativa escolhida não corresponde ao resultado do código ou às afirmações apresentadas na questão.",
+    "topic": "JDK e JRE",
+    "tags": [
+      "JDK e JRE",
+      "Compilação e bytecode",
+      "JVM"
+    ]
   }
 ]

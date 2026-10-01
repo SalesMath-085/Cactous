@@ -14,13 +14,15 @@ export function validateImport(data) {
     if (!Array.isArray(q.options) || q.options.length !== 5 || q.options.some(x => typeof x !== 'string' || !x.trim())) throw new Error(`${label}: preencha cinco alternativas.`);
     if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer > 4) throw new Error(`${label}: answer deve ser um número de 0 a 4 (A a E).`);
     if (typeof q.explanation !== 'string' || !q.explanation.trim()) throw new Error(`${label}: explicação vazia.`);
+    if (q.tags !== undefined && (!Array.isArray(q.tags) || !q.tags.length || q.tags.length > 20 || q.tags.some(tag => typeof tag !== 'string' || !tag.trim() || tag.trim().length > 80))) throw new Error(`${label}: tags deve conter de 1 a 20 assuntos de até 80 caracteres.`);
+    const tags = [...new Set((q.tags || [typeof q.topic === 'string' && q.topic.trim() || 'Fundamentos']).map(tag => tag.trim()))];
     for (const key of ['source', 'topic', 'difficulty', 'code', 'wrong', 'context', 'note', 'block']) if (q[key] !== undefined && typeof q[key] !== 'string') throw new Error(`${label}: ${key} deve ser texto.`);
     if (q.references !== undefined && (!Array.isArray(q.references) || q.references.some(ref => {
       if (!ref || typeof ref.file !== 'string' || !['string','number'].includes(typeof ref.question) || typeof ref.url !== 'string') return true;
       try { return !['https:','http:'].includes(new URL(ref.url).protocol); } catch { return true; }
     }))) throw new Error(`${label}: referências inválidas.`);
     const extras = Object.fromEntries(['code','wrong','context','note','block','references'].filter(key => q[key] !== undefined).map(key => [key,q[key]]));
-    return { id: q.id, prompt: q.prompt.trim(), options: q.options.map(x => x.trim()), answer: q.answer, explanation: q.explanation.trim(), source: q.source?.trim() || 'Questões importadas', topic: q.topic?.trim() || 'Fundamentos', difficulty: q.difficulty?.trim() || 'Médio', ...extras };
+    return { id: q.id, prompt: q.prompt.trim(), options: q.options.map(x => x.trim()), answer: q.answer, explanation: q.explanation.trim(), source: q.source?.trim() || 'Questões importadas', topic: q.topic?.trim() || tags[0], tags, difficulty: q.difficulty?.trim() || 'Médio', ...extras };
   });
 }
 
