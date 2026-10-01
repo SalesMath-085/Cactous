@@ -187,10 +187,12 @@ function Quiz({ questions, progress, setProgress, setView, filterIds, session, s
           {!isCorrectAnswer(question, selected) && question.wrong && <p><strong>Por que sua escolha não funciona?</strong> {question.wrong}</p>}
         </section>}
         <div className="quiz-actions">
-          {!revealed && <span>Escolha uma alternativa para conferir.</span>}
+          {!revealed && <span>Responda ou pule para deixar esta questão pendente.</span>}
           <div className="quiz-action-buttons">
             <button className="secondary" disabled={index === 0} onClick={previous}>Questão anterior</button>
-            <button className="primary" disabled={!revealed} onClick={next}>{index === pool.length - 1 ? 'Ver desempenho' : 'Próxima questão'}<Icon name="arrow"/></button>
+            {revealed
+              ? <button className="primary" onClick={next}>{index === pool.length - 1 ? 'Ver desempenho' : 'Próxima questão'}<Icon name="arrow"/></button>
+              : <button className="secondary" onClick={next} title={index === pool.length - 1 ? 'Deixar esta questão pendente e ver o desempenho' : 'Avançar sem registrar uma resposta'}>Pular questão<Icon name="arrow"/></button>}
           </div>
         </div>
       </main>
