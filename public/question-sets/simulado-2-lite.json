@@ -1,0 +1,216 @@
+[
+  {
+    "id": "s2lite-01",
+    "prompt": "Os operadores *, /, e % são chamados de operadores multiplicativos. Eles possuem a mesma precedência e são executados da esquerda para a direita (left-associative). Sabendo disso, considere o programa a seguir (Fonte: Bloch e Gafter, 2005):\n\nEste programa imprime:",
+    "options": [
+      "0",
+      "3600000",
+      "60000",
+      "3600",
+      "60"
+    ],
+    "answer": 2,
+    "source": "ColabWeb — POO 2026/2 — simulado 2 lite — questão 1",
+    "topic": "Precedência de operadores",
+    "tags": [
+      "Precedência de operadores",
+      "Operador de resto",
+      "Laços de repetição"
+    ],
+    "difficulty": "Médio",
+    "code": "public class Clock {\n  public static void main(String[] args) {\n    int minutes = 0;\n    for (int ms = 0; ms < 60*60*1000; ms++)\n      if (ms % 60*1000 == 0)\n        minutes++;\n    System.out.println(minutes);\n  }\n}",
+    "explanation": "A alternativa C é correta: o programa imprime 60000. O laço percorre ms de 0 a 3599999. A condição é verdadeira em todos os múltiplos de 60, incluindo zero, totalizando 3600000 / 60 = 60000 incrementos.\n\nA expressão ms % 60*1000 == 0 será executado da seguinte forma: ((ms % 60) * 1000) == 0.\n\nConsiderando apenas a expressão aritmética (ms % 60 * 1000), esta será executada da esquerda para a direita, de acordo com o enunciado. Note que na questão espaços foram colocados ao redor do operador %, mas a presença ou não de espaços não altera a execução das expressões.\n\nPor fim, o operador de igualdade == será executado, pois ele possui menor precedência.\n\nNa dúvida, use sempre parênteses."
+  },
+  {
+    "id": "s2lite-02",
+    "prompt": "Considere a seguinte hierarquia:\n\nAssinale a alternativa correta.",
+    "options": [
+      "B precisa obrigatoriamente implementar valor().",
+      "C é automaticamente abstrata por herdar indiretamente de A.",
+      "B pode deixar valor() sem implementação porque também é abstrata, mas C precisa implementá-lo para ser concreta.",
+      "B não pode herdar de A porque ambas são abstratas.",
+      "C pode deixar valor() sem implementação porque B não o implementou."
+    ],
+    "answer": 2,
+    "source": "ColabWeb — POO 2026/2 — simulado 2 lite — questão 2",
+    "topic": "Classes e métodos abstratos",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Herança",
+      "Sobrescrita de métodos"
+    ],
+    "difficulty": "Médio",
+    "code": "abstract class A {\n  public abstract int valor();\n}\n\nabstract class B extends A {\n}\n\nclass C extends B {\n  @Override\n  public int valor() {\n    return 42;\n  }\n}",
+    "explanation": "Alternativa (a): Errada. Como B também é abstrata, ela pode deixar o método sem implementação.\n\nAlternativa (b): Errada. Uma classe pode ser concreta mesmo herdando de classes abstratas, desde que implemente os métodos abstratos necessários.\n\nAlternativa (c): Correta. A obrigação de implementar valor() pode permanecer até a primeira subclasse concreta.\n\nAlternativa (d): Errada. Uma classe abstrata pode herdar de outra classe abstrata.\n\nAlternativa (e): Errada. Uma classe concreta precisa implementar os métodos abstratos ainda não implementados."
+  },
+  {
+    "id": "s2lite-03",
+    "prompt": "Sobre coesão e acoplamento em uma classe, assinale a alternativa correta.",
+    "options": [
+      "Uma classe coesa deve reunir o maior número possível de responsabilidades.",
+      "Coesão indica que todos os atributos de uma classe devem ser estáticos.",
+      "Acoplamento corresponde à quantidade de objetos criados a partir de uma classe.",
+      "Uma classe fortemente acoplada tende a facilitar o reuso e a manutenção.",
+      "Uma classe com baixo acoplamento depende, na medida do possível, de poucas outras classes."
+    ],
+    "answer": 4,
+    "source": "ColabWeb — POO 2026/2 — simulado 2 lite — questão 3",
+    "topic": "Coesão",
+    "tags": [
+      "Coesão",
+      "Acoplamento"
+    ],
+    "difficulty": "Médio",
+    "explanation": "Alternativa (a): Errada. Uma classe coesa deve possuir uma única responsabilidade.\n\nAlternativa (b): Errada. Coesão não determina se atributos são estáticos.\n\nAlternativa (c): Errada. Acoplamento não corresponde à quantidade de objetos.\n\nAlternativa (d): Errada. Forte acoplamento dificulta o reuso e a manutenção.\n\nAlternativa (e): Correta. Baixo acoplamento significa minimizar dependências entre classes."
+  },
+  {
+    "id": "s2lite-04",
+    "prompt": "Considere o programa Java a seguir:\n\nConsiderando a execução dos construtores e do método alterar, qual será a saída apresentada?",
+    "options": [
+      "POO 120 | Java 270",
+      "POO 220 | POO 270",
+      "POO 120 | POO 270",
+      "POO 120 | POO 170",
+      "Java 120 | POO 270"
+    ],
+    "answer": 2,
+    "source": "ColabWeb — POO 2026/2 — simulado 2 lite — questão 4",
+    "topic": "Encadeamento de construtores",
+    "tags": [
+      "Encadeamento de construtores",
+      "Sobrecarga de construtores",
+      "Uso de this",
+      "Estado dos objetos"
+    ],
+    "difficulty": "Médio",
+    "code": "class Livro {\n  String titulo;\n  int paginas;\n\n    Livro(String titulo) {\n      this(titulo, 100);\n    }\n\n    Livro(String titulo, int paginas) {\n      this.titulo = titulo;\n      this.paginas = paginas;\n    }\n\n    void alterar(String titulo, int paginas) {\n      this.titulo = titulo;\n      this.paginas += paginas;\n    }\n\n    public static void main(String[] args) {\n      Livro a = new Livro(\"Java\");\n      Livro b = new Livro(a.titulo, a.paginas + 50);\n\n         a.alterar(\"POO\", 20);\n         b.alterar(a.titulo, a.paginas);\n\n         System.out.println(a.titulo + \" \" + a.paginas + \" | \"\n             + b.titulo + \" \" + b.paginas);\n    }\n}",
+    "explanation": "Alternativa (a): Errada. O título de b é alterado para \"POO\".\n\nAlternativa (b): Errada. Em a, 20 é somado às 100 páginas iniciais.\n\nAlternativa (c): Correta. a termina com 120 páginas e b com 150 + 120 = 270.\n\nAlternativa (d): Errada. b.paginas começa em 150 e recebe um acréscimo de 120.\n\nAlternativa (e): Errada. O método alterar também modifica o título de a."
+  },
+  {
+    "id": "s2lite-05",
+    "prompt": "Considere os seguintes fragmentos de código Java:\n\nO resultado da execução dos fragmentos em I e II será, respectivamente,",
+    "options": [
+      "ganhou e ganhou",
+      "perdeu e ganhou o bônus",
+      "perdeu o bônus e ganhou",
+      "perdeu o bônus e ganhou o bônus",
+      "perdeu e perdeu"
+    ],
+    "answer": 3,
+    "source": "ColabWeb — POO 2026/2 — simulado 2 lite — questão 5",
+    "topic": "Condicionais if/else",
+    "tags": [
+      "Condicionais if/else",
+      "Operadores relacionais"
+    ],
+    "difficulty": "Médio",
+    "code": "// Fragmento I\nint sum = 7;\nif (sum > 20) {\n  System.out.print(\"ganhou\");\n} else {\n  System.out.print(\"perdeu\");\n}\nSystem.out.println(\" o bônus.\");\n\n// Fragmento II (executado separadamente)\nint sum = 21;\nif (sum != 20)\n  System.out.print(\"ganhou\");\nelse\n  System.out.print(\"perdeu\");\nSystem.out.println(\" o bônus.\");",
+    "explanation": "No fragmento I, 7 > 20 é falso, então é impresso \"perdeu\". No fragmento II, 21 != 20 é verdadeiro, então é impresso \"ganhou\". Em ambos os casos, o println está fora do if/else e imprime \" o bônus.\". As saídas completas são \"perdeu o bônus.\" e \"ganhou o bônus.\"; portanto, a alternativa D é correta."
+  },
+  {
+    "id": "s2lite-06",
+    "prompt": "Um programador está modelando um sistema de figuras geométricas com as classes Forma, Circulo e Retangulo. Cada forma calcula a área de maneira diferente, mas não faz sentido, no domínio do problema, criar um objeto genérico de Forma sem saber qual figura geométrica específica ela representa. Qual é a abordagem mais adequada para modelar a classe Forma nesse cenário?",
+    "options": [
+      "Declarar Forma como uma classe final, impedindo que outras classes a estendam.",
+      "Declarar o método calcularArea() como static em Forma, para que todas as subclasses compartilhem exatamente o mesmo cálculo.",
+      "Declarar Forma como uma classe concreta comum, com um método calcularArea() que sempre retorna zero, para ser sobreposto pelas subclasses.",
+      "Declarar Forma como uma classe abstrata, com um método abstrato calcularArea(), deixando que Circulo e Retangulo forneçam suas próprias implementações.",
+      "Não criar a classe Forma; implementar todos os cálculos separadamente em Circulo e Retangulo, sem nenhuma relação de herança entre elas."
+    ],
+    "answer": 3,
+    "source": "ColabWeb — POO 2026/2 — simulado 2 lite — questão 6",
+    "topic": "Classes e métodos abstratos",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Modelagem orientada a objetos",
+      "Polimorfismo"
+    ],
+    "difficulty": "Médio",
+    "explanation": "Alternativa (a): Incorreta. O modificador final impediria justamente a criação de subclasses como Circulo e Retangulo, o que é o oposto do que se deseja nesse cenário.\n\nAlternativa (b): Incorreta. Métodos estáticos não podem ser sobrepostos (apenas ocultados) e não participam do polimorfismo em tempo de execução, sendo inadequados para representar um cálculo que varia conforme o tipo específico de forma.\n\nAlternativa (c): Incorreta. Permitir a instanciação direta de Forma com um cálculo padrão (mesmo que zero) contraria o requisito do enunciado, que afirma não fazer sentido criar uma forma genérica.\n\nAlternativa (d): Correta. Como não faz sentido instanciar Forma diretamente (sem saber qual figura específica ela representa), declará-la como abstrata, com um método abstrato calcularArea(), força cada subclasse a fornecer sua própria implementação específica.\n\nAlternativa (e): Incorreta. Não criar a superclasse comum obrigaria a duplicação de atributos e métodos compartilhados entre Circulo e Retangulo, indo contra os princípios de reuso da orientação a objetos."
+  },
+  {
+    "id": "s2lite-07",
+    "prompt": "Considere o seguinte código Java:\n\nQual é a saída do programa?",
+    "options": [
+      "Animal",
+      "O código não compila.",
+      "null",
+      "Miau",
+      "Gato"
+    ],
+    "answer": 3,
+    "source": "ColabWeb — POO 2026/2 — simulado 2 lite — questão 7",
+    "topic": "Polimorfismo",
+    "tags": [
+      "Polimorfismo",
+      "Sobrescrita de métodos",
+      "Classes e métodos abstratos"
+    ],
+    "difficulty": "Médio",
+    "code": "abstract class Animal {\n  public abstract String som();\n}\n\nclass Gato extends Animal {\n  @Override\n  public String som() {\n    return \"Miau\";\n  }\n}\n\npublic class Main {\n  public static void main(String[] args) {\n    Animal animal = new Gato();\n\n        System.out.println(animal.som());\n    }\n}",
+    "explanation": "Alternativa (a): Errada. som() não possui implementação em Animal.\n\nAlternativa (b): Errada. Uma referência de uma classe abstrata pode referenciar um objeto de uma subclasse concreta.\n\nAlternativa (c): Errada. A implementação de Gato retorna explicitamente uma String.\n\nAlternativa (d): Correta. O objeto criado é um Gato, cuja implementação de som() retorna \"Miau\".\n\nAlternativa (e): Errada. O método não retorna o nome da classe."
+  },
+  {
+    "id": "s2lite-08",
+    "prompt": "São conceitos chaves do paradigma Orientado a Objetos:",
+    "options": [
+      "Classes, objetos, regras e funções.",
+      "Sobrecarga, inferência lógica, backtracking e herança.",
+      "Polimorfismo por inclusão, casamento de padrões, transparência referencial e herança.",
+      "Classes, objetos, herança e polimorfismo por inclusão.",
+      "Casamento de padrões, herança, classes e objetos."
+    ],
+    "answer": 3,
+    "source": "ColabWeb — POO 2026/2 — simulado 2 lite — questão 8",
+    "topic": "Classes e objetos",
+    "tags": [
+      "Classes e objetos",
+      "Herança",
+      "Polimorfismo"
+    ],
+    "difficulty": "Médio",
+    "explanation": "Alternativa (a): regras e função não são conceitos chaves em orientação a objetos.\n\nAlternativa (b): inferência é usado em lógica para se afirmar uma verdade em decorrência de sua ligação com outras proposições já reconhecidas como verdadeiras. Backtracking é uma técnica de criação de algoritmos que busca todas as combinações possíveis para resolver um problema de otimização.\n\nAlternativa (c): transparência referencial é um conceito usado mais no paradigma funcional e na matemática em geral, na qual permite que qualquer função ou expressão seja substituída por qualquer outra que tenha o mesmo valor.\n\nAlternativa (e): apesar do casamento de padrões ser utilizado na sobrecarga, definitivamente este não é um conceito chave da orientação a objetos."
+  },
+  {
+    "id": "s2lite-09",
+    "prompt": "Sobre orientação a objetos, é INCORRETO afirmar:",
+    "options": [
+      "os conceitos de generalização e especialização da orientação a objetos estão diretamente associados ao conceito de herança.",
+      "uma classe define o comportamento dos objetos através de seus métodos, e quais estados ele é capaz de manter através de seus atributos.",
+      "polimorfismo é o princípio pelo qual duas ou mais classes derivadas de uma mesma superclasse podem invocar métodos que têm a mesma assinatura e mesmo comportamento.",
+      "um construtor visa inicializar os atributos e pode ser executado automaticamente sempre que um novo objeto é criado.",
+      "um objeto pode existir mesmo que não exista nenhum evento a ele associado."
+    ],
+    "answer": 2,
+    "source": "ColabWeb — POO 2026/2 — simulado 2 lite — questão 9",
+    "topic": "Polimorfismo",
+    "tags": [
+      "Polimorfismo",
+      "Sobrescrita de métodos"
+    ],
+    "difficulty": "Médio",
+    "explanation": "Alternativa (a): na generalização, trabalhamos com classes (superclasses) que identificam características (atributos e métodos) comuns das subclasses. Na especialização, usamos classes mais específicas (subclasses) com atributos e métodos próprios. Portanto, ambos os conceitos estão relacionados a herança.\n\nAlternativa (b): é na classe que o comportamento (métodos) dos objetos é definida. O estado atual de um objeto são os valores atuais de seus atributos.\n\nAlternativa (c): incorreta, pois, no polimorfismo, os métodos possuem comportamento (implementações) diferentes.\n\nAlternativa (d): essa é a definição de um construtor.\n\nAlternativa (e): um evento é disparado quando alguma situação específica ocorre no sistema (e.g., um botão foi clicado, a janela foi fechada, etc). Em geral, um método de um objeto é chamado quando esses eventos acontecem para que ele possam ser tratados. Entretanto, a existência de um objeto não está ligada ao fato de ele tratar eventos ou não."
+  },
+  {
+    "id": "s2lite-10",
+    "prompt": "Considere o código Java abaixo:\n\nQual é a saída produzida por esse programa?",
+    "options": [
+      "800.0",
+      "null",
+      "É lançada uma exceção em tempo de execução",
+      "Erro de compilação",
+      "0.0"
+    ],
+    "answer": 0,
+    "source": "ColabWeb — POO 2026/2 — simulado 2 lite — questão 10",
+    "topic": "Polimorfismo",
+    "tags": [
+      "Polimorfismo",
+      "Classes e métodos abstratos",
+      "Sobrescrita de métodos"
+    ],
+    "difficulty": "Médio",
+    "code": "abstract class Funcionario {\n  abstract double calcularSalario();\n  void exibir() {\n    System.out.println(calcularSalario());\n  }\n}\nclass Estagiario extends Funcionario {\n  double calcularSalario() {\n    return 800;\n  }\n}\npublic class Teste {\n  public static void main(String[] args) {\n    Funcionario f = new Estagiario();\n    f.exibir();\n  }\n}",
+    "explanation": "Alternativa (a): Correta. O método concreto exibir(), definido em Funcionario, chama calcularSalario(). Devido ao polimorfismo, a versão executada é a implementação de Estagiario, que retorna 800.\n\nAlternativa (b): Incorreta. O método retorna um valor numérico válido (double), e não uma referência null.\n\nAlternativa (c): Incorreta. Não há nenhuma condição no código que provoque uma exceção em tempo de execução.\n\nAlternativa (d): Incorreta. O código está sintaticamente correto: a classe Estagiario implementa o único método abstrato herdado, permitindo sua instanciação.\n\nAlternativa (e): Incorreta. O método calcularSalario() de Estagiario retorna um valor definido (800), e não o valor padrão 0."
+  }
+]

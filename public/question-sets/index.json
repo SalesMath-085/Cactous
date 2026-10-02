@@ -3,5 +3,10 @@
     "id": "sessao-de-estudos",
     "title": "Sessão de estudos",
     "file": "Sessão de estudos.json"
+  },
+  {
+    "id": "simulado-2-lite",
+    "title": "simulado 2 lite",
+    "file": "simulado-2-lite.json"
   }
 ]
