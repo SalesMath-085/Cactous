@@ -8,5 +8,10 @@
     "id": "simulado-2-lite",
     "title": "simulado 2 lite",
     "file": "simulado-2-lite.json"
+  },
+  {
+    "id": "simulado-poo",
+    "title": "Simulado POO",
+    "file": "simulado-poo.json"
   }
 ]
