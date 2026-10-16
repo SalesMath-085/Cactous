@@ -84,3 +84,19 @@ button:focus-visible { outline:2px solid var(--blue); outline-offset:3px; }
   .marked-row-actions { flex-direction:row; flex-wrap:wrap; }
   .question-tools .secondary { font-size:11px; padding:7px 9px; }
 }
+
+.question-prompt-plain { white-space:pre-line; }
+.question-prompt { max-width:930px; margin-bottom:20px; }
+.question-content .question-prompt h2 { margin-bottom:14px; }
+.question-statements { list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+.question-statements>li { display:grid; grid-template-columns:36px minmax(0,1fr); gap:12px; align-items:start; padding:13px 15px; border:1px solid var(--line); border-radius:8px; background:var(--surface); }
+.statement-label { display:flex; align-items:center; justify-content:center; min-height:28px; border-radius:5px; background:var(--blue-2); color:#0758c9; font-size:13px; font-weight:750; line-height:1.5; }
+.statement-text { min-width:0; padding-top:1px; font-size:15px; font-weight:450; line-height:1.65; white-space:pre-line; overflow-wrap:anywhere; }
+.question-content .question-instruction { margin:16px 0 0; font-size:15px; font-weight:650; line-height:1.6; }
+@media(max-width:700px){
+  .question-statements { gap:8px; }
+  .question-statements>li { grid-template-columns:30px minmax(0,1fr); gap:9px; padding:11px 10px; }
+  .statement-label { min-height:25px; font-size:12px; }
+  .statement-text { font-size:14px; line-height:1.65; }
+  .question-content .question-instruction { font-size:14px; }
+}

@@ -3,6 +3,7 @@ import { questions as baseQuestions } from './data/questions';
 import { enrichQuestion } from './data/audit';
 import { isCorrectAnswer, correctLetters } from './data/answer';
 import ImportQuestions from './components/ImportQuestions';
+import QuestionPrompt from './components/QuestionPrompt';
 import { questionSubjects, subjectStats } from './data/subject-stats.js';
 import { sanitizeBookmarks, toggleBookmark, markedQuestions, sessionAfterUnmark } from './data/bookmarks.js';
 
@@ -124,7 +125,7 @@ function Quiz({ questions, progress, setProgress, setView, filterIds, session, s
             </div>
             <div className="question-meta"><span>{question.difficulty}</span><span>{question.block || question.source}</span></div>
             <ul className="question-tags" aria-label="Assuntos da questão">{questionSubjects(question).map(tag => <li key={tag}>{tag}</li>)}</ul>
-            <h2>{question.prompt}</h2>
+            <QuestionPrompt text={question.prompt}/>
             {question.context && <p>{question.context}</p>}
             {question.note && <p className="source-note">{question.note}</p>}
             {question.references?.length > 0 && <p className="source-note">No PDF: {question.references.map((ref, index) => <span key={ref.url}>{index > 0 && " · "}<a href={ref.url} target="_blank" rel="noreferrer">{ref.file} · questão {ref.question}</a></span>)}</p>}
