@@ -1,0 +1,1736 @@
+[
+  {
+    "id": "p3-01-01",
+    "prompt": "Entre as linguagens de programação mais comumente encontradas nas mais diversas aplicações, tem-se Java e C++. Sobre essas duas linguagens, atribua V (verdadeiro) ou F (falso) às afirmativas a seguir. ( ) A linguagem C++ é uma extensão da linguagem C. ( ) A linguagem Java é interpretada e C++ é compilada. ( ) A linguagem Java possui tratamento de exceções. ( ) Ambas possuem tipagem dinâmica. ( ) O coletor de lixo de Java é automático e o de C++ é manual. Assinale a alternativa que contém, de cima para baixo, a sequência correta.",
+    "options": [
+      "V, F, V, F, V.",
+      "F, V, V, V, F.",
+      "F, F, F, V, V.",
+      "V, V, F, F, V.",
+      "V, F, F, V, F."
+    ],
+    "answer": 0,
+    "explanation": "A sequência esperada no PDF é V, F, V, F, V. C++ surgiu como uma extensão de C; Java é compilada para bytecode; Java possui tratamento de exceções; ambas possuem tipagem estática. A última afirmativa usa uma simplificação: Java oferece coleta de lixo automática, enquanto C++ normalmente usa gerenciamento de recursos por RAII, destrutores e ponteiros inteligentes, sem um coletor de lixo padrão. “Coletor manual” não é uma descrição técnica precisa desse mecanismo.",
+    "source": "simulado 3.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado 3.pdf",
+        "question": 1,
+        "url": "https://drive.google.com/file/d/1IisAl-1ykawBo27qqH3RA_SEZHdAspOF/view"
+      }
+    ],
+    "tags": [
+      "Java e C++",
+      "Compilação e bytecode",
+      "Tipagem estática",
+      "Gerenciamento de memória"
+    ],
+    "topic": "Java e C++"
+  },
+  {
+    "id": "p3-01-02",
+    "prompt": "Considere o código Java abaixo:\n\nQual é o resultado da execução do programa?",
+    "options": [
+      "Gato:... Cao:Au",
+      "Erro de compilação, pois a classe Gato não implementa todos os métodos abstratos de Animal",
+      "Erro de compilação, pois o método som() de Cao reduz a visibilidade do método da interface",
+      "Gato:... Cao:...",
+      "Gato:Au Cao:Au"
+    ],
+    "answer": 0,
+    "explanation": "Alternativa (a): Correta. Gato usa o método default (\"...\") e Cao usa sua versão sobreposta (\"Au\").\n\nAlternativa (b): Errada. O único método abstrato é nome(), que Gato implementa. Métodos default não precisam ser implementados.\n\nAlternativa (c): Errada. O método som() de Cao é public, mantendo a visibilidade.\n\nAlternativa (d): Errada. Cao sobrepõe som() com a mesma assinatura, então retorna \"Au\".\n\nAlternativa (e): Errada. Gato não sobrepõe som(), então usa a implementação default.",
+    "source": "simulado 3.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado 3.pdf",
+        "question": 2,
+        "url": "https://drive.google.com/file/d/1IisAl-1ykawBo27qqH3RA_SEZHdAspOF/view"
+      },
+      {
+        "file": "simulado.pdf",
+        "question": 9,
+        "url": "https://drive.google.com/file/d/1aY6WRftqgkzJukOyrd73tGQADbTdjD95/view"
+      }
+    ],
+    "code": "interface Animal {\n  default String som() {\n    return \"...\";\n  }\n  String nome();\n}\n\nclass Gato implements Animal {\n  public String nome() {\n    return \"Gato\";\n  }\n}\n\nclass Cao implements Animal {\n  public String nome() {\n    return \"Cao\";\n  }\n  public String som() {\n    return \"Au\";\n  }\n}\n\npublic class Teste {\n  public static void main(String[] args) {\n    Animal[] v = { new Gato(), new Cao() };\n    String r = \"\";\n    for (Animal a : v) {\n      r += a.nome() + \":\" + a.som() + \" \";\n    }\n    System.out.println(r.trim());\n  }\n}",
+    "tags": [
+      "Interfaces",
+      "Métodos default",
+      "Polimorfismo",
+      "Sobrescrita de métodos"
+    ],
+    "topic": "Interfaces"
+  },
+  {
+    "id": "p3-01-03",
+    "prompt": "Considere as seguintes afirmações sobre generalização e especialização:\n1. Uma generalização representa um conceito mais abrangente compartilhado por conceitos mais específicos.\n2. Uma especialização pode acrescentar atributos e métodos específicos aos que são herdados de uma classe mais geral.\n3. Se Carro extends Veiculo, então Carro é uma especialização de Veiculo.\n4. Uma classe pode ser uma especialização em relação à sua superclasse e uma generalização em relação às suas subclasses. Assinale a alternativa correta.",
+    "options": [
+      "Apenas as afirmativas 2 e 3 estão corretas.",
+      "Apenas as afirmativas 1, 3 e 4 estão corretas.",
+      "Todas as afirmativas estão corretas.",
+      "Apenas as afirmativas 1 e 3 estão corretas.",
+      "Apenas as afirmativas 1, 2 e 4 estão corretas."
+    ],
+    "answer": 2,
+    "explanation": "Afirmativa 1: Correta. Uma generalização representa características comuns em um conceito mais abrangente.\n\nAfirmativa 2: Correta. Uma especialização pode acrescentar características próprias.\n\nAfirmativa 3: Correta. Carro representa um tipo específico de Veiculo.\n\nAfirmativa 4: Correta. O papel de uma classe depende de sua posição relativa na hierarquia.",
+    "source": "simulado 3.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado 3.pdf",
+        "question": 3,
+        "url": "https://drive.google.com/file/d/1IisAl-1ykawBo27qqH3RA_SEZHdAspOF/view"
+      }
+    ],
+    "tags": [
+      "Generalização e especialização",
+      "Herança"
+    ],
+    "topic": "Generalização e especialização"
+  },
+  {
+    "id": "p3-01-04",
+    "prompt": "Analise as seguintes afirmativas.\nI. Encapsulamento é a capacidade de uma operação atuar de modos diversos em classes diferentes.\nII. Polimorfismo é o compartilhamento de atributos e métodos entre classes com base em um relacionamento hierárquico.\nIII. Herança consiste no processo de ocultação dos detalhes internos de implementação de um objeto.\nIV. Sobreposição é a redefinição das funções de um método herdado. Os métodos apresentam assinaturas iguais.\nV. Em JAVA, todos os métodos numa classe abstrata devem ser declarados como abstratos. A partir da análise, pode-se concluir que",
+    "options": [
+      "apenas as afirmativas III e IV estão corretas.",
+      "apenas as afirmativas I, III e V estão corretas.",
+      "todas as afirmativas são falsas.",
+      "apenas a afirmativa IV está correta.",
+      "apenas as afirmativas I, IV e V estão corretas."
+    ],
+    "answer": 3,
+    "explanation": "Afirmativa I: o conceito mencionado é o de polimorfismo.\n\nAfirmativa II: o conceito mencionado é o de herança.\n\nAfirmativa III: o conceito mencionado é o de encapsulamento.\n\nAfirmativa V: uma classe abstrata pode conter sim métodos concretos. Mas uma classe que possui pelo menos um método abstrato, deve obrigatoriamente ser declarada como abstrata.",
+    "source": "simulado 3.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado 3.pdf",
+        "question": 4,
+        "url": "https://drive.google.com/file/d/1IisAl-1ykawBo27qqH3RA_SEZHdAspOF/view"
+      },
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos_ELAINE.pdf",
+        "question": 6,
+        "url": "https://drive.google.com/file/d/1T7K88E2lRHiByUJG61SI-ffv6Ycaptim/view"
+      }
+    ],
+    "tags": [
+      "Encapsulamento",
+      "Polimorfismo",
+      "Herança",
+      "Sobrescrita de métodos",
+      "Classes e métodos abstratos"
+    ],
+    "topic": "Encapsulamento"
+  },
+  {
+    "id": "p3-01-05",
+    "prompt": "Considere a declaração class Problema extends Exception { }. Qual declaração de método permite disparar um novo Problema sem tratá-lo dentro do próprio método?",
+    "options": [
+      "static void f() { throw new Problema(); }",
+      "static void f() throws NullPointerException { throw new Problema(); }",
+      "static void f() throws Problema { throw new Problema(); }",
+      "static void f() throws Error { throw new Problema(); }",
+      "static void f() throws RuntimeException { throw new Problema(); }"
+    ],
+    "answer": 2,
+    "explanation": "Alternativa (a): Errada. Problema é verificada e precisa ser tratada ou declarada.\n\nAlternativa (b): Errada. NullPointerException não cobre a exceção Problema.\n\nAlternativa (c): Certa. A cláusula throws declara a possível propagação de Problema.\n\nAlternativa (d): Errada. Declarar Error não declara a exceção Problema.\n\nAlternativa (e): Errada. RuntimeException não cobre a exceção Problema.",
+    "source": "simulado 3.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado 3.pdf",
+        "question": 5,
+        "url": "https://drive.google.com/file/d/1IisAl-1ykawBo27qqH3RA_SEZHdAspOF/view"
+      },
+      {
+        "file": "simulado.pdf",
+        "question": 5,
+        "url": "https://drive.google.com/file/d/1aY6WRftqgkzJukOyrd73tGQADbTdjD95/view"
+      }
+    ],
+    "tags": [
+      "Exceções verificadas",
+      "throw e throws"
+    ],
+    "topic": "Exceções verificadas"
+  },
+  {
+    "id": "p3-01-06",
+    "prompt": "Considere o programa Java abaixo:\n\nAo executar o programa, o que acontece?",
+    "options": [
+      "É lançada uma ClassCastException",
+      "É lançada uma NumberFormatException",
+      "Nenhuma exceção é lançada, e o programa imprime 4",
+      "É lançada uma NullPointerException",
+      "É lançada uma ArrayIndexOutOfBoundsException"
+    ],
+    "answer": 0,
+    "explanation": "Alternativa (a): Correta. O objeto em itens[1] é um Integer, e convertê-lo para String por meio de cast lança ClassCastException.\n\nAlternativa (b): Errada. NumberFormatException ocorre em conversões de texto para número, como Integer.parseInt, que não é usado aqui.\n\nAlternativa (c): Errada. O cast falha antes de o programa chegar à impressão.\n\nAlternativa (d): Errada. itens[1] não é null, pois referencia um objeto Integer.\n\nAlternativa (e): Errada. O índice 1 é válido em um vetor de tamanho 3.",
+    "source": "simulado 3.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado 3.pdf",
+        "question": 6,
+        "url": "https://drive.google.com/file/d/1IisAl-1ykawBo27qqH3RA_SEZHdAspOF/view"
+      }
+    ],
+    "code": "public class Inventario {\n  public static void main(String[] args) {\n    Object[] itens = new Object[3];\n    itens[0] = \"gato\";\n    itens[1] = Integer.valueOf(7);\n    String s = (String) itens[1];\n    System.out.println(s.length());\n  }\n}",
+    "tags": [
+      "Conversão de tipos",
+      "ClassCastException",
+      "Classes wrapper"
+    ],
+    "topic": "Conversão de tipos"
+  },
+  {
+    "id": "p3-01-07",
+    "prompt": "Considere o código Java abaixo. Qual alternativa descreve corretamente as chamadas c.depositar(40) e c.consultar()?",
+    "options": [
+      "Apenas métodos sem retorno podem representar mensagens.",
+      "As duas mensagens possuem o mesmo objeto receptor.",
+      "Apenas consultar() representa uma mensagem.",
+      "Cada chamada cria um novo objeto Conta.",
+      "As chamadas acessam diretamente o atributo saldo."
+    ],
+    "answer": 1,
+    "explanation": "Alternativa (a): Errada. Métodos com retorno também podem ser chamados.\n\nAlternativa (b): Certa. Ambas as mensagens são enviadas ao objeto referenciado por c.\n\nAlternativa (c): Errada. depositar(40) também é uma chamada de método.\n\nAlternativa (d): Errada. Os métodos são executados no objeto já existente.\n\nAlternativa (e): Errada. O acesso ao estado ocorre dentro dos métodos.",
+    "source": "simulado 3.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado 3.pdf",
+        "question": 7,
+        "url": "https://drive.google.com/file/d/1IisAl-1ykawBo27qqH3RA_SEZHdAspOF/view"
+      }
+    ],
+    "code": "class Conta {\n  private int saldo;\n    void depositar(int valor) {\n      saldo += valor;\n    }\n\n    int consultar() {\n      return saldo;\n    }\n\n    public static void main(String[] args) {\n      Conta c = new Conta();\n\n        c.depositar(40);\n        System.out.println(c.consultar());\n    }\n}",
+    "tags": [
+      "Mensagens e chamadas de métodos",
+      "Encapsulamento",
+      "Estado dos objetos"
+    ],
+    "topic": "Mensagens e chamadas de métodos"
+  },
+  {
+    "id": "p3-01-08",
+    "prompt": "Observe o seguinte código em Java (cada classe em seu arquivo):\n\nAssinale a alternativa correta:",
+    "options": [
+      "O código compila e a saída é \"0\" (zero).",
+      "Classe A compila, mas a Classe B não.",
+      "O código compila, mas gera uma exceção na execução.",
+      "O código compila e a saída é \"1\" (um).",
+      "Classe A não compila (e nem a classe B)."
+    ],
+    "answer": 4,
+    "explanation": "A classe A não compila, pois o método print é abstrato mas a classe não foi declarada como abstrata.",
+    "source": "simulado 3.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado 3.pdf",
+        "question": 8,
+        "url": "https://drive.google.com/file/d/1IisAl-1ykawBo27qqH3RA_SEZHdAspOF/view"
+      }
+    ],
+    "code": "public class A {\n  protected int i = 1;\n  public abstract void print();\n}\n\npublic class B extends A {\n  public void print() {\n    System.out.println(i);\n  }\n\n    public static void main(String[] args) {\n      B b = new B();\n      b.print();\n    }\n}",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Erros de compilação"
+    ],
+    "topic": "Classes e métodos abstratos"
+  },
+  {
+    "id": "p3-01-09",
+    "prompt": "Na orientação a objetos, a sobrecarga é utilizada por meio do conceito de:",
+    "options": [
+      "herança.",
+      "polimorfismo.",
+      "abstração.",
+      "encapsulamento.",
+      "agregação."
+    ],
+    "answer": 1,
+    "explanation": "Sobrecarga é considerado um tipo de polimorfismo, uma vez que a execução de um método (pelo nome dele) vai ter comportamento diferente dependendo dos parâmetros passados. Também conhecido como polimorfismo ad-hoc.",
+    "source": "simulado 3.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado 3.pdf",
+        "question": 9,
+        "url": "https://drive.google.com/file/d/1IisAl-1ykawBo27qqH3RA_SEZHdAspOF/view"
+      },
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos_ELAINE.pdf",
+        "question": 9,
+        "url": "https://drive.google.com/file/d/1T7K88E2lRHiByUJG61SI-ffv6Ycaptim/view"
+      }
+    ],
+    "tags": [
+      "Sobrecarga de métodos",
+      "Polimorfismo"
+    ],
+    "topic": "Sobrecarga de métodos"
+  },
+  {
+    "id": "p3-01-10",
+    "prompt": "Considere o código Java abaixo. Qual será a saída produzida pelo programa?",
+    "options": [
+      "String",
+      "int String",
+      "O programa não compila.",
+      "int",
+      "double"
+    ],
+    "answer": 3,
+    "explanation": "Alternativa (a): Errada. O argumento não é uma String.\n\nAlternativa (b): Errada. Apenas uma sobrecarga é escolhida.\n\nAlternativa (c): Errada. A chamada é válida.\n\nAlternativa (d): Certa. O argumento literal 7 possui tipo int.\n\nAlternativa (e): Errada. Existe uma sobrecarga mais adequada com int.",
+    "source": "simulado 3.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado 3.pdf",
+        "question": 10,
+        "url": "https://drive.google.com/file/d/1IisAl-1ykawBo27qqH3RA_SEZHdAspOF/view"
+      }
+    ],
+    "code": "class Canal {\n  void enviar(int valor) {\n    System.out.println(\"int\");\n  }\n\n    void enviar(String valor) {\n      System.out.println(\"String\");\n    }\n\n    void enviar(double valor) {\n      System.out.println(\"double\");\n    }\n\n    public static void main(String[] args) {\n      Canal c = new Canal();\n\n        c.enviar(7);\n    }\n}",
+    "tags": [
+      "Sobrecarga de métodos",
+      "Tipos primitivos"
+    ],
+    "topic": "Sobrecarga de métodos"
+  },
+  {
+    "id": "p3-02-01",
+    "prompt": "As figuras 1 e 2 a seguir representam classes.\n\nEm relação a orientação à objetos,",
+    "options": [
+      "na Fig. 2, está representada uma implementação na qual existe uma relação entre as classes, porém nenhuma delas depende da classe abstrata Figure.",
+      "na Fig. 1, as classes listradas não são afetadas quando a classe Canvas é alterada.",
+      "na Fig. 1, uma alteração em Canvas não afeta as classes Triangle, Square e Circle.",
+      "na Fig. 2, a classe abstrata Figure impede a propagação de alterações realizadas na classe Canvas.",
+      "na Fig. 2, uma alteração em Canvas afeta as classes Triangle, Square e Circle."
+    ],
+    "answer": 3,
+    "explanation": "Note que no diagrama de classes, a seta aponta para a classe que está sendo herdada.\n\nAlternativa (a): falsa, pois todas dependem da classe Figure.\n\nAlternativa (b): falsa, pois as classes listradas herdam a classe Canvas. Uma alteração em Canvas irá ser refletida nas outras classes que a herdam.\n\nAlternativa (c): falsa, pois tais classes herdam a classe Canvas.\n\nAlternativa (d): verdadeira, pois a classe Canvas herda a classe Figure.\n\nAlternativa (e): falsa, pois (olhando com atenção) tem-se que a classe Canvas herda a classe Figure. Como as outras classes também herdam a classe Figure, tem-se que estas classes (excluindo a Figure) estão todas no mesmo nível hierárquico e, portanto, uma alteração em uma não afetará as outras.",
+    "source": "Simulado_3_POO_Adri.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "Simulado_3_POO_Adri.pdf",
+        "question": 1,
+        "url": "https://drive.google.com/file/d/1prcENPMOdyAVpg3RS1Frg94nqm1av-ny/view"
+      },
+      {
+        "file": "simulado.pdf",
+        "question": 1,
+        "url": "https://drive.google.com/file/d/1aY6WRftqgkzJukOyrd73tGQADbTdjD95/view"
+      },
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos_ELAINE.pdf",
+        "question": 3,
+        "url": "https://drive.google.com/file/d/1T7K88E2lRHiByUJG61SI-ffv6Ycaptim/view"
+      },
+      {
+        "file": "simulado_pp3.pdf",
+        "question": 5,
+        "url": "https://drive.google.com/file/d/1oY0Av09eYsJ5FdSUlU72hS6qFPiR14Sj/view"
+      }
+    ],
+    "tags": [
+      "Herança",
+      "Classes e métodos abstratos",
+      "Acoplamento",
+      "Diagramas de classes"
+    ],
+    "topic": "Herança",
+    "context": "Descrição das figuras do PDF: na Fig. 1, Triangle, Square e Circle herdam diretamente de Canvas; Canvas e essas subclasses aparecem listradas. Na Fig. 2, Canvas, Triangle, Square e Circle herdam diretamente da classe abstrata Figure. Somente Canvas aparece listrada. As setas de generalização apontam para a superclasse.",
+    "note": "O diagrama foi transcrito em texto. A figura original está nos PDFs indicados abaixo."
+  },
+  {
+    "id": "p3-02-02",
+    "prompt": "Em relação à programação orientada a objetos, considere:\nI. A afirmação de que o estado de um objeto não deve ser acessado diretamente, mas sim por meio de métodos de acesso, está associada ao conceito de encapsulamento.\nII. A classe é constituída por atributos que representam os dados e operações que representam os métodos que podem ser executados.\nIII. Herança pode ser compreendida como a propriedade que uma classe tem em legar seus elementos constituintes à sua subclasse.\nIV. Um diagrama de objetos é um tipo especial de diagrama, composto por objetos e seus vínculos, que compartilha as mesmas propriedades comuns a todos os outros diagramas. Está correto o que se afirma em:",
+    "options": [
+      "I, III e IV, apenas.",
+      "I, II, III e IV.",
+      "III e IV, apenas.",
+      "II, III e IV, apenas.",
+      "I, II e IV, apenas."
+    ],
+    "answer": 1,
+    "explanation": "Afirmativa I: correta. O estado de um objeto é o valor de seus atributos. O princípio do encapsulamento recomenda que o acesso direto aos atributos seja impedido e que tal acesso seja feito através de métodos (e.g., getters e setters).\n\nAfirmativa IV: correta. O diagrama de objetos existe e é uma variação do diagrama de classes e utiliza quase a mesma notação. A diferença é que o diagrama de objetos mostra os objetos que foram instanciados das classes [Wikipedia]. Note que mesmo que você não soubesse disso, esta afirmativa aparece como verdadeira em todas as alternativas.",
+    "source": "Simulado_3_POO_Adri.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "Simulado_3_POO_Adri.pdf",
+        "question": 2,
+        "url": "https://drive.google.com/file/d/1prcENPMOdyAVpg3RS1Frg94nqm1av-ny/view"
+      },
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos-4.pdf",
+        "question": 2,
+        "url": "https://drive.google.com/file/d/12urdVENaDqj2ZnJhZb9AbmvFX5lME0SG/view"
+      }
+    ],
+    "tags": [
+      "Encapsulamento",
+      "Classes e objetos",
+      "Herança",
+      "Diagramas de objetos"
+    ],
+    "topic": "Encapsulamento"
+  },
+  {
+    "id": "p3-02-03",
+    "prompt": "Os dois principais paradigmas de programação amplamente conhecidos são o paradigma orientado a objetos e o procedural. Na orientação a objetos,",
+    "options": [
+      "uma classe pode conter vários métodos com o mesmo nome, se recebem parâmetros diferentes.",
+      "ocorre herança múltipla quando uma superclasse herda características de mais de uma subclasse.",
+      "um método representa uma propriedade da classe, semelhante a um campo em uma tabela.",
+      "só é permitido um construtor em cada classe, independente da linguagem de programação utilizada.",
+      "a marca de um produto é considerada uma classe, porém, o preço é considerado um atributo."
+    ],
+    "answer": 0,
+    "explanation": "Alternativa (b): herança múltipla é quando uma classe herda duas ou mais classes. O Java não implementa herança múltipla, ao contrário do C++.\n\nAlternativa (c): um método representa uma operação, um serviço.\n\nAlternativa (d): vários construtores podem existir através da sobrecarga.\n\nAlternativa (e): marca e preço são ambos atributos da classe produto.",
+    "source": "Simulado_3_POO_Adri.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "Simulado_3_POO_Adri.pdf",
+        "question": 3,
+        "url": "https://drive.google.com/file/d/1prcENPMOdyAVpg3RS1Frg94nqm1av-ny/view"
+      }
+    ],
+    "tags": [
+      "Sobrecarga de métodos",
+      "Construtores",
+      "Herança múltipla",
+      "Classes e objetos"
+    ],
+    "topic": "Sobrecarga de métodos"
+  },
+  {
+    "id": "p3-02-04",
+    "prompt": "Sobre métodos estáticos em Java, assinale a alternativa correta.",
+    "options": [
+      "Um método estático possui automaticamente uma cópia para cada objeto criado.",
+      "Um método estático somente pode ser executado depois da criação de um objeto da classe.",
+      "Um método estático não pode possuir parâmetros.",
+      "Um método estático pode acessar diretamente qualquer atributo de instância da classe.",
+      "Um método estático pode ser executado usando diretamente o nome da classe, sem a necessidade de uma instância."
+    ],
+    "answer": 4,
+    "explanation": "Alternativa (a): Errada. Métodos estáticos pertencem à classe.\n\nAlternativa (b): Errada. Métodos estáticos não exigem a criação de uma instância.\n\nAlternativa (c): Errada. Métodos estáticos podem possuir parâmetros.\n\nAlternativa (d): Errada. Métodos estáticos não acessam diretamente atributos de instância.\n\nAlternativa (e): Correta. Eles podem ser chamados diretamente pelo nome da classe.",
+    "source": "Simulado_3_POO_Adri.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "Simulado_3_POO_Adri.pdf",
+        "question": 4,
+        "url": "https://drive.google.com/file/d/1prcENPMOdyAVpg3RS1Frg94nqm1av-ny/view"
+      }
+    ],
+    "tags": [
+      "Métodos estáticos",
+      "Métodos de instância"
+    ],
+    "topic": "Métodos estáticos"
+  },
+  {
+    "id": "p3-02-05",
+    "prompt": "Observe o seguinte código em Java (cada classe em seu arquivo):\n\nAssinale a alternativa correta:",
+    "options": [
+      "Classe A não compila (e nem a classe B).",
+      "O código compila e a saída é \"1\" (um).",
+      "O código compila, mas gera uma exceção na execução.",
+      "Classe A compila, mas a Classe B não.",
+      "O código compila e a saída é \"0\" (zero)."
+    ],
+    "answer": 4,
+    "explanation": "Tudo normal com este código.\n\nComo a classe B implementa o método print (que é abstrato na classe A), esta passa a ser uma classe concreta e, portanto, pode ser instanciada.\n\nAlém disso, note que o atributo i não é inicializado na classe A e, portanto, será automaticamente inicializado para 0 (zero).",
+    "source": "Simulado_3_POO_Adri.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "Simulado_3_POO_Adri.pdf",
+        "question": 5,
+        "url": "https://drive.google.com/file/d/1prcENPMOdyAVpg3RS1Frg94nqm1av-ny/view"
+      }
+    ],
+    "code": "public abstract class A {\n  protected int i;\n  public abstract void print();\n}\n\npublic class B extends A {\n  public void print() {\n    System.out.println(i);\n  }\n\n    public static void main(String[] args) {\n      B b = new B();\n      b.print();\n    }\n}",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Sobrescrita de métodos",
+      "Inicialização de variáveis",
+      "Modificador protected"
+    ],
+    "topic": "Classes e métodos abstratos"
+  },
+  {
+    "id": "p3-02-06",
+    "prompt": "Dentro do paradigma de programação orientada a objetos (POO), há um mecanismo pelo qual uma classe pode estender outra classe, aproveitando seus métodos e atributos. Assinale a alternativa que apresenta o nome desse mecanismo.",
+    "options": [
+      "encapsulamento",
+      "herança",
+      "subclasse",
+      "polimorfismo",
+      "mensagem"
+    ],
+    "answer": 1,
+    "explanation": "O mecanismo é a herança: uma subclasse estende uma superclasse, aproveitando seus membros acessíveis e podendo adicionar ou redefinir comportamentos.",
+    "source": "Simulado_3_POO_Adri.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "Simulado_3_POO_Adri.pdf",
+        "question": 6,
+        "url": "https://drive.google.com/file/d/1prcENPMOdyAVpg3RS1Frg94nqm1av-ny/view"
+      }
+    ],
+    "tags": [
+      "Herança",
+      "Reuso de código"
+    ],
+    "topic": "Herança"
+  },
+  {
+    "id": "p3-02-07",
+    "prompt": "Considere o programa Java abaixo:\n\nO que será impresso na saída padrão ao executar o programa?",
+    "options": [
+      "0F1FEF",
+      "0FEF2F",
+      "0FE2F",
+      "0EF2",
+      "0F1F2F"
+    ],
+    "answer": 0,
+    "explanation": "Alternativa (a): Correta. Para i = 0 imprime \"0F\", para i = 1 imprime \"1F\" e para i = 2 a exceção faz o catch imprimir \"E\" e o finally imprimir \"F\".\n\nAlternativa (b): Errada. A exceção ocorre quando i vale 2, e não 1.\n\nAlternativa (c): Errada. A sequência não corresponde à ordem de execução, pois a exceção só ocorre na última repetição.\n\nAlternativa (d): Errada. O finally é executado em todas as repetições, então \"F\" aparece três vezes.\n\nAlternativa (e): Errada. Quando i vale 2, a exceção impede a impressão do número.",
+    "source": "Simulado_3_POO_Adri.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "Simulado_3_POO_Adri.pdf",
+        "question": 7,
+        "url": "https://drive.google.com/file/d/1prcENPMOdyAVpg3RS1Frg94nqm1av-ny/view"
+      }
+    ],
+    "code": "public class Laco {\n  public static void main(String[] args) {\n    for (int i = 0; i < 3; i++) {\n      try {\n        if (i == 2) {\n          throw new RuntimeException();\n        }\n        System.out.print(i);\n      } catch (RuntimeException e) {\n        System.out.print(\"E\");\n      } finally {\n        System.out.print(\"F\");\n      }\n    }\n  }\n}",
+    "tags": [
+      "try/catch/finally",
+      "Fluxo de execução",
+      "Laços de repetição"
+    ],
+    "topic": "try/catch/finally"
+  },
+  {
+    "id": "p3-02-08",
+    "prompt": "Analise as seguintes afirmativas.\nI. Encapsulamento consiste no processo de ocultação dos detalhes internos de implementação de um objeto.\nII. Polimorfismo é capacidade de uma operação atuar de modos diversos em classes diferentes.\nIII. Herança é o compartilhamento de atributos e métodos entre classes com base em um relacionamento hierárquico.\nIV. Sobreposição é a redefinição das funções de um método herdado. Os métodos apresentam assinaturas iguais.\nV. Em JAVA, todos os métodos numa classe abstrata devem ser declarados como abstratos. A partir da análise, pode-se concluir que",
+    "options": [
+      "apenas a afirmativa V é falsa.",
+      "todas as afirmativas são falsas.",
+      "apenas a afirmativa IV é correta.",
+      "apenas as afirmativas I, II e III são falsas.",
+      "todas as afirmativas estão corretas."
+    ],
+    "answer": 0,
+    "explanation": "Afirmativa V: uma classe abstrata pode conter sim métodos concretos. Mas uma classe que possui pelo menos um método abstrato, deve obrigatoriamente ser declarada como abstrata.",
+    "source": "Simulado_3_POO_Adri.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "Simulado_3_POO_Adri.pdf",
+        "question": 8,
+        "url": "https://drive.google.com/file/d/1prcENPMOdyAVpg3RS1Frg94nqm1av-ny/view"
+      },
+      {
+        "file": "simulado.pdf",
+        "question": 3,
+        "url": "https://drive.google.com/file/d/1aY6WRftqgkzJukOyrd73tGQADbTdjD95/view"
+      }
+    ],
+    "tags": [
+      "Encapsulamento",
+      "Polimorfismo",
+      "Herança",
+      "Sobrescrita de métodos",
+      "Classes e métodos abstratos"
+    ],
+    "topic": "Encapsulamento"
+  },
+  {
+    "id": "p3-02-09",
+    "prompt": "Considere o código abaixo. O que ocorre ao tentar compilá-lo e executá-lo?",
+    "options": [
+      "O código não compila, pois Robo implementa uma interface.",
+      "O programa imprime M.",
+      "O código compila, mas causa um erro durante a execução.",
+      "O programa imprime MP.",
+      "O programa imprime P."
+    ],
+    "answer": 4,
+    "explanation": "Alternativa (a): Errada. Uma classe pode implementar uma interface normalmente.\n\nAlternativa (b): Errada. O método chamado é parar().\n\nAlternativa (c): Errada. O programa executa normalmente.\n\nAlternativa (d): Errada. Apenas parar() é chamado.\n\nAlternativa (e): Certa. A referência é do tipo Robo e possui esse método.",
+    "source": "Simulado_3_POO_Adri.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "Simulado_3_POO_Adri.pdf",
+        "question": 9,
+        "url": "https://drive.google.com/file/d/1prcENPMOdyAVpg3RS1Frg94nqm1av-ny/view"
+      },
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos-4.pdf",
+        "question": 7,
+        "url": "https://drive.google.com/file/d/12urdVENaDqj2ZnJhZb9AbmvFX5lME0SG/view"
+      }
+    ],
+    "code": "interface Movel {\n  void mover();\n}\n\nclass Robo implements Movel {\n  public void mover() {\n    System.out.print(\"M\");\n  }\n\n    public void parar() {\n      System.out.print(\"P\");\n    }\n    public static void main(String[] args) {\n      Robo r = new Robo();\n      r.parar();\n    }\n}",
+    "tags": [
+      "Interfaces",
+      "Métodos de instância",
+      "Mensagens e chamadas de métodos"
+    ],
+    "topic": "Interfaces"
+  },
+  {
+    "id": "p3-02-10",
+    "prompt": "Considere a interface, a classe abstrata e a classe concreta abaixo. Assinale a alternativa que descreve corretamente o resultado.",
+    "options": [
+      "O programa imprime 3.0.",
+      "O código não compila, pois Quadrado não implementa area().",
+      "O código não compila, pois FormaBase é abstrata.",
+      "O programa imprime 9.0.",
+      "O programa imprime 0.0."
+    ],
+    "answer": 4,
+    "explanation": "Alternativa (a): Errada. Nenhum método retorna o valor do lado.\n\nAlternativa (b): Errada. area() já foi implementado pela superclasse.\n\nAlternativa (c): Errada. Uma classe concreta pode herdar de uma classe abstrata.\n\nAlternativa (d): Errada. Quadrado não sobrepõe area().\n\nAlternativa (e): Certa. Quadrado herda a implementação que retorna 0.0.",
+    "source": "Simulado_3_POO_Adri.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "Simulado_3_POO_Adri.pdf",
+        "question": 10,
+        "url": "https://drive.google.com/file/d/1prcENPMOdyAVpg3RS1Frg94nqm1av-ny/view"
+      }
+    ],
+    "code": "interface Forma {\n  double area();\n}\nabstract class FormaBase implements Forma {\n  protected String nome;\n\n    FormaBase(String nome) {\n      this.nome = nome;\n    }\n    public double area() {\n      return 0.0;\n    }\n}\n\nclass Quadrado extends FormaBase {\n  private double lado;\n\n    Quadrado(double lado) {\n      super(\"Q\");\n      this.lado = lado;\n    }\n    public static void main(String[] args) {\n      Forma f = new Quadrado(3);\n      System.out.print(f.area());\n    }\n}",
+    "tags": [
+      "Interfaces",
+      "Classes e métodos abstratos",
+      "Herança",
+      "Sobrescrita de métodos"
+    ],
+    "topic": "Interfaces"
+  },
+  {
+    "id": "p3-03-02",
+    "prompt": "Uma pizzaria fez uma ampliação de suas instalações e o gerente aproveitou para melhorar o sistema informatizado, que era limitado e não atendia a todas as funções necessárias. O gerente contratou uma empresa para ampliar o software. No desenvolvimento do novo sistema, a empresa aproveitou partes do sistema antigo e estendeu os componentes para usar código validado, acrescentando as novas funções solicitadas. Que conceito de orientação a objetos está descrito na situação?",
+    "options": [
+      "Sobreposição",
+      "Mensagem",
+      "Herança",
+      "Sobrecarga",
+      "Abstração"
+    ],
+    "answer": 2,
+    "explanation": "Herança é o conceito de orientação a objetos que permite pegar uma classe (código) existente e estendê-la com novas funcionalidades e/ou mudar a implementação das funcionalidades existentes.",
+    "source": "simulado.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado.pdf",
+        "question": 2,
+        "url": "https://drive.google.com/file/d/1aY6WRftqgkzJukOyrd73tGQADbTdjD95/view"
+      }
+    ],
+    "tags": [
+      "Herança",
+      "Reuso de código"
+    ],
+    "topic": "Herança"
+  },
+  {
+    "id": "p3-03-04",
+    "prompt": "Considere o código Java abaixo. Qual é o resultado da execução do programa?",
+    "options": [
+      "250.0",
+      "Erro de compilação, pois não é possível usar uma interface como tipo genérico de uma coleção",
+      "200.0",
+      "200",
+      "150.0"
+    ],
+    "answer": 0,
+    "explanation": "Alternativa (a): Correta. Dois Boleto (100 + 100) e um Pix (50) somam 250.0.\n\nAlternativa (b): Errada. Interfaces podem ser usadas como tipo genérico de coleções.\n\nAlternativa (c): Errada. Seria o total com um boleto e dois pix, mas aqui há dois boletos.\n\nAlternativa (d): Errada. O total é 250 e, por ser double, seria impresso com parte decimal.\n\nAlternativa (e): Errada. Seria o total com apenas um boleto e um pix.",
+    "source": "simulado.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado.pdf",
+        "question": 4,
+        "url": "https://drive.google.com/file/d/1aY6WRftqgkzJukOyrd73tGQADbTdjD95/view"
+      }
+    ],
+    "code": "import java.util.ArrayList;\nimport java.util.List;\n\ninterface Pagavel {\n    double valor();\n}\n\nclass Boleto implements Pagavel {\n    public double valor() { return 100; }\n}\n\nclass Pix implements Pagavel {\n    public double valor() { return 50; }\n}\n\npublic class Teste {\n    public static void main(String[] args) {\n        List<Pagavel> lista = new ArrayList<>();\n        lista.add(new Boleto());\n        lista.add(new Boleto());\n        lista.add(new Pix());\n        double total = 0;\n        for (Pagavel p : lista) total += p.valor();\n        System.out.println(total);\n    }\n}",
+    "tags": [
+      "Interfaces",
+      "Polimorfismo",
+      "ArrayList",
+      "Generics"
+    ],
+    "topic": "Interfaces"
+  },
+  {
+    "id": "p3-03-06",
+    "prompt": "Considere o código Java abaixo. Qual é a saída produzida por esse programa?",
+    "options": [
+      "2 30",
+      "Erro de compilação",
+      "2 20",
+      "3 30",
+      "3 20"
+    ],
+    "answer": 0,
+    "explanation": "Alternativa (a): Correta. Em um HashMap, chaves são únicas. O segundo put(\"Ana\", 30) sobrescreve o valor associado à chave \"Ana\", mantendo o tamanho do mapa em 2 (chaves \"Ana\" e \"Bruno\"), com get(\"Ana\") retornando 30.\n\nAlternativa (b): Incorreta. O código está sintaticamente correto e compila sem problemas.\n\nAlternativa (c): Incorreta. O último put(\"Ana\", 30) sobrescreve o valor anterior (20), então get(\"Ana\") retorna 30, e não 20.\n\nAlternativa (d): Incorreta. Como a chave \"Ana\" já existia no mapa, o segundo put apenas atualiza o valor associado, sem criar uma nova entrada. O tamanho continua sendo 2.\n\nAlternativa (e): Incorreta. O tamanho do mapa é 2, pois a chave \"Ana\" não é duplicada, apenas atualizada.",
+    "source": "simulado.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado.pdf",
+        "question": 6,
+        "url": "https://drive.google.com/file/d/1aY6WRftqgkzJukOyrd73tGQADbTdjD95/view"
+      },
+      {
+        "file": "simulado_pp3.pdf",
+        "question": 6,
+        "url": "https://drive.google.com/file/d/1oY0Av09eYsJ5FdSUlU72hS6qFPiR14Sj/view"
+      }
+    ],
+    "code": "import java.util.HashMap;\n\npublic class Teste {\n    public static void main(String[] args) {\n        HashMap<String, Integer> idades = new HashMap<>();\n        idades.put(\"Ana\", 20);\n        idades.put(\"Bruno\", 25);\n        idades.put(\"Ana\", 30);\n        System.out.println(idades.size() + \" \" + idades.get(\"Ana\"));\n    }\n}",
+    "tags": [
+      "HashMap",
+      "Chaves e valores em mapas"
+    ],
+    "topic": "HashMap"
+  },
+  {
+    "id": "p3-03-07",
+    "prompt": "Considere a seguinte classe em Java. Marque a alternativa que indica corretamente o que acontecerá.",
+    "options": [
+      "Erro de compilação na linha \"System.out.print(j);\"",
+      "Nenhum erro. Saída: 0null",
+      "Erro de compilação na linha \"System.out.print(i);\"",
+      "Erro de compilação na linha \"void println() {\"",
+      "Nenhum erro. Saída: 00"
+    ],
+    "answer": 1,
+    "explanation": "Atributos de instância recebem valores padrão. O int i é inicializado com 0 e a referência Integer j é inicializada com null. Os dois print são executados sem separador, produzindo 0null. Não ocorre unboxing nesse print de j.",
+    "source": "simulado.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado.pdf",
+        "question": 7,
+        "url": "https://drive.google.com/file/d/1aY6WRftqgkzJukOyrd73tGQADbTdjD95/view"
+      }
+    ],
+    "code": "class Test {\n    int i;\n    Integer j;\n\n    void println() {\n        System.out.print(i);\n        System.out.print(j);\n    }\n\n    public static void main(String args[]) {\n        Test t = new Test();\n        t.println();\n    }\n}",
+    "tags": [
+      "Inicialização de variáveis",
+      "Tipos primitivos",
+      "Classes wrapper",
+      "Referências a objetos"
+    ],
+    "topic": "Inicialização de variáveis"
+  },
+  {
+    "id": "p3-03-08",
+    "prompt": "Em Java, referências podem ser alteradas durante a execução de um programa, fazendo com que determinados objetos deixem de ser alcançáveis. Considere o código. Após a execução das duas últimas instruções, considerando apenas as referências mostradas, quantos dos objetos criados com new Mensagem() estão elegíveis para coleta de lixo?",
+    "options": [
+      "Nenhum objeto.",
+      "Não é possível determinar porque m2 contém null.",
+      "Os dois objetos.",
+      "Apenas um objeto.",
+      "Três objetos."
+    ],
+    "answer": 3,
+    "explanation": "Alternativa (a): Errada. O primeiro objeto tornou-se inalcançável.\n\nAlternativa (b): Errada. As referências mostradas permitem determinar a resposta.\n\nAlternativa (c): Errada. O segundo objeto ainda é referenciado por m1.\n\nAlternativa (d): Certa. O primeiro objeto fica sem referência, mas o segundo continua em m1.\n\nAlternativa (e): Errada. Apenas dois objetos foram criados.",
+    "source": "simulado.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado.pdf",
+        "question": 8,
+        "url": "https://drive.google.com/file/d/1aY6WRftqgkzJukOyrd73tGQADbTdjD95/view"
+      }
+    ],
+    "code": "class Mensagem {\n    String texto;\n}\n\npublic class Teste {\n    public static void main(String[] args) {\n        Mensagem m1 = new Mensagem();\n        Mensagem m2 = new Mensagem();\n\n        m1 = m2;\n        m2 = null;\n    }\n}",
+    "tags": [
+      "Coleta de lixo",
+      "Referências a objetos"
+    ],
+    "topic": "Coleta de lixo"
+  },
+  {
+    "id": "p3-03-10",
+    "prompt": "Considere o programa Java abaixo. O que será impresso na saída padrão ao executar o programa?",
+    "options": [
+      "0 0",
+      "110 -1",
+      "110 99",
+      "10 -1",
+      "10 -3"
+    ],
+    "answer": 3,
+    "explanation": "Alternativa (a): Errada. O finally não possui return, então não substitui os valores retornados.\n\nAlternativa (b): Errada. O finally não altera o valor retornado pelo try.\n\nAlternativa (c): Errada. O finally altera apenas a variável local v, sem modificar o valor já definido pelo return.\n\nAlternativa (d): Correta. processar(5) retorna 10 e processar(-3) lança a exceção, cujo catch retorna -1. A alteração de v no finally ocorre depois que o valor de retorno já foi calculado.\n\nAlternativa (e): Errada. O catch retorna a constante -1, e não o valor de v.",
+    "source": "simulado.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado.pdf",
+        "question": 10,
+        "url": "https://drive.google.com/file/d/1aY6WRftqgkzJukOyrd73tGQADbTdjD95/view"
+      }
+    ],
+    "code": "public class Calculo {\n    static int processar(int v) {\n        try {\n            if (v < 0) {\n                throw new IllegalArgumentException();\n            }\n            return v * 2;\n        } catch (IllegalArgumentException e) {\n            return -1;\n        } finally {\n            v = v + 100;\n        }\n    }\n\n    public static void main(String[] args) {\n        System.out.print(processar(5) + \" \" + processar(-3));\n    }\n}",
+    "tags": [
+      "try/catch/finally",
+      "Retorno de métodos",
+      "Fluxo de execução"
+    ],
+    "topic": "try/catch/finally"
+  },
+  {
+    "id": "p3-04-01",
+    "prompt": "Considere o código Java abaixo:\n\nQual é o resultado da execução do programa?",
+    "options": [
+      "40",
+      "1020",
+      "30",
+      "20",
+      "Erro de compilação, pois MAX é implicitamente final e não pode ser modificado"
+    ],
+    "answer": 2,
+    "explanation": "Alternativa (a): Errada. Não há nenhuma operação que resulte em 40.\n\nAlternativa (b): Errada. Os dois operandos são int, então ocorre soma aritmética, não concatenação.\n\nAlternativa (c): Correta. Config.MAX vale 10 e s.limite() retorna 20, totalizando 30.\n\nAlternativa (d): Errada. limite() retorna 20 (10 * 2) e somado a Config.MAX (10) resulta em 30.\n\nAlternativa (e): Errada. MAX é final, mas o código apenas lê seu valor, sem modificá-lo.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos_ELAINE.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos_ELAINE.pdf",
+        "question": 1,
+        "url": "https://drive.google.com/file/d/1T7K88E2lRHiByUJG61SI-ffv6Ycaptim/view"
+      }
+    ],
+    "code": "interface Config {\n  int MAX = 10;\n}\nclass Servidor implements Config {\n  int limite() {\n    return MAX * 2;\n  }\n}\npublic class Teste {\n  public static void main(String[] args) {\n    Servidor s = new Servidor();\n    System.out.println(Config.MAX + s.limite());\n  }\n}",
+    "tags": [
+      "Interfaces",
+      "Constantes em interfaces",
+      "Modificador final"
+    ],
+    "topic": "Interfaces"
+  },
+  {
+    "id": "p3-04-02",
+    "prompt": "Os operadores *, /, e % são chamados de operadores multiplicativos. Eles possuem a mesma precedência e são executados da esquerda para a direita (left-associative). Sabendo disso, considere o programa a seguir (Fonte: Bloch e Gafter, 2005):\n\nEste programa imprime:",
+    "options": [
+      "60000",
+      "3600",
+      "60",
+      "0",
+      "3600000"
+    ],
+    "answer": 0,
+    "explanation": "O programa imprime 60000. Como % e * têm a mesma precedência e são avaliados da esquerda para a direita, ms % 60*1000 significa (ms % 60) * 1000. A condição é verdadeira para todo múltiplo de 60. Entre 0 e 3599999, inclusive, existem 60000 desses valores.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos_ELAINE.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos_ELAINE.pdf",
+        "question": 2,
+        "url": "https://drive.google.com/file/d/1T7K88E2lRHiByUJG61SI-ffv6Ycaptim/view"
+      }
+    ],
+    "code": "public class Clock {\n  public static void main(String[] args) {\n    int minutes = 0;\n    for (int ms = 0; ms < 60*60*1000; ms++)\n      if (ms % 60*1000 == 0)\n        minutes++;\n    System.out.println(minutes);\n  }\n}",
+    "tags": [
+      "Precedência de operadores",
+      "Operador de resto",
+      "Laços de repetição"
+    ],
+    "topic": "Precedência de operadores"
+  },
+  {
+    "id": "p3-04-04",
+    "prompt": "Considere a seguinte hierarquia:\n\nAssinale a alternativa correta.",
+    "options": [
+      "B pode deixar valor() sem implementação porque também é abstrata, mas C precisa implementá-lo para ser concreta.",
+      "B não pode herdar de A porque ambas são abstratas.",
+      "C pode deixar valor() sem implementação porque B não o implementou.",
+      "B precisa obrigatoriamente implementar valor().",
+      "C é automaticamente abstrata por herdar indiretamente de A."
+    ],
+    "answer": 0,
+    "explanation": "Alternativa (a): Correta. A obrigação de implementar valor() pode permanecer até a primeira subclasse concreta.\n\nAlternativa (b): Errada. Uma classe abstrata pode herdar de outra classe abstrata.\n\nAlternativa (c): Errada. Uma classe concreta precisa implementar os métodos abstratos ainda não implementados.\n\nAlternativa (d): Errada. Como B também é abstrata, ela pode deixar o método sem implementação.\n\nAlternativa (e): Errada. Uma classe pode ser concreta mesmo herdando de classes abstratas, desde que implemente os métodos abstratos necessários.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos_ELAINE.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos_ELAINE.pdf",
+        "question": 4,
+        "url": "https://drive.google.com/file/d/1T7K88E2lRHiByUJG61SI-ffv6Ycaptim/view"
+      }
+    ],
+    "code": "abstract class A {\n  public abstract int valor();\n}\n\nabstract class B extends A {\n}\nclass C extends B {\n  @Override\n  public int valor() {\n    return 42;\n  }\n}",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Herança",
+      "Sobrescrita de métodos"
+    ],
+    "topic": "Classes e métodos abstratos"
+  },
+  {
+    "id": "p3-04-05",
+    "prompt": "Considere a declaração static void executar() throws Exception e, dentro do método, o comando throw new Exception(\"falha\");. Qual alternativa descreve corretamente o papel de throws e throw?",
+    "options": [
+      "throws declara a possível propagação e throw dispara a exceção.",
+      "Os dois comandos possuem exatamente a mesma função.",
+      "throws dispara a exceção e throw apenas a documenta.",
+      "throw declara exceções e throws captura exceções.",
+      "throw somente pode ser usado com exceções não verificadas."
+    ],
+    "answer": 0,
+    "explanation": "Alternativa (a): Certa. throws declara e throw efetivamente dispara a exceção.\n\nAlternativa (b): Errada. throw e throws possuem funções diferentes.\n\nAlternativa (c): Errada. Os papéis dos comandos foram invertidos.\n\nAlternativa (d): Errada. throw dispara uma exceção e não realiza captura.\n\nAlternativa (e): Errada. throw também pode disparar exceções verificadas.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos_ELAINE.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos_ELAINE.pdf",
+        "question": 5,
+        "url": "https://drive.google.com/file/d/1T7K88E2lRHiByUJG61SI-ffv6Ycaptim/view"
+      }
+    ],
+    "tags": [
+      "throw e throws",
+      "Exceções verificadas"
+    ],
+    "topic": "throw e throws"
+  },
+  {
+    "id": "p3-04-07",
+    "prompt": "Analise o código abaixo e assinale a alternativa correta.",
+    "options": [
+      "O código compila, mas causa um erro durante a execução.",
+      "O programa imprime 10.",
+      "O código não compila, pois interfaces não podem possuir atributos.",
+      "O programa imprime 20.",
+      "O programa imprime 0."
+    ],
+    "answer": 1,
+    "explanation": "Alternativa (a): Errada. O programa executa normalmente.\n\nAlternativa (b): Certa. LIMITE possui o valor 10.\n\nAlternativa (c): Errada. Interfaces podem declarar constantes.\n\nAlternativa (d): Errada. O valor declarado é 10.\n\nAlternativa (e): Errada. A constante foi explicitamente inicializada.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos_ELAINE.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos_ELAINE.pdf",
+        "question": 7,
+        "url": "https://drive.google.com/file/d/1T7K88E2lRHiByUJG61SI-ffv6Ycaptim/view"
+      }
+    ],
+    "code": "interface Config {\n  int LIMITE = 10;\n}\nclass Sistema implements Config {\n  public static void main(String[] args) {\n    System.out.print(LIMITE);\n  }\n}",
+    "tags": [
+      "Interfaces",
+      "Constantes em interfaces",
+      "Modificador final"
+    ],
+    "topic": "Interfaces"
+  },
+  {
+    "id": "p3-04-08",
+    "prompt": "Na linguagem Java, os operadores unários \"!\" e \"~\" estão relacionados à operação lógica de negação, no entanto, eles diferem entre si porque o operador",
+    "options": [
+      "\"~\" apenas pode ser utilizado sobre valores booleanos.",
+      "\"~\" calcula o complemento do operando bit-a-bit.",
+      "\"!\" apenas pode ser utilizado sobre valores numéricos inteiros.",
+      "\"!\" calcula o complemento do operando bit-a-bit.",
+      "\"~\" utiliza dois operandos ao invés de um."
+    ],
+    "answer": 1,
+    "explanation": "O operador ~ calcula o complemento bit a bit de um valor inteiro, invertendo cada bit. O operador ! faz a negação lógica de um booleano. Ambos são unários, ou seja, operam sobre um único operando.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos_ELAINE.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos_ELAINE.pdf",
+        "question": 8,
+        "url": "https://drive.google.com/file/d/1T7K88E2lRHiByUJG61SI-ffv6Ycaptim/view"
+      }
+    ],
+    "tags": [
+      "Operadores lógicos",
+      "Operadores bit a bit"
+    ],
+    "topic": "Operadores lógicos"
+  },
+  {
+    "id": "p3-04-10",
+    "prompt": "Considere o código Java abaixo:\n\nQual é a saída produzida por esse programa?",
+    "options": [
+      "BAC258",
+      "258",
+      "BAC",
+      "ABC",
+      "Erro de compilação"
+    ],
+    "answer": 3,
+    "explanation": "Alternativa (a): Incorreta. O código imprime apenas as iniciais das chaves, sem incluir os valores associados.\n\nAlternativa (b): Incorreta. O código imprime a primeira letra de cada chave (String), não os valores numéricos associados a elas.\n\nAlternativa (c): Incorreta. Essa seria a ordem de inserção das chaves, mas o TreeMap reordena as chaves alfabeticamente, e não pela ordem de inserção.\n\nAlternativa (d): Correta. Um TreeMap mantém suas chaves ordenadas automaticamente segundo a ordem natural. As chaves \"Abacaxi\", \"Banana\" e \"Cereja\", em ordem alfabética, iniciam com A, B e C, respectivamente.\n\nAlternativa (e): Incorreta. O código está sintaticamente correto e compila sem problemas.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos_ELAINE.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos_ELAINE.pdf",
+        "question": 10,
+        "url": "https://drive.google.com/file/d/1T7K88E2lRHiByUJG61SI-ffv6Ycaptim/view"
+      }
+    ],
+    "code": "import java.util.TreeMap;\n\npublic class Teste {\n  public static void main(String[] args) {\n    TreeMap<String, Integer> mapa = new TreeMap<>();\n    mapa.put(\"Banana\", 2);\n    mapa.put(\"Abacaxi\", 5);\n    mapa.put(\"Cereja\", 8);\n    for (String chave : mapa.keySet()) {\n      System.out.print(chave.charAt(0));\n    }\n  }\n}",
+    "tags": [
+      "TreeMap",
+      "Ordenação de chaves",
+      "Chaves e valores em mapas"
+    ],
+    "topic": "TreeMap"
+  },
+  {
+    "id": "p3-05-01",
+    "prompt": "Sobre a herança de classes em Java, analise as afirmativas abaixo:\nI - Em Java, uma classe pode estender diretamente apenas uma única superclasse (herança simples), diferentemente do que ocorre com interfaces.\nII - Toda classe criada em Java, se não estender explicitamente nenhuma outra classe, estende implicitamente a classe Object.\nIII - É possível criar uma cadeia de herança com vários níveis, como uma classe C que estende B, que por sua vez estende A.\nIV - A palavra reservada extends é usada para indicar que uma classe implementa uma interface. Assinale a alternativa correta:",
+    "options": [
+      "Apenas I e II estão corretas",
+      "Apenas I, II e III estão corretas",
+      "I, II, III e IV estão corretas",
+      "Apenas II e IV estão corretas",
+      "Apenas III e IV estão corretas"
+    ],
+    "answer": 1,
+    "explanation": "I, II e III estão corretas: classes Java têm uma única superclasse direta; na ausência de extends, a superclasse usual é Object; e a herança pode formar cadeias com vários níveis. IV está errada: uma classe implementa interfaces com implements. Interfaces podem estender outras interfaces com extends.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+        "question": 1,
+        "url": "https://drive.google.com/file/d/1n0e9lKBxiztB41mTj1vGMSI5DXgDNDmp/view"
+      }
+    ],
+    "tags": [
+      "Herança",
+      "Herança múltipla",
+      "Interfaces",
+      "Classe Object"
+    ],
+    "topic": "Herança"
+  },
+  {
+    "id": "p3-05-02",
+    "prompt": "Considere o código Java abaixo:\n\nQual é o resultado da execução do programa?",
+    "options": [
+      "20",
+      "1020",
+      "30",
+      "Erro de compilação, pois MAX é implicitamente final e não pode ser modificado",
+      "40"
+    ],
+    "answer": 3,
+    "explanation": "Os campos declarados em interfaces são implicitamente public static final. MAX é uma constante inicializada com 10. Config.MAX++ tenta atribuir um novo valor a ela, causando erro de compilação antes de qualquer impressão.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+        "question": 2,
+        "url": "https://drive.google.com/file/d/1n0e9lKBxiztB41mTj1vGMSI5DXgDNDmp/view"
+      }
+    ],
+    "code": "interface Config {\n  int MAX = 10;\n}\n\nclass Servidor implements Config {\n  int limite() {\n    return MAX * 2;\n  }\n}\n\npublic class Teste {\n  public static void main(String[] args) {\n    Servidor s = new Servidor();\n    Config.MAX++;\n    System.out.println(Config.MAX + s.limite());\n  }\n}",
+    "tags": [
+      "Interfaces",
+      "Constantes em interfaces",
+      "Modificador final",
+      "Erros de compilação"
+    ],
+    "topic": "Interfaces"
+  },
+  {
+    "id": "p3-05-03",
+    "prompt": "Considere as seguintes afirmações sobre classes e métodos abstratos em Java:\n1. Uma classe abstrata não pode ser instanciada diretamente.\n2. Uma classe abstrata pode possuir construtores.\n3. Uma classe abstrata pode possuir atributos.\n4. Todo método declarado em uma classe abstrata deve obrigatoriamente ser abstrato. Assinale a alternativa correta.",
+    "options": [
+      "Apenas as afirmativas 1 e 2 estão corretas.",
+      "Apenas as afirmativas 2, 3 e 4 estão corretas.",
+      "Apenas as afirmativas 1 e 4 estão corretas.",
+      "Todas as afirmativas estão corretas.",
+      "Apenas as afirmativas 1, 2 e 3 estão corretas."
+    ],
+    "answer": 4,
+    "explanation": "As afirmativas 1, 2 e 3 estão corretas. Uma classe abstrata não pode ser instanciada diretamente, mas pode possuir construtores e atributos. A afirmativa 4 está errada: ela também pode declarar métodos concretos, com implementação.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+        "question": 3,
+        "url": "https://drive.google.com/file/d/1n0e9lKBxiztB41mTj1vGMSI5DXgDNDmp/view"
+      }
+    ],
+    "tags": [
+      "Classes e métodos abstratos",
+      "Construtores",
+      "Atributos de instância"
+    ],
+    "topic": "Classes e métodos abstratos"
+  },
+  {
+    "id": "p3-05-04",
+    "prompt": "Observe o seguinte código em Java (cada classe em seu arquivo):\n\nAssinale a alternativa correta:",
+    "options": [
+      "O código compila e a saída é \"1\" (um).",
+      "Classe A não compila (e nem a classe B).",
+      "O código compila e a saída é \"0\" (zero).",
+      "O código compila, mas gera uma exceção na execução.",
+      "Classe A compila, mas a Classe B não."
+    ],
+    "answer": 0,
+    "explanation": "O programa compila e imprime 1. A classe A foi declarada abstract e B implementa print() com a mesma assinatura e visibilidade public. O atributo protected i, herdado por B, foi inicializado explicitamente com 1 e pode ser acessado pelo método da subclasse.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+        "question": 4,
+        "url": "https://drive.google.com/file/d/1n0e9lKBxiztB41mTj1vGMSI5DXgDNDmp/view"
+      }
+    ],
+    "code": "public abstract class A {\n  protected int i = 1;\n  public abstract void print();\n}\npublic class B extends A {\n  public void print() {\n    System.out.println(i);\n  }\n\n    public static void main(String[] args) {\n      B b = new B();\n      b.print();\n    }\n}",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Sobrescrita de métodos",
+      "Modificador protected"
+    ],
+    "topic": "Classes e métodos abstratos"
+  },
+  {
+    "id": "p3-05-05",
+    "prompt": "O comportamento do operador % (resto), quando um dos operandos é negativo, varia de linguagem para linguagem. Em Java e C/C++, o resultado possui o mesmo sinal do dividendo, de forma que -6 % 5 resulta em -1. Já em Python e Perl, o resultado possui o mesmo sinal do divisor, de forma que -6 % 5 resulta em\n4. Sabendo disso, considere o seguinte método dentro de uma classe Java:\n\neste método:",
+    "options": [
+      "retorna verdadeiro caso i seja par",
+      "retorna verdadeiro caso i seja par e positivo",
+      "retorna verdadeiro caso i seja ímpar",
+      "gera erro na compilação",
+      "retorna verdadeiro caso i seja ímpar e positivo"
+    ],
+    "answer": 4,
+    "explanation": "O método retorna true apenas para inteiros ímpares positivos. Em Java, o resto tem o sinal do dividendo: 3 % 2 é 1, mas -3 % 2 é -1. Portanto, i % 2 == 1 não reconhece os ímpares negativos. Para reconhecer qualquer inteiro ímpar, pode-se testar i % 2 != 0.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+        "question": 5,
+        "url": "https://drive.google.com/file/d/1n0e9lKBxiztB41mTj1vGMSI5DXgDNDmp/view"
+      },
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos-4.pdf",
+        "question": 4,
+        "url": "https://drive.google.com/file/d/12urdVENaDqj2ZnJhZb9AbmvFX5lME0SG/view"
+      }
+    ],
+    "code": "public boolean numeroImpar(int i) {\n  return i % 2 == 1;\n}",
+    "tags": [
+      "Operador de resto",
+      "Números negativos",
+      "Expressões booleanas"
+    ],
+    "topic": "Operador de resto"
+  },
+  {
+    "id": "p3-05-06",
+    "prompt": "Analise as seguintes afirmativas.\nI. Encapsulamento é o compartilhamento de atributos e métodos entre classes com base em um relacionamento hierárquico.\nII. Polimorfismo é capacidade de uma operação atuar de modos diversos em classes diferentes.\nIII. Herança consiste no processo de ocultação dos detalhes internos de implementação de um objeto.\nIV. Sobreposição é a redefinição das funções de um método herdado. Os métodos apresentam assinaturas iguais.\nV. Em JAVA, todos os métodos numa classe abstrata devem ser declarados como abstratos. A partir da análise, pode-se concluir que",
+    "options": [
+      "apenas a afirmativa IV está correta.",
+      "apenas as afirmativas I, IV e V estão corretas.",
+      "apenas as afirmativas II e IV estão corretas.",
+      "todas as afirmativas são falsas.",
+      "apenas as afirmativas I, III e V estão corretas."
+    ],
+    "answer": 2,
+    "explanation": "Apenas II e IV estão corretas. II define corretamente polimorfismo e IV descreve a sobrescrita de um método herdado com a mesma assinatura. I descreve herança, não encapsulamento; III descreve encapsulamento, não herança. V está errada porque classes abstratas podem possuir métodos concretos.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+        "question": 6,
+        "url": "https://drive.google.com/file/d/1n0e9lKBxiztB41mTj1vGMSI5DXgDNDmp/view"
+      }
+    ],
+    "tags": [
+      "Encapsulamento",
+      "Polimorfismo",
+      "Herança",
+      "Sobrescrita de métodos",
+      "Classes e métodos abstratos"
+    ],
+    "topic": "Encapsulamento"
+  },
+  {
+    "id": "p3-05-07",
+    "prompt": "Considere o programa Java abaixo:\n\nO que será impresso na saída padrão ao executar o programa?",
+    "options": [
+      "12",
+      "5",
+      "8",
+      "4",
+      "10"
+    ],
+    "answer": 0,
+    "explanation": "A saída é 12. Integer.parseInt(\"4\") soma 4; \"x\" lança NumberFormatException e o catch soma 1; \"6\" soma 6; \"2.5\" também lança NumberFormatException, pois não representa um inteiro, e o catch soma mais 1. Total: 4 + 1 + 6 + 1 = 12.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+        "question": 7,
+        "url": "https://drive.google.com/file/d/1n0e9lKBxiztB41mTj1vGMSI5DXgDNDmp/view"
+      }
+    ],
+    "code": "public class Soma {\n  public static void main(String[] args) {\n    String[] valores = {\"4\", \"x\", \"6\", \"2.5\"};\n    int soma = 0;\n    for (int i = 0; i < valores.length; i++) {\n      try {\n        soma += Integer.parseInt(valores[i]);\n\n\n\n          } catch (NumberFormatException e) {\n            soma += 1;\n          }\n        }\n        System.out.print(soma);\n    }\n}",
+    "tags": [
+      "Integer.parseInt",
+      "NumberFormatException",
+      "try/catch/finally",
+      "Laços de repetição"
+    ],
+    "topic": "Integer.parseInt"
+  },
+  {
+    "id": "p3-05-08",
+    "prompt": "Analise as afirmativas a seguir sobre asserções em Java:\n1. Por padrão, a JVM executa os programas com as asserções desabilitadas.\n2. A opção -ea (ou -enableassertions) do comando java habilita as asserções.\n3. Quando uma asserção falha, é lançado um AssertionError.\n4. Quando as asserções estão desabilitadas, a expressão booleana do assert não é avaliada. Assinale a alternativa que contém apenas as afirmativas corretas:",
+    "options": [
+      "Apenas 1 e 2.",
+      "Apenas 2 e 4.",
+      "Apenas 1, 2 e 4.",
+      "1, 2, 3 e 4.",
+      "Apenas 1, 3 e 4."
+    ],
+    "answer": 3,
+    "explanation": "Todas as afirmativas estão corretas. As asserções ficam desabilitadas por padrão e podem ser habilitadas com -ea ou -enableassertions. Uma asserção habilitada cuja condição é false lança AssertionError. Quando está desabilitada, a expressão do assert não é avaliada.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+        "question": 8,
+        "url": "https://drive.google.com/file/d/1n0e9lKBxiztB41mTj1vGMSI5DXgDNDmp/view"
+      }
+    ],
+    "tags": [
+      "Asserções",
+      "AssertionError",
+      "JVM"
+    ],
+    "topic": "Asserções"
+  },
+  {
+    "id": "p3-05-09",
+    "prompt": "No código Java a seguir, verifica-se que o bloco finally será executado",
+    "options": [
+      "de qualquer forma.",
+      "apenas se nenhuma exceção for levantada.",
+      "apenas se uma exceção for levantada.",
+      "apenas se a exceção levantada não for tratada no bloco catch.",
+      "apenas se a exceção levantada for tratada no bloco catch."
+    ],
+    "answer": 0,
+    "explanation": "A alternativa esperada é “de qualquer forma”: no fluxo normal da linguagem, finally é executado quando o try/catch termina, tanto com exceção quanto sem ela, inclusive quando há return. Isso não significa uma garantia absoluta se a JVM for encerrada, por exemplo com System.exit, ou se o fluxo nunca sair do try.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+        "question": 9,
+        "url": "https://drive.google.com/file/d/1n0e9lKBxiztB41mTj1vGMSI5DXgDNDmp/view"
+      }
+    ],
+    "code": "try {\n  ...\n} catch( ... ) {\n  ...\n} finally {\n  ...\n}",
+    "tags": [
+      "try/catch/finally",
+      "Fluxo de execução"
+    ],
+    "topic": "try/catch/finally"
+  },
+  {
+    "id": "p3-05-10",
+    "prompt": "Sobre a hierarquia de exceções em Java, analise as afirmativas abaixo:\n1. Exceções que herdam de RuntimeException são não verificadas (unchecked), e o compilador não exige que sejam tratadas com try/catch nem declaradas com throws.\n2. Uma exceção criada pelo programador que herda diretamente de Exception é verificada (checked) e, quando lançada em um método, deve ser tratada com try/catch ou declarada com throws.\n3. A classe Error e suas subclasses, como OutOfMemoryError, representam problemas graves do ambiente de execução que normalmente não são tratados pela aplicação.\n4. NullPointerException é uma exceção verificada e, por isso, todo método que acessa atributos ou métodos por meio de uma referência precisa declarar throws NullPointerException. Assinale a alternativa que contém apenas as afirmativas corretas:",
+    "options": [
+      "Apenas 1 e 3",
+      "Apenas 2 e 4",
+      "Apenas 1, 2 e 3",
+      "Apenas 3 e 4",
+      "1, 2, 3 e 4"
+    ],
+    "answer": 2,
+    "explanation": "As afirmativas 1, 2 e 3 estão corretas. RuntimeException e suas subclasses são exceções não verificadas. Uma exceção que herda diretamente de Exception é verificada e deve ser tratada ou declarada quando lançada. Error normalmente representa problemas graves da execução. A afirmativa 4 está errada: NullPointerException herda de RuntimeException e não exige declaração com throws.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+        "question": 10,
+        "url": "https://drive.google.com/file/d/1n0e9lKBxiztB41mTj1vGMSI5DXgDNDmp/view"
+      },
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos-4.pdf",
+        "question": 10,
+        "url": "https://drive.google.com/file/d/12urdVENaDqj2ZnJhZb9AbmvFX5lME0SG/view"
+      }
+    ],
+    "tags": [
+      "Hierarquia de exceções",
+      "Exceções verificadas",
+      "Exceções não verificadas",
+      "Error e RuntimeException"
+    ],
+    "topic": "Hierarquia de exceções"
+  },
+  {
+    "id": "p3-06-01",
+    "prompt": "Considere o código Java abaixo:\n\nSobre esse código, é correto afirmar que:",
+    "options": [
+      "O código não compila, pois toda classe abstrata deve conter pelo menos um método abstrato.",
+      "A classe UtilitarioConcreto também precisa ser declarada abstract, pois herda de uma classe abstrata.",
+      "É válido declarar uma classe como abstract mesmo sem possuir nenhum método abstrato, apenas para impedir sua instanciação direta.",
+      "É lançada uma exceção em tempo de execução ao tentar instanciar UtilitarioConcreto.",
+      "O método mostrarMensagem() precisa ser sobreposto em UtilitarioConcreto para o código compilar."
+    ],
+    "answer": 2,
+    "explanation": "Uma classe pode ser abstract sem declarar nenhum método abstrato. Isso impede apenas sua instanciação direta. UtilitarioConcreto herda o método concreto mostrarMensagem(), pode ser instanciada normalmente e, neste programa, imprime Ola!.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos-4.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos-4.pdf",
+        "question": 1,
+        "url": "https://drive.google.com/file/d/12urdVENaDqj2ZnJhZb9AbmvFX5lME0SG/view"
+      }
+    ],
+    "code": "abstract class Utilitario {\n  void mostrarMensagem() {\n    System.out.println(\"Ola!\");\n  }\n}\n\nclass UtilitarioConcreto extends Utilitario {\n}\n\npublic class Teste {\n  public static void main(String[] args) {\n    UtilitarioConcreto u = new UtilitarioConcreto();\n    u.mostrarMensagem();\n  }\n}",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Herança"
+    ],
+    "topic": "Classes e métodos abstratos"
+  },
+  {
+    "id": "p3-06-03",
+    "prompt": "Sobre orientação a objetos, é INCORRETO afirmar:",
+    "options": [
+      "um objeto pode existir mesmo que não exista nenhum evento a ele associado.",
+      "um construtor visa inicializar os atributos e pode ser executado automaticamente sempre que um novo objeto é criado.",
+      "os conceitos de generalização e especialização da orientação a objetos estão diretamente associados ao conceito de herança.",
+      "polimorfismo é o princípio pelo qual duas ou mais classes derivadas de uma mesma superclasse podem invocar métodos que têm a mesma assinatura e mesmo comportamento.",
+      "uma classe define o comportamento dos objetos através de seus métodos, e quais estados ele é capaz de manter através de seus atributos."
+    ],
+    "answer": 3,
+    "explanation": "A alternativa incorreta é a que exige o mesmo comportamento para os métodos polimórficos. No polimorfismo, subclasses podem fornecer implementações diferentes para métodos com a mesma assinatura. As demais alternativas descrevem corretamente herança, definição de classes, construtores e a independência entre a existência de um objeto e o tratamento de eventos.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos-4.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos-4.pdf",
+        "question": 3,
+        "url": "https://drive.google.com/file/d/12urdVENaDqj2ZnJhZb9AbmvFX5lME0SG/view"
+      }
+    ],
+    "tags": [
+      "Polimorfismo",
+      "Sobrescrita de métodos"
+    ],
+    "topic": "Polimorfismo"
+  },
+  {
+    "id": "p3-06-05",
+    "prompt": "Considere o programa Java abaixo:\n\nO que será impresso na saída padrão ao executar o programa?",
+    "options": [
+      "8",
+      "5",
+      "12",
+      "10",
+      "4"
+    ],
+    "answer": 0,
+    "explanation": "A saída é 8. Os textos \"4\" e \"6\" são convertidos normalmente, somando 10. \"x\" e \"2.5\" não são representações válidas de int e lançam NumberFormatException. Cada catch subtrai 1: 4 - 1 + 6 - 1 = 8.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos-4.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos-4.pdf",
+        "question": 5,
+        "url": "https://drive.google.com/file/d/12urdVENaDqj2ZnJhZb9AbmvFX5lME0SG/view"
+      }
+    ],
+    "code": "public class Soma {\n  public static void main(String[] args) {\n    String[] valores = {\"4\", \"x\", \"6\", \"2.5\"};\n    int soma = 0;\n    for (int i = 0; i < valores.length; i++) {\n      try {\n        soma += Integer.parseInt(valores[i]);\n      } catch (NumberFormatException e) {\n        soma -= 1;\n      }\n    }\n    System.out.print(soma);\n  }\n}",
+    "tags": [
+      "Integer.parseInt",
+      "NumberFormatException",
+      "try/catch/finally",
+      "Laços de repetição"
+    ],
+    "topic": "Integer.parseInt"
+  },
+  {
+    "id": "p3-06-06",
+    "prompt": "Sobre a linguagem Java e construtores, analise as afirmativas abaixo:\nI. Java permite apenas um método construtor por classe.\nII. Se um construtor não for especificado, um construtor implícito será criado automaticamente.\nIII. O método construtor pode ser executado explicitamente para o mesmo objeto quantas vezes for necessário.\nIV. O conceito de sobrecarga de métodos se aplica aos construtores.\nV. O construtor Java deve ter o mesmo nome da classe e não especifica retorno. Com base nas afirmativas acima, marque a alternativa CORRETA.",
+    "options": [
+      "Apenas as afirmativas I, III e V são verdadeiras.",
+      "Apenas as afirmativas I, II e V são verdadeiras.",
+      "Apenas as afirmativas I e V são verdadeiras.",
+      "Todas as afirmativas são verdadeiras.",
+      "Apenas as afirmativas II, IV e V são verdadeiras."
+    ],
+    "answer": 4,
+    "explanation": "II, IV e V são verdadeiras. Se uma classe não declara construtores, o compilador fornece um construtor padrão, sujeito às regras de acesso ao construtor da superclasse. Construtores podem ser sobrecarregados, têm o nome da classe e não declaram tipo de retorno. I é falsa porque pode haver vários construtores. III é falsa porque um construtor não pode ser chamado como um método comum para reinicializar repetidamente um objeto existente.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos-4.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos-4.pdf",
+        "question": 6,
+        "url": "https://drive.google.com/file/d/12urdVENaDqj2ZnJhZb9AbmvFX5lME0SG/view"
+      },
+      {
+        "file": "simulado_pp3.pdf",
+        "question": 7,
+        "url": "https://drive.google.com/file/d/1oY0Av09eYsJ5FdSUlU72hS6qFPiR14Sj/view"
+      }
+    ],
+    "tags": [
+      "Construtores",
+      "Construtor padrão",
+      "Sobrecarga de construtores"
+    ],
+    "topic": "Construtores"
+  },
+  {
+    "id": "p3-06-08",
+    "prompt": "Considere o programa Java abaixo:\n\nO que será impresso na saída padrão ao executar o programa?",
+    "options": [
+      "ABDE",
+      "ACE",
+      "ACDE",
+      "AD, e em seguida o programa é encerrado por uma exceção não tratada",
+      "ABCDE"
+    ],
+    "answer": 0,
+    "explanation": "A saída é ABDE. O try imprime A, dividir(10, 2) termina normalmente e o try imprime B. Como não há ArithmeticException, o catch não imprime C. O finally imprime D e a instrução posterior imprime E.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos-4.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos-4.pdf",
+        "question": 8,
+        "url": "https://drive.google.com/file/d/12urdVENaDqj2ZnJhZb9AbmvFX5lME0SG/view"
+      }
+    ],
+    "code": "public class Teste {\n  static int dividir(int a, int b) {\n    return a / b;\n  }\n\n    public static void main(String[] args) {\n      try {\n        System.out.print(\"A\");\n        dividir(10, 2);\n        System.out.print(\"B\");\n      } catch (ArithmeticException e) {\n        System.out.print(\"C\");\n      } finally {\n        System.out.print(\"D\");\n      }\n      System.out.print(\"E\");\n    }\n}",
+    "tags": [
+      "try/catch/finally",
+      "ArithmeticException",
+      "Fluxo de execução"
+    ],
+    "topic": "try/catch/finally"
+  },
+  {
+    "id": "p3-06-09",
+    "prompt": "Sobre orientação a objetos, considere:\nI. Os valores dos atributos são definidos no nível de classe.\nII. Os métodos são definidos no nível de objeto.\nIII. A invocação de uma operação é definida no nível de objeto. Está correto o que se afirma em:",
+    "options": [
+      "I, II e III.",
+      "III, apenas.",
+      "II e III, apenas.",
+      "I e II, apenas.",
+      "I e III, apenas."
+    ],
+    "answer": 1,
+    "explanation": "Apenas III está correta, considerando atributos e métodos de instância. Os atributos são definidos pela classe, mas cada objeto mantém seus próprios valores. Os métodos são definidos na classe. A invocação de uma operação de instância é dirigida a um objeto receptor.",
+    "source": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos-4.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos-4.pdf",
+        "question": 9,
+        "url": "https://drive.google.com/file/d/12urdVENaDqj2ZnJhZb9AbmvFX5lME0SG/view"
+      }
+    ],
+    "tags": [
+      "Classes e objetos",
+      "Atributos de instância",
+      "Métodos de instância",
+      "Mensagens e chamadas de métodos"
+    ],
+    "topic": "Classes e objetos"
+  },
+  {
+    "id": "p3-07-01",
+    "prompt": "Analise o código abaixo e assinale a alternativa correta.",
+    "options": [
+      "O programa imprime 15.",
+      "O programa imprime 20.",
+      "O programa imprime 10.",
+      "O código não compila, pois LIMITE é uma constante.",
+      "O código compila, mas causa um erro durante a execução."
+    ],
+    "answer": 3,
+    "explanation": "Alternativa (a): Errada. Não existe operação que produza esse valor.\n\nAlternativa (b): Errada. O valor de LIMITE não pode ser alterado.\n\nAlternativa (c): Errada. O programa não chega a ser executado.\n\nAlternativa (d): Certa. Atributos de interfaces são implicitamente final.\n\nAlternativa (e): Errada. O problema é detectado durante a compilação.",
+    "source": "simulado_pp3.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado_pp3.pdf",
+        "question": 1,
+        "url": "https://drive.google.com/file/d/1oY0Av09eYsJ5FdSUlU72hS6qFPiR14Sj/view"
+      }
+    ],
+    "code": "interface Config {\n  int LIMITE = 10;\n}\nclass Sistema implements Config {\n  public static void main(String[] args) {\n    LIMITE = 20;\n    System.out.print(LIMITE);\n  }\n}",
+    "tags": [
+      "Interfaces",
+      "Constantes em interfaces",
+      "Modificador final",
+      "Erros de compilação"
+    ],
+    "topic": "Interfaces"
+  },
+  {
+    "id": "p3-07-02",
+    "prompt": "Um sistema de recursos humanos precisa representar Estagiario e Contratado. Ambos possuem nome e cpf, mas apenas Estagiario possui o atributo bolsaAuxilio, e apenas Contratado possui o atributo salario. Aplicando o conceito de generalização a esse cenário, qual seria a abordagem mais adequada?",
+    "options": [
+      "Criar uma superclasse Trabalhador, contendo nome e cpf, e fazer Estagiario e Contratado estenderem essa superclasse, cada uma com seus atributos específicos.",
+      "Duplicar os atributos nome e cpf em ambas as classes Estagiario e Contratado, sem criar nenhuma relação de herança entre elas.",
+      "Fazer a classe Contratado estender diretamente a classe Estagiario, já que ambas compartilham atributos em comum.",
+      "Criar uma interface chamada Trabalhador contendo os atributos nome e cpf, já que interfaces em Java podem armazenar dados de instância normalmente.",
+      "Colocar todos os atributos (comuns e específicos) em uma única classe chamada Trabalhador, eliminando a necessidade de Estagiario e Contratado."
+    ],
+    "answer": 0,
+    "explanation": "Alternativa (a): Correta. A generalização identifica os atributos comuns (nome e cpf) e os agrupa em uma superclasse (Trabalhador), enquanto os atributos específicos permanecem nas respectivas subclasses, evitando duplicação de código.\n\nAlternativa (b): Incorreta. Duplicar os atributos comuns viola o princípio de reuso da orientação a objetos e dificulta a manutenção, sendo exatamente o problema que a generalização busca evitar.\n\nAlternativa (c): Incorreta. Estagiario e Contratado são conceitos distintos ao mesmo nível de abstração; nenhum deles é um tipo mais específico do outro, então não há uma relação de herança direta entre eles.\n\nAlternativa (d): Incorreta. Interfaces em Java não podem armazenar atributos de instância com estado (apenas constantes public static final); o cenário exige uma classe abstrata ou concreta para armazenar nome e cpf como atributos de instância.\n\nAlternativa (e): Incorreta. Colocar todos os atributos em uma única classe eliminaria a distinção entre Estagiario e Contratado, perdendo a especificidade de cada tipo de trabalhador.",
+    "source": "simulado_pp3.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado_pp3.pdf",
+        "question": 2,
+        "url": "https://drive.google.com/file/d/1oY0Av09eYsJ5FdSUlU72hS6qFPiR14Sj/view"
+      }
+    ],
+    "tags": [
+      "Generalização e especialização",
+      "Herança",
+      "Modelagem orientada a objetos"
+    ],
+    "topic": "Generalização e especialização"
+  },
+  {
+    "id": "p3-07-03",
+    "prompt": "Em programação orientada a objetos, é correto afirmar que herança múltipla:",
+    "options": [
+      "define no máximo uma classe pai.",
+      "permite que uma classe herde atributos e métodos de duas ou mais classes.",
+      "é a instância de uma classe abstrata.",
+      "significa o mesmo que polimorfismo.",
+      "ocorre quando uma classe é a instância de vários objetos."
+    ],
+    "answer": 1,
+    "explanation": "Alternativa (a): isso é o contrário de herança múltipla (herança simples).\n\nAlternativa (c): não é possível instanciar uma classe abstrata.\n\nAlternativa (d): polimorfismo é a capacidade de uma operação (método) se comportar de formas diferentes.\n\nAlternativa (e): uma classe não é instância de um objeto. Um objeto é uma instância de uma classe.",
+    "source": "simulado_pp3.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado_pp3.pdf",
+        "question": 3,
+        "url": "https://drive.google.com/file/d/1oY0Av09eYsJ5FdSUlU72hS6qFPiR14Sj/view"
+      }
+    ],
+    "tags": [
+      "Herança múltipla",
+      "Herança",
+      "Interfaces"
+    ],
+    "topic": "Herança múltipla"
+  },
+  {
+    "id": "p3-07-04",
+    "prompt": "Considere o código Java abaixo. Qual será a saída produzida pelo programa?",
+    "options": [
+      "Marte",
+      "Lua",
+      "Sol",
+      "O programa não compila.",
+      "Sol Marte"
+    ],
+    "answer": 2,
+    "explanation": "Alternativa (a): Errada. Marte pertence ao objeto referenciado por b.\n\nAlternativa (b): Errada. b foi renomeado, mas nem sequer é exibido.\n\nAlternativa (c): Certa. a referencia um objeto diferente de b.\n\nAlternativa (d): Errada. O código é válido.\n\nAlternativa (e): Errada. Apenas a.mostrar() imprime algo.",
+    "source": "simulado_pp3.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado_pp3.pdf",
+        "question": 4,
+        "url": "https://drive.google.com/file/d/1oY0Av09eYsJ5FdSUlU72hS6qFPiR14Sj/view"
+      }
+    ],
+    "code": "class Nave {\n  private String nome;\n     Nave(String n) {\n       nome = n;\n     }\n     void renomear(String n) {\n       nome = n;\n     }\n     void mostrar() {\n       System.out.println(nome);\n     }\n     public static void main(String[] args) {\n       Nave a = new Nave(\"Sol\");\n       Nave b = new Nave(\"Lua\");\n         b.renomear(\"Marte\");\n         a.mostrar();\n     }\n}",
+    "tags": [
+      "Atributos de instância",
+      "Estado dos objetos",
+      "Referências a objetos"
+    ],
+    "topic": "Atributos de instância"
+  },
+  {
+    "id": "p3-07-08",
+    "prompt": "Sobre coesão e acoplamento em uma classe, assinale a alternativa correta.",
+    "options": [
+      "Uma classe com baixo acoplamento depende, na medida do possível, de poucas outras classes.",
+      "Uma classe fortemente acoplada tende a facilitar o reuso e a manutenção.",
+      "Uma classe coesa deve reunir o maior número possível de responsabilidades.",
+      "Coesão indica que todos os atributos de uma classe devem ser estáticos.",
+      "Acoplamento corresponde à quantidade de objetos criados a partir de uma classe."
+    ],
+    "answer": 0,
+    "explanation": "Alternativa (a): Correta. Baixo acoplamento significa minimizar dependências entre classes.\n\nAlternativa (b): Errada. Forte acoplamento dificulta o reuso e a manutenção.\n\nAlternativa (c): Errada. Uma classe coesa deve possuir uma única responsabilidade.\n\nAlternativa (d): Errada. Coesão não determina se atributos são estáticos.\n\nAlternativa (e): Errada. Acoplamento não corresponde à quantidade de objetos.",
+    "source": "simulado_pp3.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado_pp3.pdf",
+        "question": 8,
+        "url": "https://drive.google.com/file/d/1oY0Av09eYsJ5FdSUlU72hS6qFPiR14Sj/view"
+      }
+    ],
+    "tags": [
+      "Coesão",
+      "Acoplamento"
+    ],
+    "topic": "Coesão"
+  },
+  {
+    "id": "p3-07-09",
+    "prompt": "Observe o seguinte código em Java (cada classe em seu arquivo):\n\nAssinale a alternativa correta:",
+    "options": [
+      "O código compila e a saída é \"0\" (zero).",
+      "O código compila e a saída é \"42\".",
+      "O código compila e a saída é \"1\" (um).",
+      "Classe A compila, mas a Classe B não.",
+      "Classe A não compila (e nem a classe B)."
+    ],
+    "answer": 3,
+    "explanation": "A classe B não compila, pois o método print (sem parâmetros) da classe A (que é abstrato) não é sobreposto.\n\nNote que um método print foi implementado, mas este possui um parâmetro, o que o torna diferente do método com mesmo nome mas sem parâmetros (sobrecarga).",
+    "source": "simulado_pp3.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado_pp3.pdf",
+        "question": 9,
+        "url": "https://drive.google.com/file/d/1oY0Av09eYsJ5FdSUlU72hS6qFPiR14Sj/view"
+      }
+    ],
+    "code": "public abstract class A {\n  protected int i = 1;\n  public abstract void print();\n}\npublic class B extends A {\n  public void print(int i) {\n    System.out.println(i);\n  }\n     public static void main(String[] args) {\n       B b = new B();\n       b.print(42);\n     }\n}",
+    "tags": [
+      "Classes e métodos abstratos",
+      "Sobrecarga de métodos",
+      "Sobrescrita de métodos",
+      "Assinatura de métodos"
+    ],
+    "topic": "Classes e métodos abstratos"
+  },
+  {
+    "id": "p3-07-10",
+    "prompt": "Considere o programa Java abaixo. Qual será a saída apresentada pelo programa?",
+    "options": [
+      "ABC",
+      "BC",
+      "AC",
+      "O programa não compila.",
+      "B"
+    ],
+    "answer": 2,
+    "explanation": "Alternativa (a): Errada. O bloco catch não é executado.\n\nAlternativa (b): Errada. \"B\" somente seria impresso se ocorresse a exceção.\n\nAlternativa (c): Certa. Não ocorre exceção, portanto são impressos \"A\" e \"C\".\n\nAlternativa (d): Errada. O programa compila normalmente.\n\nAlternativa (e): Errada. O bloco catch não é executado.",
+    "source": "simulado_pp3.pdf",
+    "block": "P3",
+    "difficulty": "Médio",
+    "references": [
+      {
+        "file": "simulado_pp3.pdf",
+        "question": 10,
+        "url": "https://drive.google.com/file/d/1oY0Av09eYsJ5FdSUlU72hS6qFPiR14Sj/view"
+      }
+    ],
+    "code": "public class Teste {\n  public static void main(String[] args) {\n    try {\n      int x = 10 / 2;\n      System.out.print(\"A\");\n    } catch (ArithmeticException e) {\n      System.out.print(\"B\");\n    }\n    System.out.print(\"C\");\n  }\n}",
+    "tags": [
+      "try/catch/finally",
+      "ArithmeticException",
+      "Fluxo de execução"
+    ],
+    "topic": "try/catch/finally"
+  }
+]

@@ -1,0 +1,337 @@
+{
+  "pdfs": 7,
+  "occurrences": 70,
+  "uniqueQuestions": 56,
+  "duplicatesMerged": 14,
+  "coverage": [
+    {
+      "file": "simulado 3.pdf",
+      "url": "https://drive.google.com/file/d/1IisAl-1ykawBo27qqH3RA_SEZHdAspOF/view?usp=drivesdk",
+      "questions": [
+        {
+          "number": 1,
+          "canonicalId": "p3-01-01"
+        },
+        {
+          "number": 2,
+          "canonicalId": "p3-01-02"
+        },
+        {
+          "number": 3,
+          "canonicalId": "p3-01-03"
+        },
+        {
+          "number": 4,
+          "canonicalId": "p3-01-04"
+        },
+        {
+          "number": 5,
+          "canonicalId": "p3-01-05"
+        },
+        {
+          "number": 6,
+          "canonicalId": "p3-01-06"
+        },
+        {
+          "number": 7,
+          "canonicalId": "p3-01-07"
+        },
+        {
+          "number": 8,
+          "canonicalId": "p3-01-08"
+        },
+        {
+          "number": 9,
+          "canonicalId": "p3-01-09"
+        },
+        {
+          "number": 10,
+          "canonicalId": "p3-01-10"
+        }
+      ]
+    },
+    {
+      "file": "Simulado_3_POO_Adri.pdf",
+      "url": "https://drive.google.com/file/d/1prcENPMOdyAVpg3RS1Frg94nqm1av-ny/view?usp=drivesdk",
+      "questions": [
+        {
+          "number": 1,
+          "canonicalId": "p3-02-01"
+        },
+        {
+          "number": 2,
+          "canonicalId": "p3-02-02"
+        },
+        {
+          "number": 3,
+          "canonicalId": "p3-02-03"
+        },
+        {
+          "number": 4,
+          "canonicalId": "p3-02-04"
+        },
+        {
+          "number": 5,
+          "canonicalId": "p3-02-05"
+        },
+        {
+          "number": 6,
+          "canonicalId": "p3-02-06"
+        },
+        {
+          "number": 7,
+          "canonicalId": "p3-02-07"
+        },
+        {
+          "number": 8,
+          "canonicalId": "p3-02-08"
+        },
+        {
+          "number": 9,
+          "canonicalId": "p3-02-09"
+        },
+        {
+          "number": 10,
+          "canonicalId": "p3-02-10"
+        }
+      ]
+    },
+    {
+      "file": "simulado.pdf",
+      "url": "https://drive.google.com/file/d/1aY6WRftqgkzJukOyrd73tGQADbTdjD95/view?usp=drivesdk",
+      "questions": [
+        {
+          "number": 1,
+          "canonicalId": "p3-02-01"
+        },
+        {
+          "number": 2,
+          "canonicalId": "p3-03-02"
+        },
+        {
+          "number": 3,
+          "canonicalId": "p3-02-08"
+        },
+        {
+          "number": 4,
+          "canonicalId": "p3-03-04"
+        },
+        {
+          "number": 5,
+          "canonicalId": "p3-01-05"
+        },
+        {
+          "number": 6,
+          "canonicalId": "p3-03-06"
+        },
+        {
+          "number": 7,
+          "canonicalId": "p3-03-07"
+        },
+        {
+          "number": 8,
+          "canonicalId": "p3-03-08"
+        },
+        {
+          "number": 9,
+          "canonicalId": "p3-01-02"
+        },
+        {
+          "number": 10,
+          "canonicalId": "p3-03-10"
+        }
+      ]
+    },
+    {
+      "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos_ELAINE.pdf",
+      "url": "https://drive.google.com/file/d/1T7K88E2lRHiByUJG61SI-ffv6Ycaptim/view?usp=drivesdk",
+      "questions": [
+        {
+          "number": 1,
+          "canonicalId": "p3-04-01"
+        },
+        {
+          "number": 2,
+          "canonicalId": "p3-04-02"
+        },
+        {
+          "number": 3,
+          "canonicalId": "p3-02-01"
+        },
+        {
+          "number": 4,
+          "canonicalId": "p3-04-04"
+        },
+        {
+          "number": 5,
+          "canonicalId": "p3-04-05"
+        },
+        {
+          "number": 6,
+          "canonicalId": "p3-01-04"
+        },
+        {
+          "number": 7,
+          "canonicalId": "p3-04-07"
+        },
+        {
+          "number": 8,
+          "canonicalId": "p3-04-08"
+        },
+        {
+          "number": 9,
+          "canonicalId": "p3-01-09"
+        },
+        {
+          "number": 10,
+          "canonicalId": "p3-04-10"
+        }
+      ]
+    },
+    {
+      "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos.pdf",
+      "url": "https://drive.google.com/file/d/1n0e9lKBxiztB41mTj1vGMSI5DXgDNDmp/view?usp=drivesdk",
+      "questions": [
+        {
+          "number": 1,
+          "canonicalId": "p3-05-01"
+        },
+        {
+          "number": 2,
+          "canonicalId": "p3-05-02"
+        },
+        {
+          "number": 3,
+          "canonicalId": "p3-05-03"
+        },
+        {
+          "number": 4,
+          "canonicalId": "p3-05-04"
+        },
+        {
+          "number": 5,
+          "canonicalId": "p3-05-05"
+        },
+        {
+          "number": 6,
+          "canonicalId": "p3-05-06"
+        },
+        {
+          "number": 7,
+          "canonicalId": "p3-05-07"
+        },
+        {
+          "number": 8,
+          "canonicalId": "p3-05-08"
+        },
+        {
+          "number": 9,
+          "canonicalId": "p3-05-09"
+        },
+        {
+          "number": 10,
+          "canonicalId": "p3-05-10"
+        }
+      ]
+    },
+    {
+      "file": "ColabWeb_ POO-2026_2 - 2026_2 - Programação Orientada a Objetos-4.pdf",
+      "url": "https://drive.google.com/file/d/12urdVENaDqj2ZnJhZb9AbmvFX5lME0SG/view?usp=drivesdk",
+      "questions": [
+        {
+          "number": 1,
+          "canonicalId": "p3-06-01"
+        },
+        {
+          "number": 2,
+          "canonicalId": "p3-02-02"
+        },
+        {
+          "number": 3,
+          "canonicalId": "p3-06-03"
+        },
+        {
+          "number": 4,
+          "canonicalId": "p3-05-05"
+        },
+        {
+          "number": 5,
+          "canonicalId": "p3-06-05"
+        },
+        {
+          "number": 6,
+          "canonicalId": "p3-06-06"
+        },
+        {
+          "number": 7,
+          "canonicalId": "p3-02-09"
+        },
+        {
+          "number": 8,
+          "canonicalId": "p3-06-08"
+        },
+        {
+          "number": 9,
+          "canonicalId": "p3-06-09"
+        },
+        {
+          "number": 10,
+          "canonicalId": "p3-05-10"
+        }
+      ]
+    },
+    {
+      "file": "simulado_pp3.pdf",
+      "url": "https://drive.google.com/file/d/1oY0Av09eYsJ5FdSUlU72hS6qFPiR14Sj/view?usp=drivesdk",
+      "questions": [
+        {
+          "number": 1,
+          "canonicalId": "p3-07-01"
+        },
+        {
+          "number": 2,
+          "canonicalId": "p3-07-02"
+        },
+        {
+          "number": 3,
+          "canonicalId": "p3-07-03"
+        },
+        {
+          "number": 4,
+          "canonicalId": "p3-07-04"
+        },
+        {
+          "number": 5,
+          "canonicalId": "p3-02-01"
+        },
+        {
+          "number": 6,
+          "canonicalId": "p3-03-06"
+        },
+        {
+          "number": 7,
+          "canonicalId": "p3-06-06"
+        },
+        {
+          "number": 8,
+          "canonicalId": "p3-07-08"
+        },
+        {
+          "number": 9,
+          "canonicalId": "p3-07-09"
+        },
+        {
+          "number": 10,
+          "canonicalId": "p3-07-10"
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "schema": "validateImport",
+    "index": "generateIndex and validateIndex",
+    "loading": "fetchQuestionSets: 4 notebooks, 129 unique IDs",
+    "java": "30 code examples compiled or executed with OpenJDK 17; expected outputs and compilation errors confirmed",
+    "diagram": "Original class diagrams transcribed into context with links to source PDFs"
+  }
+}
