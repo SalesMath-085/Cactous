@@ -91,14 +91,21 @@ export async function publishQuestions(request, fetcher = fetch) {
   } catch (error) { return json({error:error.status ? error.message : 'Não foi possível publicar. Confira o índice de cadernos no GitHub e tente novamente.'},error.status || 502); }
 }
 
+function revalidateHtml(response) {
+  if (!response.headers.get('Content-Type')?.includes('text/html')) return response;
+  const headers = new Headers(response.headers);
+  headers.set('Cache-Control', 'no-cache');
+  return new Response(response.body, {status:response.status, statusText:response.statusText, headers});
+}
+
 export default {
   async fetch(request, env) {
     if (new URL(request.url).pathname === '/api/question-sets') return publishQuestions(request);
     if (new URL(request.url).pathname.startsWith('/api/')) return json({error:'Rota não encontrada.'},404);
     const response = await env.ASSETS.fetch(request);
     const acceptsHtml = request.headers.get('accept')?.includes('text/html');
-    if (response.status !== 404 || !acceptsHtml || !['GET','HEAD'].includes(request.method)) return response;
+    if (response.status !== 404 || !acceptsHtml || !['GET','HEAD'].includes(request.method)) return revalidateHtml(response);
     const indexUrl = new URL(request.url); indexUrl.pathname='/index.html'; indexUrl.search='';
-    return env.ASSETS.fetch(new Request(indexUrl,request));
+    return revalidateHtml(await env.ASSETS.fetch(new Request(indexUrl,request)));
   },
 };

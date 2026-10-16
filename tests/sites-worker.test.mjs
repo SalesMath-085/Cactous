@@ -51,3 +51,19 @@ test("emits the files required by Sites packaging", async () => {
   await access(new URL("../dist/server/index.js", import.meta.url));
   await access(new URL("../dist/.openai/hosting.json", import.meta.url));
 });
+
+test('HTML is revalidated on navigation while hashed assets keep their cache policy', async () => {
+  const env={ASSETS:{fetch:async request=>{
+    const pathname=new URL(request.url).pathname;
+    if(pathname==='/missing')return new Response('missing',{status:404});
+    const html=pathname==='/'||pathname==='/index.html';
+    return new Response(html?'app':'asset',{headers:{'Content-Type':html?'text/html':'text/javascript','Cache-Control':'public, max-age=31536000, immutable'}});
+  }}};
+  for(const pathname of ['/','/missing']){
+    const response=await worker.fetch(new Request('https://example.test'+pathname,{headers:{accept:'text/html'}}),env);
+    assert.equal(response.headers.get('Cache-Control'),'no-cache');
+    assert.equal(await response.text(),'app');
+  }
+  const asset=await worker.fetch(new Request('https://example.test/assets/app.js'),env);
+  assert.equal(asset.headers.get('Cache-Control'),'public, max-age=31536000, immutable');
+});

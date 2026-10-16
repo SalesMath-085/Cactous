@@ -4,11 +4,17 @@ const INSTRUCTION = /(?<=[.!?])\s+(?=(?:Assinale|Marque|Indique|Com base|A parti
 // Recognize a complete sequence, so ordinary numbers inside prose remain text.
 export function splitQuestionPrompt(prompt) {
   const text = prompt.replace(/\r\n?/g, '\n').trim();
-  const markers = [...text.matchAll(/(?:^|\s)((\d{1,2}|[IVX]+)(?:[.)]|\s*[-–—]))\s+/g)];
-  if (markers.length < 2 || markers.some((match, i) => {
+  let markers = [...text.matchAll(/(?:^|\s)((\d{1,2}|[IVX]+)(?:[.)]|\s*[-–—]))\s+/g)];
+  const numbered = markers.length >= 2 && markers.every((match, i) => {
     const number = /^\d+$/.test(match[2]) ? Number(match[2]) : ROMAN.indexOf(match[2]) + 1;
-    return number !== i + 1 || /^\d+$/.test(match[2]) !== /^\d+$/.test(markers[0][2]);
-  })) return { text, statements: [] };
+    return number === i + 1 && /^\d+$/.test(match[2]) === /^\d+$/.test(markers[0][2]);
+  });
+  if (!numbered) {
+    markers = [...text.matchAll(/(?:^|\s)(\(\s*\))\s+/g)];
+    if (markers.length < 2 || !/\b(?:verdadeiro|falso)\b/i.test(text.slice(0, markers[0].index))) {
+      return { text, statements: [] };
+    }
+  }
 
   const statements = markers.map((match, i) => ({
     label: match[1].trim(),

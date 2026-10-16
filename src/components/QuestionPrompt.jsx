@@ -7,7 +7,7 @@ export default function QuestionPrompt({ text }) {
   return <div className="question-prompt">
     {introduction && <h2>{introduction}</h2>}
     <ol className="question-statements" role="list" aria-label="Afirmações da questão">
-      {statements.map(statement => <li key={statement.label}>
+      {statements.map((statement, index) => <li key={`${statement.label}-${index}`}>
         <span className="statement-label">{statement.label}</span>
         <span className="statement-text">{statement.text}</span>
       </li>)}

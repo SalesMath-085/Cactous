@@ -27,3 +27,14 @@ test('ordinary prose, decimals and incomplete sequences are not interpreted as l
     assert.equal(result.text,prompt);
   }
 });
+
+test('true/false statements from the first P3 question form a list even without line breaks', () => {
+  const prompt='Sobre essas duas linguagens, atribua V (verdadeiro) ou F (falso) às afirmativas a seguir. ( ) A linguagem C++ é uma extensão da linguagem C. ( ) A linguagem Java é interpretada e C++ é compilada. ( ) A linguagem Java possui tratamento de exceções. ( ) Ambas possuem tipagem dinâmica. ( ) O coletor de lixo de Java é automático e o de C++ é manual. Assinale a alternativa que contém, de cima para baixo, a sequência correta.';
+  const result=splitQuestionPrompt(prompt);
+  assert.equal(result.statements.length,5);
+  assert.ok(result.statements.every(s=>s.label==='( )'));
+  assert.equal(result.instruction,'Assinale a alternativa que contém, de cima para baixo, a sequência correta.');
+  const rebuilt=[result.introduction,...result.statements.map(s=>`${s.label} ${s.text}`),result.instruction].join(' ');
+  assert.equal(rebuilt,prompt);
+  assert.deepEqual(splitQuestionPrompt('Considere f( ) e g( ) no código.').statements,[]);
+});
